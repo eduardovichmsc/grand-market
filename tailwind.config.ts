@@ -12,6 +12,7 @@ const config: Config = {
 				background: "var(--background)",
 				foreground: "var(--foreground)",
 				"res-green": "#076151",
+				"res-light-green": "#099179",
 				"res-grey": "#AFC2BF",
 			},
 			container: {

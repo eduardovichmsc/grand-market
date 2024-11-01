@@ -1,6 +1,8 @@
 import { ReactNode } from "react";
+
 import { Navbar } from "@/app/components/Navbar";
-import { MiniBanner } from "../components/MiniBanner";
+import { MiniBanner } from "@/app/components/MiniBanner";
+import { Footer } from "@/app/components/Footer";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
@@ -8,6 +10,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 			<MiniBanner />
 			<Navbar />
 			{children}
+			<Footer />
 		</div>
 	);
 }
