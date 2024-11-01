@@ -1,7 +1,7 @@
 import { Hero } from "@/app/components/Hero";
 import { ChevronRight, Plus } from "lucide-react";
 
-export const newProducts = [
+const newProducts = [
 	{ title: "Brenta SG", price: "150 000" },
 	{ title: "Artica", price: "200 000" },
 	{ title: "Nordica", price: "350 000" },
