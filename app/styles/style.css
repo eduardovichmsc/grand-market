@@ -1,3 +1,7 @@
 .section-title {
 	@apply font-extrabold text-5xl pb-10;
 }
+
+.text-big {
+	@apply text-8xl;
+}

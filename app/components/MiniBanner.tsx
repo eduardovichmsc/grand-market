@@ -9,7 +9,7 @@ export const MiniBanner = () => {
 				<p className="mx-auto font-thin">
 					Понедельник-Воскресенье с 10:00 до 19:00
 				</p>
-				<div className="flex gap-4">
+				<div className="flex gap-4 items-center">
 					<Link
 						href={"https://instagram.com/grandmarket_west"}
 						className="relative block size-6">

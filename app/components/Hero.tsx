@@ -5,9 +5,9 @@ export const Hero = () => {
 				<div className="container flex">
 					<div className="bg-white/10 flex flex-col justify-center w-1/2 h-full gap-10">
 						<div className="font-extrabold text-white *:leading-tight">
-							<p className="text-8xl">Эффективное</p>
-							<p className="text-8xl">Оборудование</p>
-							<p className="text-8xl">Для Торговли</p>
+							<p className="text-big">Эффективное</p>
+							<p className="text-big">Оборудование</p>
+							<p className="text-big">Для Торговли</p>
 						</div>
 						<p className="font-medium text-res-grey text-3xl">
 							Создайте комфортные условия для ваших клиентов с помощью
