@@ -1,4 +1,6 @@
 "use client";
+import clsx from "clsx";
+import Image from "next/image";
 import { useState } from "react";
 
 export const AboutCompanyComponent = () => {
@@ -18,16 +20,38 @@ export const AboutCompanyComponent = () => {
 			<div className="basis-1/2 h-full">
 				<div className="w-full h-full flex gap-6">
 					{/* левое фото */}
-					<div className="w-1/2 h-4/5 bg-res-green rounded-2xl"></div>
+					<div className="relative overflow-hidden w-1/2 h-4/5 bg-res-green rounded-2xl">
+						<Image
+							src={"/about/first.png"}
+							fill
+							objectFit="cover"
+							alt="first"
+						/>
+					</div>
 
 					{/* правый контейнер */}
 					<div className="w-1/2 h-full flex flex-col gap-[inherit]">
 						{/* верхнее фото */}
-						<div className="w-full h-3/5 bg-res-green rounded-2xl"></div>
+						<div className="relative overflow-hidden w-full h-3/5 bg-res-green rounded-2xl">
+							<Image
+								src={"/about/second.png"}
+								fill
+								objectFit="cover"
+								alt="second"
+							/>
+						</div>
 
 						{/* нижний контейнер с текстом */}
 						<div className="w-full h-2/5 bg-res-green rounded-2xl flex flex-col p-6 gap-[inherit]">
-							<div className="bg-white rounded-full size-20"></div>
+							<div className="relative overflow-hidden bg-white rounded-full size-20">
+								<Image
+									src={"/about/vector.svg"}
+									fill
+									objectFit="contain"
+									alt="logo"
+									className="p-[20%]"
+								/>
+							</div>
 							<div className="w-full h-[3px] bg-white"></div>
 							<p className="font-semibold text-white text-xl">
 								Высококачественное оборудование для бизнеса
@@ -46,11 +70,16 @@ export const AboutCompanyComponent = () => {
 					{Object.keys(content).map((key) => (
 						<button
 							key={key}
-							className={`flex justify-center items-center rounded-2xl w-32 h-10 gap-1 ${
-								value === key
-									? "bg-res-green text-white"
-									: "bg-res-grey/10 text-res-green"
-							}`}
+							className={clsx(
+								"transition flex justify-center items-center rounded-2xl w-32 h-10 gap-1",
+								{
+									"text-white bg-res-green": value === key,
+								},
+								{
+									"bg-res-grey/10 text-res-green hover:bg-res-green/20":
+										value !== key,
+								}
+							)}
 							onClick={() => setValue(key)}>
 							<p className="font-medium text-base">{key}</p>
 						</button>

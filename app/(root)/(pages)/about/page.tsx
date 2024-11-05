@@ -5,6 +5,7 @@ export default function AboutPage() {
 	return (
 		<main className="">
 			<Banner
+				image="/about/banner.png"
 				bigText="О компании"
 				smallText="Ваш эксперт в мире торгового оборудования"
 			/>
@@ -15,7 +16,7 @@ export default function AboutPage() {
 
 				{/* секция - карта */}
 				<div className="text-res-green w-full">
-					<div className="float-right w-[40rem] aspect-[5/3] bg-res-light-green"></div>
+					<div className="float-right w-[65%] aspect-[5/3] ml-6 mb-6 bg-res-light-green"></div>
 					<p className="font-medium text-3xl">
 						<span>
 							GRAND MARKET - имеет 3 Филиала в городах Атырау, Актау и Актобе. В

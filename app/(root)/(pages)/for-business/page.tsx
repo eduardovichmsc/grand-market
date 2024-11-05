@@ -32,6 +32,7 @@ export default function ForBusinessPage() {
 	return (
 		<main className="">
 			<Banner
+				image="/for-business/banner.png"
 				bigText="Виды Оборудование Для Бизнеса"
 				smallText="Ваш эксперт в мире торгового оборудования"
 			/>

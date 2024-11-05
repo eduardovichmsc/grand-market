@@ -2,9 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+	outline: none;
+}
+
 :root {
 	/* --background: #ffffff; */
 	/* --foreground: #171717; */
+	font-size: 16px;
 }
 
 @media (prefers-color-scheme: dark) {

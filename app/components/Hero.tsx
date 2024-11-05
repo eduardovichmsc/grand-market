@@ -1,7 +1,7 @@
 export const Hero = () => {
 	return (
 		<div className="relative">
-			<div className="bg-res-green flex min-h-[920px]">
+			<div className="2xl:bg-res-green bg-pink-500 flex min-h-[920px]">
 				<div className="container flex">
 					<div className="bg-white/10 flex flex-col justify-center w-1/2 h-full gap-10">
 						<div className="font-extrabold text-white *:leading-tight">

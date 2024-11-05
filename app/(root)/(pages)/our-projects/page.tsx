@@ -3,7 +3,10 @@ import { Banner } from "@/app/components/Banner";
 export default function ForBusinessPage() {
 	return (
 		<main className="">
-			<Banner bigText="Наши реализованные проекты" />
+			<Banner
+				image="/projects/banner.png"
+				bigText="Наши реализованные проекты"
+			/>
 
 			<section className="container py-28 space-y-36">
 				<div className="grid grid-cols-3 gap-6 *:rounded-2xl">

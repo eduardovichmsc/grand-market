@@ -2,6 +2,7 @@
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
 export const NavbarLinks = [
@@ -15,17 +16,19 @@ export const NavbarLinks = [
 
 export const Navbar = () => {
 	const [hovered, setHovered] = useState("");
+	const router = useRouter();
+	const pathname = usePathname();
 
 	return (
-		<div className="flex container py-3">
-			<div className="relative h-[85px] basis-1/4">
+		<div className="flex container py-3 justify-between">
+			<div className="relative aspect-[16/7] h-[85px]">
 				<Link href={"/"} className="">
 					<Image
 						src={"/logo.png"}
 						fill
 						objectFit="contain"
 						alt="logo"
-						className="py-2"
+						className=""
 					/>
 				</Link>
 			</div>
@@ -38,7 +41,12 @@ export const Navbar = () => {
 							"text-res-grey": hovered.length > 0 && hovered != link.href,
 						})}
 						onMouseEnter={() => setHovered(link.href)}
-						onMouseLeave={() => setHovered("")}>
+						onMouseLeave={() => setHovered("")}
+						onClick={(e) => {
+							if (link.href == "/advantages" || link.href == "/services") {
+								e.preventDefault();
+							}
+						}}>
 						{link.title}
 					</Link>
 				))}
