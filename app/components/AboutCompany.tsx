@@ -1,10 +1,9 @@
-"use client";
 import clsx from "clsx";
 import Image from "next/image";
 import { useState } from "react";
 
 export const AboutCompanyComponent = () => {
-	const [value, setValue] = useState("Описание");
+	const [value, setValue] = useState<keyof typeof content>("Описание");
 
 	const content = {
 		Описание:
@@ -12,11 +11,11 @@ export const AboutCompanyComponent = () => {
 		Миссия:
 			"Обеспечивать предприятия Казахстана высококачественным оборудованием для торговли и HORECA, предлагая сертифицированную продукцию с заводской гарантией и профессиональным сервисным обслуживанием.",
 		Цель: "Стать ведущим поставщиком торгового и холодильного оборудования в регионе, расширяя ассортимент и улучшая сервис для обеспечения максимального удовлетворения потребностей наших клиентов.",
-	};
+	} as const;
 
 	return (
 		<div className="mx-auto flex flex-col lg:flex-row gap-6">
-			{/* левое -- фотографий */}
+			{/* левое -- фотографии */}
 			<div className="basis-1/2 h-full">
 				<div className="w-full h-full flex gap-6">
 					{/* левое фото */}
@@ -69,7 +68,7 @@ export const AboutCompanyComponent = () => {
 
 				{/* кнопки - контейнер */}
 				<div className="flex gap-4 xl:gap-2">
-					{Object.keys(content).map((key) => (
+					{(Object.keys(content) as Array<keyof typeof content>).map((key) => (
 						<button
 							key={key}
 							className={clsx(
