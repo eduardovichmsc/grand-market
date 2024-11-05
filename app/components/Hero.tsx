@@ -1,28 +1,28 @@
 export const Hero = () => {
 	return (
 		<div className="relative">
-			<div className="2xl:bg-res-green bg-pink-500 flex min-h-[920px]">
-				<div className="container flex">
-					<div className="bg-white/10 flex flex-col justify-center w-1/2 h-full gap-10">
+			<div className="bg-res-green flex min-h-[50rem] xl:min-h-[55rem]">
+				<div className="container flex flex-col md:flex-row">
+					<div className="flex flex-col items-center md:items-stretch justify-center w-full md:w-1/2 h-full gap-12 md:gap-8 xl:gap-10 px-10 md:px-0">
 						<div className="font-extrabold text-white *:leading-tight">
 							<p className="text-big">Эффективное</p>
 							<p className="text-big">Оборудование</p>
 							<p className="text-big">Для Торговли</p>
 						</div>
-						<p className="font-medium text-res-grey text-3xl">
+						<p className="font-medium text-center md:text-start text-res-grey text-3xl">
 							Создайте комфортные условия для ваших клиентов с помощью
 							проверенных решений.
 						</p>
-						<div className="flex gap-[inherit]">
-							<button className="bg-none border-[3px] rounded-2xl border-white w-60 h-20">
+						<div className="w-full md:w-fit flex flex-col md:flex-row gap-4 md:gap-[inherit]">
+							<button className="bg-none border-[3px] rounded-2xl border-white w-full md:w-60 h-20">
 								<p className="font-medium text-white text-3xl">Связаться</p>
 							</button>
-							<button className="bg-white rounded-2xl w-60 h-20">
+							<button className="bg-white rounded-2xl w-full md:w-60 h-20">
 								<p className="font-medium text-res-green text-3xl">Товары</p>
 							</button>
 						</div>
 					</div>
-					<div className="relative w-1/2 h-full flex items-center">
+					<div className="hidden md:flex relative w-full md:w-1/2 h-full items-center">
 						{/* <div className="absolute max-w-[690px] min-h-[976px] bg-white left-0">
 						<Image
 							src={"/artica.png"}

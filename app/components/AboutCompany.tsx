@@ -15,12 +15,12 @@ export const AboutCompanyComponent = () => {
 	};
 
 	return (
-		<div className="h-[70vh] mx-auto flex gap-6">
+		<div className="mx-auto flex flex-col lg:flex-row gap-6">
 			{/* левое -- фотографий */}
 			<div className="basis-1/2 h-full">
 				<div className="w-full h-full flex gap-6">
 					{/* левое фото */}
-					<div className="relative overflow-hidden w-1/2 h-4/5 bg-res-green rounded-2xl">
+					<div className="relative overflow-hidden w-1/2 h-[40rem] bg-res-green rounded-2xl">
 						<Image
 							src={"/about/first.png"}
 							fill
@@ -32,7 +32,7 @@ export const AboutCompanyComponent = () => {
 					{/* правый контейнер */}
 					<div className="w-1/2 h-full flex flex-col gap-[inherit]">
 						{/* верхнее фото */}
-						<div className="relative overflow-hidden w-full h-3/5 bg-res-green rounded-2xl">
+						<div className="relative overflow-hidden w-full h-[25rem] bg-res-green rounded-2xl">
 							<Image
 								src={"/about/second.png"}
 								fill
@@ -63,15 +63,17 @@ export const AboutCompanyComponent = () => {
 
 			{/* правое - контейнер с информацией */}
 			<div className="basis-1/2 h-full flex flex-col gap-5">
-				<p className="uppercase font-extrabold text-4xl">О компании</p>
+				<p className="uppercase font-extrabold text-4xl mt-8 lg:mt-0">
+					О компании
+				</p>
 
 				{/* кнопки - контейнер */}
-				<div className="flex gap-2">
+				<div className="flex gap-4 xl:gap-2">
 					{Object.keys(content).map((key) => (
 						<button
 							key={key}
 							className={clsx(
-								"transition flex justify-center items-center rounded-2xl w-32 h-10 gap-1",
+								"transition flex justify-center items-center rounded-2xl px-5 py-2.5 gap-1",
 								{
 									"text-white bg-res-green": value === key,
 								},
@@ -81,13 +83,15 @@ export const AboutCompanyComponent = () => {
 								}
 							)}
 							onClick={() => setValue(key)}>
-							<p className="font-medium text-base">{key}</p>
+							<p className="font-medium text-xl lg:text-base">{key}</p>
 						</button>
 					))}
 				</div>
 
 				{/* текст */}
-				<p className="font-medium text-res-green text-3xl">{content[value]}</p>
+				<p className="font-medium text-res-green text-2xl xl:text-3xl">
+					{content[value]}
+				</p>
 			</div>
 		</div>
 	);

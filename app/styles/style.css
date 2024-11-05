@@ -1,7 +1,11 @@
 .section-title {
-	@apply font-extrabold text-5xl pb-10;
+	@apply font-extrabold text-4xl md:text-5xl pr-10;
 }
 
 .text-big {
-	@apply text-8xl;
+	@apply text-[4rem] sm:text-[5rem] xl:text-8xl;
+}
+
+.inner {
+	@apply pt-10;
 }

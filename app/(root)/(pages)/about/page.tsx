@@ -10,14 +10,14 @@ export default function AboutPage() {
 				smallText="Ваш эксперт в мире торгового оборудования"
 			/>
 
-			<section className="mx-auto w-2/3 py-28 space-y-36">
+			<section className="mx-auto container max-w-[480px] sm:max-w-[640px] md:max-w-[1270px] py-28 space-y-36">
 				{/* секция - о компаний */}
 				<AboutCompanyComponent />
 
 				{/* секция - карта */}
-				<div className="text-res-green w-full">
-					<div className="float-right w-[65%] aspect-[5/3] ml-6 mb-6 bg-res-light-green"></div>
-					<p className="font-medium text-3xl">
+				<div className="text-res-green w-full flex flex-col gap-8 lg:block">
+					<div className="lg:float-right h-[20rem] aspect-[5/3] lg:ml-6 lg:mb-6 bg-res-light-green"></div>
+					<p className="font-medium text-2xl xl:text-3xl">
 						<span>
 							GRAND MARKET - имеет 3 Филиала в городах Атырау, Актау и Актобе. В
 							2023 году наша команда планирует открыть филиал в городе Уральск.

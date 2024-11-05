@@ -9,7 +9,7 @@ export default function ForBusinessPage() {
 			/>
 
 			<section className="container py-28 space-y-36">
-				<div className="grid grid-cols-3 gap-6 *:rounded-2xl">
+				<div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 *:rounded-2xl">
 					{[1, 2, 3, 4, 5, 6].map((item) => (
 						<div key={item} className="aspect-[6/7] bg-res-green">
 							{/* place there your image */}

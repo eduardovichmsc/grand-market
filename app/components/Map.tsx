@@ -188,7 +188,7 @@ export const Map = () => {
 								style={{ border: 0 }}
 								className="size-full"
 								loading="lazy"
-								referrerpolicy="no-referrer-when-downgrade"></iframe>
+							/>
 						)}
 					</div>
 					<div className="w-full h-1/5 flex flex-col gap-[inherit]">

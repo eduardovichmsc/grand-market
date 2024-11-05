@@ -38,7 +38,7 @@ export default function ForBusinessPage() {
 			/>
 
 			<section className="container py-28 space-y-36">
-				<div className="grid grid-cols-3 gap-16">
+				<div className="grid md:grid-cols-3 gap-16">
 					{gridContent.map((grid, index) => (
 						<div
 							key={index}
@@ -48,7 +48,7 @@ export default function ForBusinessPage() {
                 image
               */}
 							</div>
-							<p className="font-extrabold text-4xl text-center">
+							<p className="font-extrabold text-4xl text-center mt-4">
 								{grid.title}
 							</p>
 							<p className="font-medium text-xl text-center">{grid.body}</p>

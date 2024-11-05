@@ -1,15 +1,24 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export const Footer = () => {
 	return (
 		<footer className="container py-10 space-y-10 mt-10">
-			<div className="flex justify-between h-full gap-14">
-				<div className="basis-1/4">
-					<div className="w-full h-60 bg-res-grey"></div>
+			<div className="flex flex-col sm:flex-row flex-wrap lg:flex-nowrap justify-between h-full gap-y-14 md:gap-14">
+				<div className="basis-full lg:basis-1/4">
+					<Link href={"/"} className="relative block aspect-[16/7] h-[7rem]">
+						<Image
+							src={"/logo.png"}
+							fill
+							objectFit="contain"
+							alt="logo"
+							className=""
+						/>
+					</Link>
 				</div>
-				<div className="basis-1/4 flex flex-col gap-8">
+				<div className="basis-full sm:basis-1/3 md:basis-1/4 flex flex-col gap-8 justify-center">
 					<p className="text-res-green font-extrabold text-2xl">Информация</p>
-					<div className="flex flex-col gap-4 text-xl text-res-green">
+					<div className="flex justify-center md:justify-stretch flex-col gap-4 text-xl text-res-green">
 						<Link href={"/about"} className="w-fit">
 							О нас
 						</Link>
@@ -28,11 +37,14 @@ export const Footer = () => {
 						<Link href={"/about"} className="w-fit">
 							Контакты
 						</Link>
+						<Link href={"/auth"} className="w-fit">
+							Войти в аккаунт
+						</Link>
 					</div>
 				</div>
-				<div className="basis-1/4 flex flex-col gap-8">
+				<div className="basis-full sm:basis-1/3 md:basis-1/4 flex flex-col gap-8 justify-center">
 					<p className="text-res-green font-extrabold text-2xl">Каталог</p>
-					<div className="flex flex-col gap-4 text-xl text-res-green">
+					<div className="flex justify-center md:justify-stretch flex-col gap-4 text-xl text-res-green">
 						<Link href={"/about"} className="w-fit">
 							Фронтальные стеллажи
 						</Link>
@@ -62,9 +74,9 @@ export const Footer = () => {
 						</Link>
 					</div>
 				</div>
-				<div className="basis-1/4 flex flex-col gap-8">
+				<div className="basis-full sm:basis-1/3 md:basis-1/4 flex flex-col gap-8 justify-center">
 					<p className="text-res-green font-extrabold text-2xl">Контакты</p>
-					<div className="flex flex-col gap-4 text-xl text-res-green">
+					<div className="flex justify-center md:justify-stretch flex-col gap-4 text-xl text-res-green">
 						<Link href={"/about"} className="w-fit">
 							Атырау - Курмангазы 106
 						</Link>
@@ -80,7 +92,9 @@ export const Footer = () => {
 
 			<div className="w-full min-h-[3px] bg-res-green"></div>
 
-			<p className="text-right text-res-green">сделано @joinway.24</p>
+			<p className="text-left lg:text-right text-res-green">
+				сделано @joinway.24
+			</p>
 		</footer>
 	);
 };

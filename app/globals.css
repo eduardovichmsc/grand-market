@@ -24,3 +24,33 @@ body {
 	/* background: var(--background); */
 	/* font-family: Arial, Helvetica, sans-serif; */
 }
+
+@media (max-width: 1600px) {
+	:root {
+		font-size: 14px;
+	}
+}
+
+@media (max-width: 1280px) {
+	:root {
+		font-size: 12px;
+	}
+}
+
+@media (max-width: 1023px) {
+	:root {
+		font-size: 11px;
+	}
+}
+
+@media (max-width: 960px) {
+	:root {
+		font-size: 10px;
+	}
+}
+
+@media (max-width: 500px) {
+	:root {
+		font-size: 9px;
+	}
+}
