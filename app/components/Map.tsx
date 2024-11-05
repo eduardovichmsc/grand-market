@@ -30,7 +30,7 @@ export const Map = () => {
 		lat: number | null;
 		lon: number | null;
 	}>({ lat: null, lon: null });
-	const [city, setCity] = useState<string | null>(null);
+	const [city, setCity] = useState<keyof typeof locationData | null>(null);
 	const [iframeSrc, setIframeSrc] = useState<string | null>(null);
 	const [isLoading, setIsLoading] = useState(true);
 	const [isClient, setIsClient] = useState(false);
