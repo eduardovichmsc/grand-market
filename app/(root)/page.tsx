@@ -112,11 +112,11 @@ export default function Home() {
 
 				{/* Последние поступления */}
 				<div className="bg-res-green container flex flex-col justify-center rounded-2xl py-20 px-12 gap-10">
-					<div className="flex justify-between items-center">
+					<div className="flex flex-col sm:flex-row gap-[inherit] sm:gap-0 justify-between items-center">
 						<p className="section-title text-white">Последние поступления : </p>
 						<Link
 							href={"/our-projects"}
-							className="transition flex justify-center items-center place-self-end bg-white rounded-2xl aspect-[16/5] h-20 gap-1 hover:bg-white/90">
+							className="transition flex justify-center items-center sm:place-self-end bg-white rounded-2xl w-full sm:w-fit sm:aspect-[16/5] h-20 gap-1 hover:bg-white/90">
 							<p className="font-medium text-res-green text-xl">
 								Посмотреть все
 							</p>

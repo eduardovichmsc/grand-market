@@ -1,5 +1,6 @@
 import { Banner } from "@/app/components/Banner";
 import { AboutCompanyComponent } from "@/app/components/AboutCompany";
+import Image from "next/image";
 
 export default function AboutPage() {
 	return (
@@ -16,7 +17,14 @@ export default function AboutPage() {
 
 				{/* секция - карта */}
 				<div className="text-res-green w-full flex flex-col gap-8 lg:block">
-					<div className="lg:float-right h-[20rem] aspect-[5/3] lg:ml-6 lg:mb-6 bg-res-light-green"></div>
+					<div className="lg:float-right h-[20rem] md:h-[27.5rem] xl:h-[30rem] aspect-[5/3] lg:ml-6 lg:mb-6 relative w-full md:w-fit">
+						<Image
+							src={"/map.png"}
+							fill
+							objectFit="contain"
+							alt="Карта Grand-Market"
+						/>
+					</div>
 					<p className="font-medium text-2xl xl:text-3xl">
 						<span>
 							GRAND MARKET - имеет 3 Филиала в городах Атырау, Актау и Актобе. В

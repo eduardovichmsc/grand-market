@@ -1,5 +1,8 @@
 "use client";
+import { isSidebarOpen } from "@/app/model/atoms";
+
 import clsx from "clsx";
+import { useAtom } from "jotai";
 import Image from "next/image";
 import Link from "next/link";
 // import { usePathname, useRouter } from "next/navigation";
@@ -16,12 +19,16 @@ export const NavbarLinks = [
 
 export const Navbar = () => {
 	const [hovered, setHovered] = useState("");
-	// const router = useRouter();
-	// const pathname = usePathname();
+	const [sidebar, setSidebar] = useAtom(isSidebarOpen);
+
+	const toggleSidebar = () => {
+		setSidebar((prev) => !prev);
+		console.log(sidebar);
+	};
 
 	return (
-		<div className="flex container py-3 justify-center lg:justify-between gap-2 xl:gap-0">
-			<div className="relative aspect-[16/7] h-[6rem] justify-self-center">
+		<div className="flex items-center container py-3 justify-between gap-2 xl:gap-0">
+			<div className="relative aspect-[16/7] h-[6rem]">
 				<Link href={"/"} className="">
 					<Image
 						src={"/logo.png"}
@@ -51,6 +58,13 @@ export const Navbar = () => {
 					</Link>
 				))}
 			</nav>
+			<button
+				className="size-14 relative flex flex-col justify-between lg:hidden py-2"
+				onClick={toggleSidebar}>
+				<div className="w-full h-[4px] bg-res-green rounded-2xl" />
+				<div className="w-full h-[4px] bg-res-green rounded-2xl" />
+				<div className="w-full h-[4px] bg-res-green rounded-2xl" />
+			</button>
 		</div>
 	);
 };
