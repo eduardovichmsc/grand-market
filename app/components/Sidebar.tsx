@@ -11,9 +11,7 @@ export const Sidebar = () => {
 	const isOpen = useAtomValue(isSidebarOpen);
 	const setSidebar = useSetAtom(isSidebarOpen);
 
-	const toggleSidebar = () => {
-		setSidebar((prev) => !prev);
-	};
+	const toggleSidebar = () => setSidebar((prev) => !prev);
 
 	useEffect(() => {
 		if (isOpen) {
@@ -32,13 +30,13 @@ export const Sidebar = () => {
 			{isOpen && (
 				<motion.div
 					className={clsx(
-						"z-50 bg-black/30 fixed w-screen right-0 h-screen backdrop-blur-xl transition-all flex flex-col justify-between"
+						"z-50 bg-black/25 fixed w-screen right-0 h-screen backdrop-blur-xl transition-all flex flex-col justify-between"
 					)}
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					exit={{ opacity: 0 }}
 					transition={{ duration: 0.5, ease: "anticipate" }}>
-					<div className="text-4xl text-white py-16 my-56 flex flex-col gap-5">
+					<div className="text-4xl text-white my-56 flex flex-col gap-5">
 						{NavbarLinks.map((link, index) => (
 							<Link
 								href={link.href}
@@ -55,7 +53,7 @@ export const Sidebar = () => {
 					<button
 						className="bg-white/20 backdrop-blur-lg py-10"
 						onClick={toggleSidebar}>
-						<p className="text-white text-3xl">Закрыть</p>
+						<p className="text-white text-3xl">Свернуть</p>
 					</button>
 				</motion.div>
 			)}

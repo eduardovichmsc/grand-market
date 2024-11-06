@@ -1,7 +1,13 @@
+"use client";
+import { isAuthModalOpen } from "@/app/model/atoms";
+
+import { useSetAtom } from "jotai";
 import Image from "next/image";
 import Link from "next/link";
 
 export const Footer = () => {
+	const setIsOpen = useSetAtom(isAuthModalOpen);
+
 	return (
 		<footer className="container py-10 space-y-10 mt-10">
 			<div className="flex flex-col sm:flex-row flex-wrap lg:flex-nowrap justify-between h-full gap-y-14 md:gap-14">
@@ -16,7 +22,7 @@ export const Footer = () => {
 						/>
 					</Link>
 				</div>
-				<div className="basis-full sm:basis-1/3 md:basis-1/4 flex flex-col gap-8 justify-center">
+				<div className="basis-full md:basis-1/4 flex flex-col gap-8 justify-center sm:justify-stretch">
 					<p className="text-res-green font-extrabold text-2xl">Информация</p>
 					<div className="flex justify-center md:justify-stretch flex-col gap-4 text-xl text-res-green">
 						<Link href={"/about"} className="w-fit">
@@ -37,12 +43,15 @@ export const Footer = () => {
 						<Link href={"/about"} className="w-fit">
 							Контакты
 						</Link>
-						<Link href={"/auth"} className="w-fit">
+						<button
+							className="w-fit text-res-green hover:underline"
+							onClick={() => setIsOpen((prev) => !prev)}
+							aria-label="Войти в аккаунт">
 							Войти в аккаунт
-						</Link>
+						</button>
 					</div>
 				</div>
-				<div className="basis-full sm:basis-1/3 md:basis-1/4 flex flex-col gap-8 justify-center">
+				<div className="basis-full md:basis-1/4 flex flex-col gap-8 justify-center sm:justify-stretch">
 					<p className="text-res-green font-extrabold text-2xl">Каталог</p>
 					<div className="flex justify-center md:justify-stretch flex-col gap-4 text-xl text-res-green">
 						<Link href={"/about"} className="w-fit">
@@ -74,7 +83,7 @@ export const Footer = () => {
 						</Link>
 					</div>
 				</div>
-				<div className="basis-full sm:basis-1/3 md:basis-1/4 flex flex-col gap-8 justify-center">
+				<div className="basis-full md:basis-1/4 flex flex-col gap-8 justify-center sm:justify-stretch">
 					<p className="text-res-green font-extrabold text-2xl">Контакты</p>
 					<div className="flex justify-center md:justify-stretch flex-col gap-4 text-xl text-res-green">
 						<Link href={"/about"} className="w-fit">
