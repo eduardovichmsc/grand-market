@@ -14,7 +14,7 @@
 }
 
 .section-container {
-	@apply *:py-10;
+	@apply py-28 space-y-48 md:space-y-60 xl:space-y-96 relative z-0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -30,7 +30,7 @@ body {
 	/* font-family: Arial, Helvetica, sans-serif; */
 }
 
-@media (max-width: 1600px) {
+@media (max-width: 1750px) {
 	:root {
 		font-size: 14px;
 	}

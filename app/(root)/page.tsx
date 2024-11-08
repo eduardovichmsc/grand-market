@@ -24,13 +24,43 @@ const newProducts = [
 // 	{ title: "Береке", image: "/sponsors/bereke2.png" },
 // ];
 
+const services = [
+	{ title: "Продажа торгового оборудования", image: "/services/cart.svg" },
+	{ title: "Замеры", image: "/services/zamery.svg" },
+	{ title: "3D моделирование", image: "/services/user.svg" },
+	{ title: "POS оборудование", image: "/services/pos.svg" },
+	{ title: "Монтаж и доставка", image: "/services/truck.svg" },
+];
+
 export default function Home() {
 	return (
-		<main className="">
+		<main className="relative z-0">
 			<Hero />
 
-			<section className="py-28 space-y-96 section-container">
+			<section className="section-container">
 				{/*  */}
+				<div className="container mt-0 md:-mt-36 xl:-mt-60" id="services">
+					<div className="grid grid-cols-2 sm:grid-cols-5 gap-5">
+						{services.map((service, index) => (
+							<div
+								key={index}
+								className="bg-white aspect-square rounded-2xl shadow-xl flex flex-col justify-center items-center gap-4">
+								<div className="w-20 xl:w-28 aspect-square relative">
+									<Image
+										src={service.image}
+										fill
+										objectFit="contain"
+										alt={service.title}
+									/>
+								</div>
+								<p className="uppercase font-medium text-lg xl:text-xl text-center text-res-green line-clamp-2 w-[95%]">
+									{service.title}
+								</p>
+							</div>
+						))}
+					</div>
+				</div>
+
 				<div className="container" id="advantages">
 					<p className="section-title text-res-green">Наши преимущества:</p>
 					<div className="inner grid grid-cols-1 lg:grid-cols-2 grid-rows-2 lg:grid-rows-1 gap-6 md:gap-8 lg:gap-10 xl:gap-14 2xl:gap-20 h-[70rem] md:h-[50rem]">
