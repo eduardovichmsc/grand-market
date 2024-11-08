@@ -14,10 +14,10 @@ export const Hero = () => {
 							проверенных решений.
 						</p>
 						<div className="w-full md:w-fit flex flex-col md:flex-row gap-4 md:gap-[inherit]">
-							<button className="bg-none border-[3px] rounded-2xl border-white w-full md:w-60 h-20">
+							<button className="transition-colors bg-none border-[3px] rounded-2xl border-white w-full md:w-60 h-20 hover:border-white/75">
 								<p className="font-medium text-white text-3xl">Связаться</p>
 							</button>
-							<button className="bg-white rounded-2xl w-full md:w-60 h-20">
+							<button className="transition bg-white rounded-2xl w-full md:w-60 h-20 hover:bg-white/90">
 								<p className="font-medium text-res-green text-3xl">Товары</p>
 							</button>
 						</div>

@@ -11,7 +11,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 		<div className="min-w-screen min-h-screen bg-white flex flex-col justify-between">
 			<AuthorizationModal />
 			<Sidebar />
-			<div className="shadow-lg">
+			<div className="min-w-full min-h-[11rem] sm:h-[10.375rem] xl:h-[11.5rem]"></div>
+			<div className="min-w-full fixed shadow-lg">
 				<MiniBanner />
 				<Navbar />
 			</div>

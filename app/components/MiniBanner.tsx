@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const MiniBanner = () => {
 	return (
-		<div className="bg-res-green text-white flex items-center min-h-[45px] py-4 sm:py-0 xl:min-h-[64px]">
+		<div className="bg-res-green text-white flex items-center min-h-11 py-4 sm:py-0 xl:min-h-16">
 			<div className="container flex flex-col sm:flex-row sm:justify-between">
 				<p className="mx-auto font-thin text-2xl sm:text-xl">
 					Понедельник-Воскресенье с 10:00 до 19:00
