@@ -4,12 +4,17 @@
 
 * {
 	outline: none;
+	scroll-behavior: smooth;
 }
 
 :root {
 	/* --background: #ffffff; */
 	/* --foreground: #171717; */
 	font-size: 16px;
+}
+
+.section-container {
+	@apply *:py-10;
 }
 
 @media (prefers-color-scheme: dark) {

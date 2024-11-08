@@ -1,7 +1,7 @@
 "use client";
 import clsx from "clsx";
 import { isSidebarOpen } from "@/app/model/atoms";
-import { NavbarLinks } from "@/app/components/Navbar";
+import { NavbarLinks } from "@/app/config/pages.config";
 import { useAtomValue, useSetAtom } from "jotai";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -30,19 +30,19 @@ export const Sidebar = () => {
 			{isOpen && (
 				<motion.div
 					className={clsx(
-						"z-50 bg-black/25 fixed w-screen right-0 h-screen backdrop-blur-xl transition-all flex flex-col justify-between"
+						"z-50 bg-black/25 fixed w-screen right-0 h-screen backdrop-blur-xl transition-all flex flex-col justify-end"
 					)}
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					exit={{ opacity: 0 }}
 					transition={{ duration: 0.5, ease: "anticipate" }}>
-					<div className="text-4xl text-white my-56 flex flex-col gap-5">
+					<div className="w-full h-full text-4xl text-white flex flex-col justify-between py-[5vh] gap-5">
 						{NavbarLinks.map((link, index) => (
 							<Link
 								href={link.href}
 								key={index}
 								className={clsx(
-									"w-full px-20 py-8 leading-relaxed",
+									"w-full h-full flex items-center px-20 leading-relaxed",
 									"transition-colors active:bg-white/25"
 								)}
 								onClick={() => setSidebar(false)}>
@@ -51,7 +51,7 @@ export const Sidebar = () => {
 						))}
 					</div>
 					<button
-						className="bg-white/20 backdrop-blur-lg py-10"
+						className="bg-white/20 backdrop-blur-lg py-10 h-fit"
 						onClick={toggleSidebar}>
 						<p className="text-white text-3xl">Свернуть</p>
 					</button>

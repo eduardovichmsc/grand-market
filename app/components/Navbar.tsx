@@ -1,5 +1,6 @@
 "use client";
 import { isSidebarOpen } from "@/app/model/atoms";
+import { NavbarLinks } from "@/app/config/pages.config";
 
 import clsx from "clsx";
 import { useAtom } from "jotai";
@@ -7,15 +8,6 @@ import Image from "next/image";
 import Link from "next/link";
 // import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
-
-export const NavbarLinks = [
-	{ title: "О нас", href: "/about" },
-	{ title: "Услуги", href: "/services" },
-	{ title: "Наши преимущества", href: "/advantages" },
-	{ title: "Виды оборудование для бизнеса", href: "/for-business" },
-	{ title: "Наши работы", href: "/our-projects" },
-	{ title: "Контакты", href: "/contacts" },
-];
 
 export const Navbar = () => {
 	const [hovered, setHovered] = useState("");
