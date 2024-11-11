@@ -1,9 +1,9 @@
 "use client";
-import { isSidebarOpen } from "@/app/model/atoms";
+import { isContactsModalOpen, isSidebarOpen } from "@/app/model/atoms";
 import { NavbarLinks } from "@/app/config/pages.config";
 
 import clsx from "clsx";
-import { useAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 import Image from "next/image";
 import Link from "next/link";
 // import { usePathname, useRouter } from "next/navigation";
@@ -12,6 +12,7 @@ import { useState } from "react";
 export const Navbar = () => {
 	const [hovered, setHovered] = useState("");
 	const [sidebar, setSidebar] = useAtom(isSidebarOpen);
+	const setIsContactsModalOpen = useSetAtom(isContactsModalOpen);
 
 	const toggleSidebar = () => {
 		setSidebar((prev) => !prev);
@@ -42,8 +43,9 @@ export const Navbar = () => {
 						onMouseEnter={() => setHovered(link.href)}
 						onMouseLeave={() => setHovered("")}
 						onClick={(e) => {
-							if (link.href == "/advantages" || link.href == "/services") {
+							if (link.href == "/contacts") {
 								e.preventDefault();
+								setIsContactsModalOpen(true);
 							}
 						}}>
 						{link.title}

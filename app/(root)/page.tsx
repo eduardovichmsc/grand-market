@@ -14,7 +14,6 @@ const newProducts = [
 ];
 
 
-
 const services = [
 	{ title: "Продажа торгового оборудования", image: "/services/cart.svg" },
 	{ title: "Замеры", image: "/services/zamery.svg" },
