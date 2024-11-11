@@ -1,5 +1,6 @@
 import { Banner } from "@/app/components/Banner";
 import { AboutCompanyComponent } from "@/app/components/AboutCompany";
+import { SwiperComponent } from "@/app/components/SwiperComponent";
 import Image from "next/image";
 
 export default function AboutPage() {
@@ -42,6 +43,7 @@ export default function AboutPage() {
 					</p>
 				</div>
 			</section>
+			<SwiperComponent />
 		</main>
 	);
 }

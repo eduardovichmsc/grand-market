@@ -3,10 +3,8 @@ import { Hero } from "@/app/components/Hero";
 import { ChevronRight, Plus } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-// import { Map } from "@/app/components/Map";
-// import { Swiper, SwiperSlide } from "swiper/react";
-
-import "swiper/css";
+import { Map } from "@/app/components/Map";
+import { SwiperComponent } from "@/app/components/SwiperComponent";
 
 const newProducts = [
 	{ title: "Brenta SG", price: "150 000" },
@@ -15,14 +13,7 @@ const newProducts = [
 	{ title: "Berg", price: "150 000" },
 ];
 
-// const sponsors = [
-// 	{ title: "Лидер", image: "/sponsors/lider.png" },
-// 	{ title: "Арзан", image: "/sponsors/arzan.png" },
-// 	{ title: "Табыс", image: "/sponsors/tabys1.png" },
-// 	{ title: "Табыс", image: "/sponsors/tabys2.png" },
-// 	{ title: "Береке", image: "/sponsors/bereke1.png" },
-// 	{ title: "Береке", image: "/sponsors/bereke2.png" },
-// ];
+
 
 const services = [
 	{ title: "Продажа торгового оборудования", image: "/services/cart.svg" },
@@ -250,28 +241,10 @@ export default function Home() {
 					</div>
 				</div>
 
-				{/* <Map /> */}
+				<Map />
 
-				{/* <div className="h-[30rem] hidden">
-					<p className="section-title text-res-green text-center">
-						Наши клиенты
-					</p>
-					<Swiper
-						slidesPerView={5}
-						spaceBetween={0}
-						pagination={{
-							clickable: true,
-						}}
-						className="h-full">
-						{sponsors.map((sponsor, index) => (
-							<SwiperSlide key={index} className="">
-								<div className="w-1/4 aspect-square">
-									<Image src={sponsor.image} fill objectFit="contain" alt="" />
-								</div>
-							</SwiperSlide>
-						))}
-					</Swiper>
-				</div> */}
+                <SwiperComponent />
+
 			</section>
 		</main>
 	);
