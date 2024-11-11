@@ -119,8 +119,8 @@ export const Map = () => {
 	return (
 		<div className="container">
 			<p className="section-title text-res-green">Наши контакты:</p>
-			<div className="flex h-full font-medium text-xl gap-14">
-				<div className="rounded-2xl bg-res-green basis-1/3 h-full flex flex-col justify-center p-10 gap-10">
+			<div className="flex flex-wrap md:flex-nowrap h-full mt-16 font-medium text-xl gap-14">
+				<div className="rounded-2xl bg-res-green w-full md:basis-1/3 h-full flex flex-col justify-center p-10 gap-10">
 					{city && locationData[city] && (
 						<>
 							<div className="flex gap-5 items-center">
@@ -178,7 +178,7 @@ export const Map = () => {
 						<span>одна миссия - ваше удобство</span>
 					</p>
 				</div>
-				<div className="basis-2/3 flex flex-col gap-4">
+				<div className="w-full md:basis-2/3 flex flex-col gap-4">
 					<div className="w-full h-4/5 rounded-2xl bg-res-grey group shadow-md relative overflow-hidden">
 						{iframeSrc && (
 							<iframe

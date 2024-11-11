@@ -1,3 +1,5 @@
+import { SwiperComponent } from "@/app/components/SwiperComponent";
+
 export default function ProductPageById() {
 	return (
 		<main className="container py-28">
@@ -67,6 +69,9 @@ export default function ProductPageById() {
 					</div>
 				</div>
 			</section>
+			<div className="mt-32">
+				<SwiperComponent />
+			</div>
 		</main>
 	);
 }
