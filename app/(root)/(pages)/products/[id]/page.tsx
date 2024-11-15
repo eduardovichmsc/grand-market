@@ -1,4 +1,9 @@
-import { SwiperComponent } from "@/app/components/SwiperComponent";
+import { clients, partners } from "@/config/static";
+import dynamic from "next/dynamic";
+
+const SwiperComponent = dynamic(() => import("@/components/SwiperComponent"), {
+	ssr: true,
+});
 
 export default function ProductPageById() {
 	return (
@@ -70,7 +75,8 @@ export default function ProductPageById() {
 				</div>
 			</section>
 			<div className="mt-32">
-				<SwiperComponent />
+				<SwiperComponent sectionTitle="Наши клиенты" array={clients} />
+				<SwiperComponent sectionTitle="Наши партнеры" array={partners} />
 			</div>
 		</main>
 	);

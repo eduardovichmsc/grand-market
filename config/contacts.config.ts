@@ -1,6 +1,6 @@
-import { LocationType } from "@/app/types/static.types";
+import { LocationType } from "@/types/static.types";
 
-export const locationData:LocationType[] = [
+export const locationData: LocationType[] = [
 	{
 		id: "atyrau",
 		name: "Атырау",
@@ -11,9 +11,9 @@ export const locationData:LocationType[] = [
 		social: {
 			instagram: {
 				title: "@grandmarket_west",
-				href: "https://www.instagram.com/grandmarket_west/"
-			}
-		}
+				href: "https://www.instagram.com/grandmarket_west/",
+			},
+		},
 	},
 	{
 		id: "aktau",
@@ -25,9 +25,9 @@ export const locationData:LocationType[] = [
 		social: {
 			instagram: {
 				title: "@grandmarket_aktau",
-				href: "https://www.instagram.com/grandmarket_aktau/"
-			}
-		}
+				href: "https://www.instagram.com/grandmarket_aktau/",
+			},
+		},
 	},
 	{
 		id: "aktobe",
@@ -39,8 +39,8 @@ export const locationData:LocationType[] = [
 		social: {
 			instagram: {
 				title: "@grandmarket_aqtobe",
-				href: "https://www.instagram.com/grandmarket_aqtobe/"
-			}
-		}
+				href: "https://www.instagram.com/grandmarket_aqtobe/",
+			},
+		},
 	},
 ];

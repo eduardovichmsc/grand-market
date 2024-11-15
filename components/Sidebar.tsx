@@ -1,6 +1,6 @@
 "use client";
-import { isContactsModalOpen, isSidebarOpen } from "@/app/model/atoms";
-import { NavbarLinks } from "@/app/config/pages.config";
+import { isContactsModalOpen, isSidebarOpen } from "@/model/atoms";
+import { NavbarLinks } from "@/config/pages.config";
 
 import clsx from "clsx";
 import { useAtomValue, useSetAtom } from "jotai";

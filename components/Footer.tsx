@@ -1,5 +1,5 @@
 "use client";
-import { isAuthModalOpen } from "@/app/model/atoms";
+import { isAuthModalOpen } from "@/model/atoms";
 
 import { useSetAtom } from "jotai";
 import Image from "next/image";

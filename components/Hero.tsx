@@ -1,6 +1,6 @@
 "use client";
 
-import { isContactsModalOpen } from "@/app/model/atoms";
+import { isContactsModalOpen } from "@/model/atoms";
 import { useSetAtom } from "jotai";
 import Link from "next/link";
 

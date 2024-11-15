@@ -84,9 +84,9 @@ export const Map = () => {
 
 	useEffect(() => {
 		if (cityId) {
-			const foundCity = locationData.find(city => city.id === cityId);
+			const foundCity = locationData.find((city) => city.id === cityId);
 			setCity(foundCity || null);
-			
+
 			switch (cityId) {
 				case "atyrau":
 					setIframeSrc(
@@ -128,7 +128,9 @@ export const Map = () => {
 								</div>
 								<div className="">
 									<p className="text-white/75">Адрес :</p>
-									<p className="text-white">{city.address ? city.address : "Не указано"}</p>
+									<p className="text-white">
+										{city.address ? city.address : "Не указано"}
+									</p>
 								</div>
 							</div>
 							<div className="flex gap-5 items-center">
@@ -143,7 +145,9 @@ export const Map = () => {
 								</div>
 								<div className="">
 									<p className="text-white/75">Мобильный телефон :</p>
-									<p className="text-white">{city.phone ? city.phone : "Не указано"}</p>
+									<p className="text-white">
+										{city.phone ? city.phone : "Не указано"}
+									</p>
 								</div>
 							</div>
 							<div className="flex gap-5 items-center">
@@ -158,8 +162,12 @@ export const Map = () => {
 								</div>
 								<div className="">
 									<p className="text-white/75">Рабочие часы :</p>
-									<p className="text-white">{city.date ? city.date : "Не указано"}</p>
-									<p className="text-white">{city.hours ? city.hours : "Не указано"}</p>
+									<p className="text-white">
+										{city.date ? city.date : "Не указано"}
+									</p>
+									<p className="text-white">
+										{city.hours ? city.hours : "Не указано"}
+									</p>
 								</div>
 							</div>
 							<div className="flex gap-5 items-center">
@@ -174,7 +182,13 @@ export const Map = () => {
 								</div>
 								<div className="">
 									<p className="text-white/75">Социальная сеть :</p>
-									<Link href={"/"} className="transition duration-75 text-white hover:text-white/80">{city.social.instagram ? city.social.instagram.title : "Не указано"}</Link>
+									<Link
+										href={"/"}
+										className="transition duration-75 text-white hover:text-white/80">
+										{city.social.instagram
+											? city.social.instagram.title
+											: "Не указано"}
+									</Link>
 								</div>
 							</div>
 						</>

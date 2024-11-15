@@ -3,7 +3,7 @@
 import clsx from "clsx";
 import { useAtomValue, useSetAtom } from "jotai";
 import { ChangeEvent, useEffect, useState } from "react";
-import { isAuthModalOpen } from "@/app/model/atoms";
+import { isAuthModalOpen } from "@/model/atoms";
 import { motion, AnimatePresence } from "framer-motion";
 
 export const AuthorizationModal = () => {

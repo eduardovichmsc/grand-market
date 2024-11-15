@@ -1,10 +1,11 @@
-import { Hero } from "@/app/components/Hero";
+import { Hero } from "@/components/Hero";
 import { ChevronRight, Plus } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Map } from "@/app/components/Map";
-import { SwiperComponent } from "@/app/components/SwiperComponent";
+import { Map } from "@/components/Map";
 import { Metadata } from "next";
+import { clients, partners } from "@/config/static";
+import dynamic from "next/dynamic";
 
 export const metadata: Metadata = {
 	title: "Торговое оборудование для магазинов - Grand Market",
@@ -27,13 +28,17 @@ const services = [
 	{ title: "Монтаж и доставка", image: "/services/truck.svg" },
 ];
 
+const SwiperComponent = dynamic(() => import("@/components/SwiperComponent"), {
+	ssr: true,
+});
+
 export default function Home() {
 	return (
 		<main className="relative z-0">
 			<Hero />
 
 			<section className="section-container">
-				{/*  */}
+				{/* Сервисы - services */}
 				<div className="container mt-0 md:-mt-36 xl:-mt-60" id="services">
 					<div className="grid grid-cols-2 sm:grid-cols-5 gap-5">
 						{services.map((service, index) => (
@@ -56,6 +61,7 @@ export default function Home() {
 					</div>
 				</div>
 
+				{/* Преимущества - advantages */}
 				<div className="container" id="advantages">
 					<p className="section-title text-res-green">Наши преимущества:</p>
 					<div className="inner grid grid-cols-1 lg:grid-cols-2 grid-rows-2 lg:grid-rows-1 gap-6 md:gap-8 lg:gap-10 xl:gap-14 2xl:gap-20 h-[70rem] md:h-[50rem]">
@@ -135,7 +141,7 @@ export default function Home() {
 					</div>
 				</div>
 
-				{/* Последние поступления */}
+				{/* Последние поступления - new products */}
 				<div className="bg-res-green container flex flex-col justify-center rounded-2xl py-20 px-12 gap-10">
 					<div className="flex flex-col sm:flex-row gap-[inherit] sm:gap-0 justify-between items-center">
 						<p className="section-title text-white">Последние поступления : </p>
@@ -171,7 +177,7 @@ export default function Home() {
 					</div>
 				</div>
 
-				{/* Pеализованные проекты */}
+				{/* Pеализованные проекты - projects */}
 				<div className="container flex flex-col gap-10 md:gap-0">
 					<div className="flex flex-col md:flex-row justify-between gap-[inherit]">
 						<div className="basis-2/5">
@@ -247,7 +253,8 @@ export default function Home() {
 
 				<Map />
 
-				<SwiperComponent />
+				<SwiperComponent sectionTitle="Наши клиенты" array={clients} />
+				<SwiperComponent sectionTitle="Наши партнеры" array={partners} />
 			</section>
 		</main>
 	);

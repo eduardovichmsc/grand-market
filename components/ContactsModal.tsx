@@ -1,5 +1,5 @@
 "use client";
-import { locationData } from "@/app/config/contacts.config";
+import { locationData } from "@/config/contacts.config";
 import { useAtomValue, useSetAtom } from "jotai";
 import { XIcon } from "lucide-react";
 import Image from "next/image";

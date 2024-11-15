@@ -1,4 +1,4 @@
-import { Banner } from "@/app/components/Banner";
+import { Banner } from "@/components/Banner";
 import { Metadata } from "next";
 // import Image from "next/image";
 
