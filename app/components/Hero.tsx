@@ -1,4 +1,12 @@
+"use client";
+
+import { isContactsModalOpen } from "@/app/model/atoms";
+import { useSetAtom } from "jotai";
+import Link from "next/link";
+
 export const Hero = () => {
+	const openContactsModal = useSetAtom(isContactsModalOpen);
+
 	return (
 		<div className="relative">
 			<div className="bg-res-green flex min-h-[50rem] xl:min-h-[55rem]">
@@ -15,11 +23,17 @@ export const Hero = () => {
 						</p>
 						<div className="w-full md:w-fit flex flex-col md:flex-row gap-4 md:gap-[inherit]">
 							<button className="transition-colors bg-none border-[3px] rounded-2xl border-white w-full md:w-60 h-20 hover:border-white/75">
-								<p className="font-medium text-white text-3xl">Связаться</p>
+								<p
+									className="font-medium text-white text-3xl"
+									onClick={() => openContactsModal(true)}>
+									Связаться
+								</p>
 							</button>
-							<button className="transition bg-white rounded-2xl w-full md:w-60 h-20 hover:bg-white/90">
+							<Link
+								href={"/for-business"}
+								className="transition bg-white rounded-2xl w-full md:w-60 h-20 hover:bg-white/90 flex justify-center items-center">
 								<p className="font-medium text-res-green text-3xl">Товары</p>
-							</button>
+							</Link>
 						</div>
 					</div>
 					<div className="hidden md:flex relative w-full md:w-1/2 h-full items-center">

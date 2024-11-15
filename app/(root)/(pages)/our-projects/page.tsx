@@ -1,20 +1,27 @@
 import { Banner } from "@/app/components/Banner";
+import { Metadata } from "next";
 // import Image from "next/image";
+
+export const metadata: Metadata = {
+	title: "Наши проекты - Grand Market",
+	description:
+		"Торговое оборудование для магазинов по лучшим ценам в Атырау, Актау и Актобе",
+};
 
 const projectImages = [
 	"/projects/1.png",
 	"/projects/2.png",
-    "/projects/3.png",
-    "/projects/4.png",
-    "/projects/5.png",
-    "/projects/6.png",
+	"/projects/3.png",
+	"/projects/4.png",
+	"/projects/5.png",
+	"/projects/6.png",
 	"/projects/7.png",
-    "/projects/8.png",
-    "/projects/9.png",
-    "/projects/10.png",
-    "/projects/11.png",
-    "/projects/12.png",
-]
+	"/projects/8.png",
+	"/projects/9.png",
+	"/projects/10.png",
+	"/projects/11.png",
+	"/projects/12.png",
+];
 
 export default function ForBusinessPage() {
 	return (

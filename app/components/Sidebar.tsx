@@ -1,7 +1,8 @@
 "use client";
-import clsx from "clsx";
-import { isSidebarOpen } from "@/app/model/atoms";
+import { isContactsModalOpen, isSidebarOpen } from "@/app/model/atoms";
 import { NavbarLinks } from "@/app/config/pages.config";
+
+import clsx from "clsx";
 import { useAtomValue, useSetAtom } from "jotai";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -10,6 +11,7 @@ import { useEffect } from "react";
 export const Sidebar = () => {
 	const isOpen = useAtomValue(isSidebarOpen);
 	const setSidebar = useSetAtom(isSidebarOpen);
+	const setIsContactsModalOpen = useSetAtom(isContactsModalOpen);
 
 	const toggleSidebar = () => setSidebar((prev) => !prev);
 
@@ -45,7 +47,13 @@ export const Sidebar = () => {
 									"w-full h-full flex items-center px-20 leading-relaxed",
 									"transition-colors active:bg-white/25"
 								)}
-								onClick={() => setSidebar(false)}>
+								onClick={(e) => {
+									if (link.href == "/contacts") {
+										e.preventDefault();
+										setIsContactsModalOpen(true);
+									}
+									setSidebar(false);
+								}}>
 								{link.title}
 							</Link>
 						))}

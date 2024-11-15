@@ -37,13 +37,13 @@ export const ContactsModal = () => {
 					exit={{ opacity: 0 }}
 					onClick={closeModal}>
 					<motion.div
-						className="flex flex-col gap-10 bg-res-green p-10"
+						className="w-[40rem] mx-12 sm:w-max flex flex-col gap-14 sm:gap-10 bg-res-green p-10"
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
 						transition={{ duration: 0.3 }}
 						onClick={(e) => e.stopPropagation()}>
-						<div className="flex items-center gap-10 *:text-white">
+						<div className="flex items-center justify-between gap-10 *:text-white">
 							<p className="section-title">Наши контакты</p>
 							<XIcon
 								className="transition duration-75 size-10 mt-2 cursor-pointer hover:text-white/80"
@@ -51,11 +51,13 @@ export const ContactsModal = () => {
 							/>
 						</div>
 
-						<div className="flex flex-col gap-4">
+						<div className="flex flex-col gap-6 sm:gap-4">
 							{locationData.map((city) => (
 								<div key={city.id} className="bg-white p-4 rounded-lg">
 									<div className="flex justify-between">
-										<h3 className="font-semibold text-xl mb-2">{city.name}</h3>
+										<h3 className="font-semibold text-2xl sm:text-xl mb-2">
+											{city.name}
+										</h3>
 										<div className="flex gap-4">
 											<Link
 												href={city.social.instagram.href}
@@ -69,7 +71,7 @@ export const ContactsModal = () => {
 											</Link>
 										</div>
 									</div>
-									<p className="text-base">{city.address}</p>
+									<p className="text-xl sm:text-base">{city.address}</p>
 								</div>
 							))}
 						</div>

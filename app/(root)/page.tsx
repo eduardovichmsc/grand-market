@@ -1,10 +1,16 @@
-"use client";
 import { Hero } from "@/app/components/Hero";
 import { ChevronRight, Plus } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Map } from "@/app/components/Map";
 import { SwiperComponent } from "@/app/components/SwiperComponent";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Торговое оборудование для магазинов - Grand Market",
+	description:
+		"Торговое оборудование для магазинов по лучшим ценам в Атырау, Актау и Актобе",
+};
 
 const newProducts = [
 	{ title: "Brenta SG", price: "150 000" },
@@ -12,7 +18,6 @@ const newProducts = [
 	{ title: "Nordica", price: "350 000" },
 	{ title: "Berg", price: "150 000" },
 ];
-
 
 const services = [
 	{ title: "Продажа торгового оборудования", image: "/services/cart.svg" },
@@ -242,8 +247,7 @@ export default function Home() {
 
 				<Map />
 
-                <SwiperComponent />
-
+				<SwiperComponent />
 			</section>
 		</main>
 	);

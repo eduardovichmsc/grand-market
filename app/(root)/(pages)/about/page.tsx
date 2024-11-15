@@ -2,6 +2,13 @@ import { Banner } from "@/app/components/Banner";
 import { AboutCompanyComponent } from "@/app/components/AboutCompany";
 import { SwiperComponent } from "@/app/components/SwiperComponent";
 import Image from "next/image";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "О бизнесе - Grand Market",
+	description:
+		"Торговое оборудование для магазинов по лучшим ценам в Атырау, Актау и Актобе",
+};
 
 export default function AboutPage() {
 	return (

@@ -1,4 +1,11 @@
 import { Banner } from "@/app/components/Banner";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Торговые оборудования - Grand Market",
+	description:
+		"Торговое оборудование для магазинов по лучшим ценам в Атырау, Актау и Актобе",
+};
 
 interface GridContentType {
 	image?: string;
