@@ -64,13 +64,13 @@ export default function Home() {
 				{/* Преимущества - advantages */}
 				<div className="container" id="advantages">
 					<p className="section-title text-res-green">Наши преимущества:</p>
-					<div className="inner grid grid-cols-1 lg:grid-cols-2 grid-rows-2 lg:grid-rows-1 gap-6 md:gap-8 lg:gap-10 xl:gap-14 2xl:gap-20 h-[70rem] md:h-[50rem]">
+					<div className="inner grid grid-cols-1 lg:grid-cols-2 grid-rows-2 lg:grid-rows-1 gap-6 md:gap-8 lg:gap-10 xl:gap-14 2xl:gap-10 h-[70rem] md:h-[50rem]">
 						<div className="row-span-1 lg:row-span-2 col-span-1 bg-black rounded-2xl shadow-md relative overflow-hidden flex flex-col justify-center items-center group">
 							<Image
 								src={"/advantages/high-q.png"}
 								fill
 								objectFit="cover"
-								className="absolute transition group-hover:opacity-90"
+								className="absolute transition group-hover:opacity-100 opacity-90"
 								alt=""
 							/>
 							<div className="relative text-center text-white px-[5%] space-y-2">
@@ -89,7 +89,7 @@ export default function Home() {
 								src={"/advantages/qual.png"}
 								fill
 								objectFit="cover"
-								className="absolute transition group-hover:opacity-90"
+								className="absolute transition group-hover:opacity-100 opacity-90"
 								alt=""
 							/>
 							<div className="relative text-center text-white px-[5%] space-y-2">
@@ -108,7 +108,7 @@ export default function Home() {
 									src={"/advantages/installment.png"}
 									fill
 									objectFit="cover"
-									className="absolute transition group-hover:opacity-90"
+									className="absolute transition group-hover:opacity-100 opacity-90"
 									alt=""
 								/>
 								<div className="relative text-center text-white px-[5%] space-y-2">
@@ -125,7 +125,7 @@ export default function Home() {
 									src={"/advantages/3d.png"}
 									fill
 									objectFit="cover"
-									className="absolute transition group-hover:opacity-90"
+									className="absolute transition group-hover:opacity-100 opacity-90"
 									alt=""
 								/>
 								<div className="relative text-center text-white px-[5%] space-y-2">
@@ -200,7 +200,7 @@ export default function Home() {
 						<p className="font-medium text-white text-xl">Посмотреть все</p>
 						<ChevronRight className="text-white mt-1" />
 					</Link>
-					<div className="flex flex-col md:flex-row h-full gap-10 md:mt-10">
+					<div className="flex flex-col md:flex-row h-full gap-10 md:gap-6 md:mt-10">
 						<div className="basis-full md:basis-1/2 flex flex-col gap-6">
 							<div className="w-full aspect-[4/2] bg-res-green/20 rounded-2xl shadow-md relative overflow-hidden">
 								<Image src={"/projects/1.png"} fill objectFit="cover" alt="" />

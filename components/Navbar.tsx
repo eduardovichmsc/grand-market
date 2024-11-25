@@ -6,7 +6,6 @@ import clsx from "clsx";
 import { useAtom, useSetAtom } from "jotai";
 import Image from "next/image";
 import Link from "next/link";
-// import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
 export const Navbar = () => {

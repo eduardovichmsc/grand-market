@@ -1,16 +1,26 @@
 "use client";
+import clsx from "clsx";
 import Image from "next/image";
 import { FC } from "react";
 
 interface BannerProps {
 	bigText: string;
+	image: string;
 	smallText?: string;
-	image?: string;
+	isBordered?: boolean;
 }
 
-export const Banner: FC<BannerProps> = ({ bigText, smallText, image }) => {
+export const Banner: FC<BannerProps> = ({
+	bigText,
+	smallText,
+	image,
+	isBordered,
+}) => {
 	return (
-		<div className="relative w-full h-[25rem] lg:h-[35rem] bg-res-green">
+		<div
+			className={clsx("relative w-full h-[25rem] lg:h-[35rem] bg-res-green", {
+				"border-b-2 border-b-res-green": isBordered,
+			})}>
 			<Image
 				src={image || ""}
 				fill

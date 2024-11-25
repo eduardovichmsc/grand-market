@@ -6,10 +6,13 @@ import { Footer } from "@/components/Footer";
 import { Sidebar } from "@/components/Sidebar";
 import { AuthorizationModal } from "@/components/AuthorizationModal";
 import { ContactsModal } from "@/components/ContactsModal";
+import { FloatingButton } from "@/components/FloatingButton";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
 		<div className="min-w-screen min-h-screen bg-white flex flex-col justify-between">
+			<FloatingButton />
+
 			{/* modals */}
 			<AuthorizationModal />
 			<ContactsModal />
