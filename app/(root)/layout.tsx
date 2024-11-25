@@ -7,6 +7,7 @@ import { Sidebar } from "@/components/Sidebar";
 import { AuthorizationModal } from "@/components/AuthorizationModal";
 import { ContactsModal } from "@/components/ContactsModal";
 import { FloatingButton } from "@/components/FloatingButton";
+import { LoadingModal } from "@/components/LoadingModal";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
@@ -16,6 +17,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 			{/* modals */}
 			<AuthorizationModal />
 			<ContactsModal />
+			<LoadingModal />
 
 			<Sidebar />
 			<div className="min-w-full min-h-[11rem] lg:h-[11.5rem] xl:h-[12rem] 2xl:h-[11.5rem]" />

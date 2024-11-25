@@ -3,8 +3,9 @@
 import { Banner } from "@/components/Banner";
 import { CatalogFilter } from "@/components/CatalogFilter";
 import { CatalogItem } from "@/components/CatalogItem";
+import { SkeletonCatalogItem } from "@/components/SkeletonCatalogItem";
 import { Search } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface GridContentType {
 	id: number;
@@ -43,6 +44,13 @@ const gridContent: GridContentType[] = [
 export default function ForBusinessPage() {
 	const [searchValue, setSearchValue] = useState("");
 	const [selectId, setSelectId] = useState("popular");
+	const [isLoading, setIsLoading] = useState(true);
+
+	// для теста -- временной фриз
+	useEffect(() => {
+		const timer = setTimeout(() => setIsLoading(false), 2000);
+		return () => clearTimeout(timer);
+	}, []);
 
 	return (
 		<main className="">
@@ -54,6 +62,8 @@ export default function ForBusinessPage() {
 			/>
 
 			<div className="flex justify-center -mt-8 relative">
+				{/* поиск */}
+
 				<form action="" className="relative flex flex-col justify-center">
 					<input
 						type="text"
@@ -88,7 +98,6 @@ export default function ForBusinessPage() {
 								defaultValue={selectId}
 								onChange={(e) => setSelectId(e.target.value)}
 								className="border-2 border-res-green p-1.5">
-								<option value="popular">Популярные</option>
 								<option value="new">Новинки</option>
 								<option value="cheap">Сначала дешевые</option>
 								<option value="expensive">Сначала дорогие</option>
@@ -96,15 +105,19 @@ export default function ForBusinessPage() {
 						</div>
 
 						<div className="grid grid-cols-3 gap-6">
-							{gridContent.map((item, index) => (
-								<CatalogItem
-									key={index}
-									title={item.title}
-									description={item.body}
-									link={"/catalog/" + item.id}
-									className=""
-								/>
-							))}
+							{isLoading
+								? Array.from({ length: 5 }).map((_, index) => (
+										<SkeletonCatalogItem key={index} />
+								  ))
+								: gridContent.map((item, index) => (
+										<CatalogItem
+											key={index}
+											title={item.title}
+											description={item.body}
+											link={"/catalog/" + item.id}
+											className=""
+										/>
+								  ))}
 						</div>
 					</div>
 				</div>
