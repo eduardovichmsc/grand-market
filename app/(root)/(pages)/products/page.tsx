@@ -11,14 +11,8 @@ import { API_URL } from "@/static";
 import axios from "axios";
 import { useSetAtom } from "jotai";
 import { Search } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-
-interface GridContentType {
-	id: number;
-	image?: string;
-	title: string;
-	body: string;
-}
 
 interface FilterState {
 	searchValue: string;
@@ -28,11 +22,13 @@ interface FilterState {
 }
 
 export default function CatalogPage() {
-	const scrollRef = useRef<HTMLDivElement>(null);
 	const setIsGlobalLoading = useSetAtom(isGlobalLoading);
 
+	const scrollRef = useRef<HTMLDivElement>(null);
+	const searchQuery = useSearchParams();
+
 	const [filterState, setFilterState] = useState<FilterState>({
-		searchValue: "",
+		searchValue: searchQuery.get("search") || "",
 		selectId: "popular",
 		currentPagination: 1,
 		isLoading: true,
@@ -48,10 +44,8 @@ export default function CatalogPage() {
 			setIsGlobalLoading(true);
 			const { data } = await axios.get(API_URL + "products", {
 				params: {
-					page: page,
-					manufacturerId: filterState.manufacturerId || null,
-					categoryId: filterState.categoryId || null,
 					search: filterState.searchValue,
+					page: page,
 				},
 			});
 			setProducts(data);
@@ -62,46 +56,29 @@ export default function CatalogPage() {
 		}
 	};
 
-	// фриз для скелетонов
 	useEffect(() => {
-		const timer = setTimeout(
-			() => setFilterState((prevState) => ({ ...prevState, isLoading: false })),
-			2000
-		);
+		const timer = setTimeout(() => {
+			setFilterState((prevState) => ({ ...prevState, isLoading: false }));
+		}, 2000);
 		return () => clearTimeout(timer);
 	}, []);
 
-	// первый заход
 	useEffect(() => {
 		getAllProducts(filterState.currentPagination);
 	}, [filterState.currentPagination]);
 
-	// при смене currentPage в filterState
 	const handlePaginationChange = (page: number) => {
 		setFilterState((prevState) => ({ ...prevState, currentPagination: page }));
 	};
 
-	// при ENTER на search
+	const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		getAllProducts(1);
+	};
+
 	const handleSearchChange = (value: string) => {
 		setFilterState((prevState) => ({ ...prevState, searchValue: value }));
 	};
-
-	// следующая страница
-	const handleNextPage = () => {
-		setFilterState((prev) => ({
-			...prev,
-			currentPagination: prev.currentPagination + 1,
-		}));
-	};
-
-	const handlePrevPage = () => {
-		setFilterState((prev) => ({
-			...prev,
-			currentPagination: prev.currentPagination - 1,
-		}));
-	};
-
-	console.log(products);
 
 	return (
 		<main>
@@ -113,7 +90,10 @@ export default function CatalogPage() {
 			/>
 
 			<div className="flex justify-center -mt-8 relative">
-				<form action="" className="relative flex flex-col justify-center">
+				<form
+					action=""
+					className="relative flex flex-col justify-center"
+					onSubmit={handleSearchSubmit}>
 					<input
 						type="text"
 						placeholder="Поиск по каталогу"
@@ -130,7 +110,7 @@ export default function CatalogPage() {
 
 			<section className="relative container py-28 space-y-36" ref={scrollRef}>
 				<div className="w-full flex min-h-[50vh] gap-10">
-					{filterState.isLoading && products.length === 0 ? (
+					{filterState.isLoading && products.list.length === 0 ? (
 						<SkeletonCatalogFilter />
 					) : (
 						<CatalogFilter
@@ -145,7 +125,7 @@ export default function CatalogPage() {
 						<div className="flex justify-between items-center">
 							<p>
 								Результаты: (
-								{filterState.isLoading && products.length === 0
+								{filterState.isLoading && products.list.length === 0
 									? "#количество товаров"
 									: products.limit}
 								)
@@ -166,7 +146,7 @@ export default function CatalogPage() {
 						</div>
 
 						<div className="grid grid-cols-3 gap-6">
-							{filterState.isLoading && products.length === 0
+							{filterState.isLoading && products.list.length === 0
 								? Array.from({ length: 5 }).map((_, index) => (
 										<SkeletonCatalogItem key={index} />
 								  ))
@@ -187,8 +167,6 @@ export default function CatalogPage() {
 							currentPage={filterState.currentPagination}
 							totalPages={products.totalPages}
 							onPageChange={handlePaginationChange}
-							showPrevPage={handlePrevPage}
-							showNextPage={handleNextPage}
 						/>
 					</div>
 				</div>
