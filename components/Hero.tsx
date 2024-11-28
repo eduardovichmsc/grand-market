@@ -17,12 +17,12 @@ export const Hero = () => {
 							<p className="text-big">Оборудование</p>
 							<p className="text-big">Для Торговли</p>
 						</div>
-						<p className="font-medium text-center md:text-start text-res-grey text-3xl">
+						<p className="font-medium text-center md:text-start text-res-grey text-2xl">
 							Создайте комфортные условия для ваших клиентов с помощью
 							проверенных решений.
 						</p>
 						<div className="w-full md:w-fit flex flex-col md:flex-row gap-4 md:gap-[inherit]">
-							<button className="transition-colors bg-none border-[3px] rounded-2xl border-white w-full md:w-60 h-20 hover:border-white/75">
+							<button className="transition flex justify-center items-center border-2 border-res-white rounded-2xl aspect-[16/5] h-20 hover:opacity-90">
 								<p
 									className="font-medium text-white text-3xl"
 									onClick={() => openContactsModal(true)}>
@@ -30,8 +30,8 @@ export const Hero = () => {
 								</p>
 							</button>
 							<Link
-								href={"/for-business"}
-								className="transition bg-white rounded-2xl w-full md:w-60 h-20 hover:bg-white/90 flex justify-center items-center">
+								href={"/catalog"}
+								className="transition flex justify-center items-center sm:place-self-end bg-white rounded-2xl w-full sm:w-fit sm:aspect-[16/5] h-20 gap-1 hover:bg-white/90 hover:opacity-90">
 								<p className="font-medium text-res-green text-3xl">Товары</p>
 							</Link>
 						</div>

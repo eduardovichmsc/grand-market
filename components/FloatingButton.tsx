@@ -10,13 +10,18 @@ export const FloatingButton = () => {
 	return (
 		<button
 			className={clsx(
-				"transition fixed z-40 bottom-10 right-10 border-2 border-full border-res-green/10 bg-white/50 backdrop-blur-xl rounded-full overflow-hidden flex justify-center items-center hover:border-res-green active:border-res-green/75 active:bg-res-green/5 duration-300 hover:rotate-12 active:rotate-12 size-20 group",
+				"transition fixed z-40 bottom-10 right-10 md:bottom-8 md:right-8 border-2 border-full border-res-green/10 bg-white/50 backdrop-blur-xl rounded-full overflow-hidden flex justify-center items-center hover:border-res-green size-28 md:size-16 group",
 				{
-					"border-res-green/75 opacity-0": isOpen,
+					"border-res-green/75 bg-res-green": isOpen,
 				}
 			)}
 			onClick={() => setIsOpen(true)}>
-			<PhoneCall className="transition size-7 text-res-green/50 group-hover:text-res-green group-active:text-res-green -rotate-90" />
+			<PhoneCall
+				className={clsx(
+					"transition size-10 md:size-7 text-res-green/50 group-hover:text-res-green -rotate-90",
+					{ "text-res-green": isOpen }
+				)}
+			/>
 		</button>
 	);
 };

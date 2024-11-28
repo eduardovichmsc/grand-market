@@ -1,18 +1,28 @@
 "use client";
-import { clients, partners } from "@/config/static";
+// import { clients, partners } from "@/config/static";
 import usePriceFormatter from "@/hooks/usePriceFormatter";
+import { isGlobalLoading } from "@/model/atoms";
+import { API_URL } from "@/static";
 import { ProductType } from "@/types/product.types";
 import axios from "axios";
-import dynamic from "next/dynamic";
+import clsx from "clsx";
+import { useSetAtom } from "jotai";
+import { ArrowRight } from "lucide-react";
+// import dynamic from "next/dynamic";
 import Image from "next/image";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const SwiperComponent = dynamic(() => import("@/components/SwiperComponent"), {
-	ssr: true,
-});
+// const SwiperComponent = dynamic(() => import("@/components/SwiperComponent"), {
+// 	ssr: true,
+// });
 
 export default function ProductPageById() {
+	// модалка загрузки
+	const setIsLoadingModal = useSetAtom(isGlobalLoading);
+	setIsLoadingModal(true);
+
 	const [isLoading, setIsLoading] = useState(true);
 	const { id } = useParams();
 
@@ -22,9 +32,7 @@ export default function ProductPageById() {
 	useEffect(() => {
 		const fetchProduct = async () => {
 			try {
-				const response = await axios.get(
-					"http://localhost:3000/products/" + id
-				);
+				const response = await axios.get(API_URL + "products/" + id);
 				setProduct(response.data);
 			} catch (error) {
 				console.error(error);
@@ -35,98 +43,96 @@ export default function ProductPageById() {
 		fetchProduct();
 	}, [id]);
 
-	if (isLoading) {
-		return <div className="container p-10">Загружаем...</div>;
-	}
-
 	if (!product) {
-		return <div className="container p-10">Продукт не найден</div>;
+		return <div className="container p-10"></div>;
 	}
 
-	console.log(product);
+	if (product) {
+		setIsLoadingModal(false);
+	}
+
 	return (
 		<main className="container py-28">
 			<section className="w-[85%] mx-auto space-y-40">
 				<div className="flex gap-10">
 					<div className="basis-3/5">
-						<div className="relative w-full aspect-[8/5]">
-							<Image
-								src={
-									product.image
-										? `http://localhost:3000/uploads/${product.image}`
-										: "https://placehold.co/600x400"
-								}
-								fill
-								alt={product.image || "photo"}
-								className="object-cover"
-							/>
+						<div
+							className={clsx("relative w-full aspect-[9/5]", {
+								"bg-black/10": !product.image,
+							})}>
+							{product.image && (
+								<Image
+									src={"http://localhost:5000/uploads/" + product.image}
+									fill
+									alt={product.image || "photo"}
+									className="object-contain"
+								/>
+							)}
 						</div>
 					</div>
 					<div className="basis-2/5 flex flex-col gap-4">
 						<p className="uppercase font-semibold text-4xl">{product?.name}</p>
-						<p className="font-medium text-2xl">
-							Ларь-бонета Cortina выпускается в двухрежимном исполнении HT / CT
-							с возможностью переключение температурных режимов :
-						</p>
-						<div className="font-medium text-xl text-black/65">
-							<li>Низкотемпературный режим -18/-24 С</li>
-							<li>Среднетемпературный -2/+6 С</li>
+						<div>
+							<p className="font-medium text-xl">{formatedPrice} ₸</p>
 						</div>
-						<p className="font-medium text-2xl">
-							Ларь-бонета Cortina имеет низкое энергопотребление благодаря
-							современным технологическим решениям , входящим в стандартную
-							комплектацию:
-						</p>
-						<div className="font-medium text-xl text-black/65">
-							<li>
-								Раздвижные обзорные крышки из низко эмиссионного стекла с
-								антизапотевающим покрытиемал
-							</li>
-							<li>Светодиодная подвсетка</li>
-							<li>Оттайка горячим газом</li>
+
+						{/* Кнопка - заказать */}
+						<Link
+							href={""}
+							className="py-4 w-full bg-res-green flex justify-center items-center gap-2 text-white rounded-xl hover:opacity-90">
+							<p className="text-lg uppercase">Заказать</p>
+							<ArrowRight className="p-0.5" />
+						</Link>
+
+						{/* Описание */}
+						<div className="space-y-2 mt-4">
+							<p className="text-res-green font-semibold text-xl">Описание</p>
+							<hr className="bg-res-green w-full h-[4px]" />
+							<div className="">
+								<p className="font-medium text-muted-foreground text-lg">
+									Ларь-бонета Cortina выпускается в двухрежимном исполнении HT /
+									CT с возможностью переключение температурных режимов :
+								</p>
+							</div>
 						</div>
-						<div className="mt-4 flex flex-col gap-[inherit]">
-							<p className="text-res-green font-extrabold text-5xl">
-								{formatedPrice ? formatedPrice + " ₸" : "Не указано"}
-							</p>
-							<button className="transition flex justify-center items-center place-self-end bg-res-green rounded-2xl w-full h-20 gap-1 hover:bg-res-green/90">
-								<p className="text-white text-2xl">Заказать</p>
-							</button>
+
+						{/* Детали */}
+						<div className="space-y-2 mt-4">
+							<p className="text-res-green font-semibold text-xl">Детали</p>
+							<hr className="bg-res-green w-full h-[4px]" />
+
+							<div className="">
+								<ul className="list-none space-y-1">
+									<li className="flex justify-between text-lg">
+										<p className="text-res-green font-medium">
+											Тип холодоснабжения
+										</p>
+										<p className="text-muted-foreground">Выносной холод</p>
+									</li>
+									<li className="flex justify-between text-lg">
+										<p className="text-res-green font-medium">Бренд</p>
+										<p className="text-muted-foreground">Dazzl</p>
+									</li>
+									<li className="flex justify-between text-lg">
+										<p className="text-res-green font-medium">
+											Гарантия, месяц
+										</p>
+										<p className="text-muted-foreground">12</p>
+									</li>
+									<li className="flex justify-between text-lg">
+										<p className="text-res-green font-medium">
+											Страна производства
+										</p>
+										<p className="text-muted-foreground">Россия</p>
+									</li>
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>
 
-				<div className="">
-					<p className="section-title">Описание</p>
-					<div className="flex flex-col gap-4">
-						<p className="font-medium text-2xl">
-							Ларь-бонета Cortina выпускается в двухрежимном исполнении HT / CT
-							с возможностью переключение температурных режимов :
-						</p>
-						<div className="font-medium text-xl text-black/65">
-							<li>Низкотемпературный режим -18/-24 С</li>
-							<li>Среднетемпературный -2/+6 С</li>
-						</div>
-						<p className="font-medium text-2xl">
-							Ларь-бонета Cortina имеет низкое энергопотребление благодаря
-							современным технологическим решениям , входящим в стандартную
-							комплектацию:
-						</p>
-						<div className="font-medium text-xl text-black/65">
-							<li>
-								Раздвижные обзорные крышки из низко эмиссионного стекла с
-								антизапотевающим покрытиемал
-							</li>
-							<li>Светодиодная подвсетка</li>
-							<li>Оттайка горячим газом</li>
-						</div>
-					</div>
-				</div>
+				<div className=""></div>
 			</section>
-			<div className="mt-32">
-				<SwiperComponent sectionTitle="Наши клиенты" array={clients} />
-				<SwiperComponent sectionTitle="Наши партнеры" array={partners} />
-			</div>
 		</main>
 	);
 }

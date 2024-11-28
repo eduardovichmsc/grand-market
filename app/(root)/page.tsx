@@ -39,7 +39,9 @@ export default function Home() {
 
 			<section className="section-container">
 				{/* Сервисы - services */}
-				<div className="container mt-0 md:-mt-36 xl:-mt-60" id="services">
+				<div className="relative container mt-0 md:-mt-36 xl:-mt-60">
+					<span className="absolute -top-60" id="services"></span>
+
 					<div className="grid grid-cols-2 sm:grid-cols-5 gap-5">
 						{services.map((service, index) => (
 							<div
@@ -62,10 +64,12 @@ export default function Home() {
 				</div>
 
 				{/* Преимущества - advantages */}
-				<div className="container" id="advantages">
+				<div className="relative container">
+					<span className="absolute -top-60" id="advantages"></span>
+
 					<p className="section-title text-res-green">Наши преимущества:</p>
-					<div className="inner grid grid-cols-1 lg:grid-cols-2 grid-rows-2 lg:grid-rows-1 gap-6 md:gap-8 lg:gap-10 xl:gap-14 2xl:gap-10 h-[70rem] md:h-[50rem]">
-						<div className="row-span-1 lg:row-span-2 col-span-1 bg-black rounded-2xl shadow-md relative overflow-hidden flex flex-col justify-center items-center group">
+					<div className="inner grid *:row-span-1 grid-cols-1 lg:grid-cols-2 grid-rows-2 lg:grid-rows-1 gap-6 md:gap-8 lg:gap-10 xl:gap-14 2xl:gap-10 h-[70rem] md:h-[50rem]">
+						<div className="lg:row-span-2 col-span-1 bg-black rounded-2xl shadow-md relative overflow-hidden flex flex-col justify-center items-center group">
 							<Image
 								src={"/advantages/high-q.png"}
 								fill
@@ -84,7 +88,7 @@ export default function Home() {
 							</div>
 						</div>
 
-						<div className="row-span-1 bg-black rounded-2xl shadow-md relative overflow-hidden flex flex-col justify-center items-center group">
+						<div className="bg-black rounded-2xl shadow-md relative overflow-hidden flex flex-col justify-center items-center group">
 							<Image
 								src={"/advantages/qual.png"}
 								fill
@@ -102,7 +106,7 @@ export default function Home() {
 							</div>
 						</div>
 
-						<div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+						<div className="contents md:grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
 							<div className="bg-black group rounded-2xl shadow-md relative overflow-hidden flex flex-col justify-center items-center h-48 lg:h-64 xl:h-72">
 								<Image
 									src={"/advantages/installment.png"}

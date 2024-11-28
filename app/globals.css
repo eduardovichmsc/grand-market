@@ -14,7 +14,7 @@
 }
 
 .section-container {
-	@apply py-28 space-y-48 md:space-y-60 xl:space-y-96 relative z-0;
+	@apply py-28 space-y-48 md:space-y-48 xl:space-y-48 relative z-0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -32,36 +32,36 @@ body {
 
 @media (max-width: 1750px) {
 	:root {
-		font-size: 14px;
+		font-size: 13px;
 	}
 }
 
 @media (max-width: 1280px) {
 	:root {
-		font-size: 12px;
+		font-size: 11px;
 	}
 }
 
 @media (max-width: 1023px) {
 	:root {
-		font-size: 11px;
+		font-size: 10px;
 	}
 }
 
 @media (max-width: 960px) {
 	:root {
-		font-size: 10px;
+		font-size: 9px;
 	}
 }
 
 @media (max-width: 500px) {
 	:root {
-		font-size: 9px;
+		font-size: 8px;
 	}
 }
 
 @layer base {
-  :root {
+	:root {
 		--background: 0 0% 100%;
 		--foreground: 0 0% 3.9%;
 		--card: 0 0% 100%;
@@ -88,7 +88,7 @@ body {
 		--chart-5: 27 87% 67%;
 		--radius: 0.5rem;
 	}
-  .dark {
+	.dark {
 		--background: 0 0% 3.9%;
 		--foreground: 0 0% 98%;
 		--card: 0 0% 3.9%;
@@ -117,10 +117,10 @@ body {
 }
 
 @layer base {
-  * {
-    @apply border-border;
+	* {
+		@apply border-border;
 	}
-  body {
-    @apply bg-background text-foreground;
+	body {
+		@apply bg-background text-foreground;
 	}
 }

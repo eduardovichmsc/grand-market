@@ -21,18 +21,11 @@ export const LoadingModal = () => {
 		};
 	}, [isLoading]);
 
-	return (
-		<AnimatePresence>
-			{isLoading && (
-				<motion.div
-					className="fixed z-50 w-screen h-screen bg-black/50 backdrop-blur-md flex justify-center items-center"
-					initial={{ opacity: 0 }}
-					animate={{ opacity: 1 }}
-					exit={{ opacity: 0 }}
-					transition={{ duration: 0.3 }}>
-					<Loader2 className="text-white w-16 h-16 animate-spin" />
-				</motion.div>
-			)}
-		</AnimatePresence>
-	);
+	if (isLoading) {
+		return (
+			<div className="fixed z-50 w-screen h-screen bg-black/50 backdrop-blur-md flex justify-center items-center">
+				<Loader2 className="text-white w-16 h-16 animate-spin" />
+			</div>
+		);
+	}
 };

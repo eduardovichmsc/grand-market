@@ -61,7 +61,7 @@ const config: Config = {
 					xl: "10rem",
 				},
 				screens: {
-					"2xl": "1790px",
+					"2xl": "1690px",
 				},
 			},
 			borderRadius: {

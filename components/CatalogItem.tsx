@@ -1,9 +1,13 @@
+import { API_URL } from "@/static";
 import clsx from "clsx";
+import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { FC } from "react";
 
 interface CatalogItemProps {
-	title: string;
+	id: number;
+	name: string;
 	description: string;
 	image?: string;
 	link?: string;
@@ -11,31 +15,48 @@ interface CatalogItemProps {
 }
 
 export const CatalogItem: FC<CatalogItemProps> = ({
-	title,
+	id,
+	name,
 	description,
+	image,
 	link = "/404",
 	className,
 }) => {
+	const router = useRouter();
+
+	const handleClick = () => {
+		router.push("/catalog/" + id);
+	};
+
 	return (
-		<Link
-			href={link}
+		<div
 			className={clsx(
-				"rounded-xl overflow-hidden shadow-md drop-shadow-2xl flex flex-col hover:opacity-95" +
+				"p-6 cursor-pointer rounded-xl overflow-hidden shadow-md flex flex-col gap-4 hover:opacity-95" +
 					" " +
 					className
-			)}>
-			<div className="aspect-[5/3] bg-black/10"></div>
-			<div className="p-6 space-y-3 flex-1">
-				<p className="font-extrabold text-2xl uppercase">{title}</p>
-				<p className="text-lg leading-tight">{description}</p>
+			)}
+			onClick={handleClick}>
+			<div className="relative aspect-[4/3]">
+				<Image
+					src={API_URL + "uploads/" + (image || "")}
+					fill
+					objectFit="contain"
+					alt={name}
+				/>
 			</div>
-			<div className="pt-0 p-6">
+			<div className="flex-1 flex flex-col gap-[inherit]">
+				<div className="flex-1 flex items-end">
+					<p className="uppercase font-extrabold text-xl">{name}</p>
+				</div>
+				<p className="leading-tight text-base line-clamp-3">{description}</p>
+			</div>
+			<div className="">
 				<Link
-					href={link || "/404"}
+					href={link}
 					className="py-3 w-full bg-res-green flex justify-center items-center text-white rounded-xl">
-					<p className="text-lg uppercase">Купить</p>
+					<p className="text-base uppercase">Купить</p>
 				</Link>
 			</div>
-		</Link>
+		</div>
 	);
 };
