@@ -23,7 +23,7 @@ export const LoadingModal = () => {
 
 	if (isLoading) {
 		return (
-			<div className="fixed z-50 w-screen h-screen bg-black/50 backdrop-blur-md flex justify-center items-center">
+			<div className="fixed z-50 w-screen h-screen bg-black/25 backdrop-blur-md flex justify-center items-center">
 				<Loader2 className="text-white w-16 h-16 animate-spin" />
 			</div>
 		);

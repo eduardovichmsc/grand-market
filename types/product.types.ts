@@ -7,6 +7,7 @@ export interface ProductType {
 	updatedAt?: Date;
 	image: string;
 	categoryId?: number;
+	countryId: number;
 	subCategoryId?: number | null;
 	manufacturerId: number | null;
 }

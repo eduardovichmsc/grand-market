@@ -1,5 +1,4 @@
 "use client";
-// import { clients, partners } from "@/config/static";
 import usePriceFormatter from "@/hooks/usePriceFormatter";
 import { isGlobalLoading } from "@/model/atoms";
 import { API_URL } from "@/static";
@@ -8,15 +7,10 @@ import axios from "axios";
 import clsx from "clsx";
 import { useSetAtom } from "jotai";
 import { ArrowRight } from "lucide-react";
-// import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-
-// const SwiperComponent = dynamic(() => import("@/components/SwiperComponent"), {
-// 	ssr: true,
-// });
 
 export default function ProductPageById() {
 	// модалка загрузки
@@ -28,6 +22,35 @@ export default function ProductPageById() {
 
 	const [product, setProduct] = useState<ProductType | undefined>();
 	const formatedPrice = usePriceFormatter(product?.price);
+
+	const [details, setDetails] = useState<{
+		countryName?: string;
+		brandName?: string;
+		categoryName?: string;
+	}>({});
+
+	const fetchDetails = async () => {
+		try {
+			const categoryName = await axios.get(
+				API_URL + "categories/" + product?.categoryId
+			);
+			const brandName = await axios.get(
+				API_URL + "manufacturers/" + product?.manufacturerId
+			);
+			const countryName = await axios.get(
+				API_URL + "countries/" + product?.countryId
+			);
+			setDetails((prevData) => ({
+				...prevData,
+
+				brandName: brandName.data.name,
+				categoryName: categoryName.data.name,
+				countryName: countryName.data.name,
+			}));
+		} catch (error) {
+			console.error(error);
+		}
+	};
 
 	useEffect(() => {
 		const fetchProduct = async () => {
@@ -42,6 +65,10 @@ export default function ProductPageById() {
 		};
 		fetchProduct();
 	}, [id]);
+
+	useEffect(() => {
+		fetchDetails();
+	}, [product]);
 
 	if (!product) {
 		return <div className="container p-10"></div>;
@@ -73,7 +100,9 @@ export default function ProductPageById() {
 					<div className="basis-2/5 flex flex-col gap-4">
 						<p className="uppercase font-semibold text-4xl">{product?.name}</p>
 						<div>
-							<p className="font-medium text-xl">{formatedPrice} ₸</p>
+							<p className="font-medium text-res-green text-xl">
+								от {formatedPrice} ₸
+							</p>
 						</div>
 
 						{/* Кнопка - заказать */}
@@ -90,8 +119,7 @@ export default function ProductPageById() {
 							<hr className="bg-res-green w-full h-[4px]" />
 							<div className="">
 								<p className="font-medium text-muted-foreground text-lg">
-									Ларь-бонета Cortina выпускается в двухрежимном исполнении HT /
-									CT с возможностью переключение температурных режимов :
+									{product.description}
 								</p>
 							</div>
 						</div>
@@ -107,11 +135,19 @@ export default function ProductPageById() {
 										<p className="text-res-green font-medium">
 											Тип холодоснабжения
 										</p>
-										<p className="text-muted-foreground">Выносной холод</p>
+										<p className="text-muted-foreground">
+											{details.categoryName?.length > 0
+												? details.categoryName
+												: "Не указано"}
+										</p>
 									</li>
 									<li className="flex justify-between text-lg">
 										<p className="text-res-green font-medium">Бренд</p>
-										<p className="text-muted-foreground">Dazzl</p>
+										<p className="text-muted-foreground">
+											{details.brandName?.length > 0
+												? details.brandName
+												: "Не указано"}
+										</p>
 									</li>
 									<li className="flex justify-between text-lg">
 										<p className="text-res-green font-medium">
@@ -123,7 +159,11 @@ export default function ProductPageById() {
 										<p className="text-res-green font-medium">
 											Страна производства
 										</p>
-										<p className="text-muted-foreground">Россия</p>
+										<p className="text-muted-foreground">
+											{details.countryName?.length > 0
+												? details.countryName
+												: "Не указано"}
+										</p>
 									</li>
 								</ul>
 							</div>

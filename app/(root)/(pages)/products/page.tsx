@@ -8,18 +8,12 @@ import { SkeletonCatalogItem } from "@/components/skeletons/SkeletonCatalogItem"
 import { Pagination } from "@/components/ui/pagination";
 import { isGlobalLoading } from "@/model/atoms";
 import { API_URL } from "@/static";
+import { FilterState } from "@/types/types";
 import axios from "axios";
 import { useSetAtom } from "jotai";
 import { Search } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-
-interface FilterState {
-	searchValue: string;
-	selectId: string;
-	currentPagination: number;
-	isLoading: boolean;
-}
 
 export default function CatalogPage() {
 	const setIsGlobalLoading = useSetAtom(isGlobalLoading);
@@ -32,8 +26,13 @@ export default function CatalogPage() {
 		selectId: "popular",
 		currentPagination: 1,
 		isLoading: true,
+		selectedCategory: "",
+		selectedBrand: "",
 	});
+
+	// продукт
 	const [products, setProducts] = useState<any>({
+		total: 0,
 		list: [],
 		totalPages: 0,
 		limit: 0,
@@ -42,13 +41,17 @@ export default function CatalogPage() {
 	const getAllProducts = async (page: number = 1) => {
 		try {
 			setIsGlobalLoading(true);
-			const { data } = await axios.get(API_URL + "products", {
+			const response = await axios.get(API_URL + "products", {
 				params: {
 					search: filterState.searchValue,
 					page: page,
+					categoryId: filterState.selectedCategory || undefined,
+					manufacturerId: filterState.selectedBrand || undefined,
 				},
 			});
-			setProducts(data);
+			console.log(response);
+
+			setProducts(response.data);
 		} catch (error) {
 			console.error(error);
 		} finally {
@@ -78,6 +81,10 @@ export default function CatalogPage() {
 
 	const handleSearchChange = (value: string) => {
 		setFilterState((prevState) => ({ ...prevState, searchValue: value }));
+	};
+
+	const handleFilterSubmit = () => {
+		getAllProducts();
 	};
 
 	return (
@@ -114,20 +121,31 @@ export default function CatalogPage() {
 						<SkeletonCatalogFilter />
 					) : (
 						<CatalogFilter
-							selectId={filterState.selectId}
-							setSelectId={(id) =>
-								setFilterState((prevState) => ({ ...prevState, selectId: id }))
+							selectedCategory={filterState.selectedCategory}
+							setSelectedCategory={(category) =>
+								setFilterState((prevState) => ({
+									...prevState,
+									selectedCategory: category,
+								}))
 							}
+							selectedBrand={filterState.selectedBrand}
+							setSelectedBrand={(brand) =>
+								setFilterState((prevState) => ({
+									...prevState,
+									selectedBrand: brand,
+								}))
+							}
+							handleFilterSubmit={handleFilterSubmit}
 						/>
 					)}
 
 					<div className="basis-3/4 space-y-8">
-						<div className="flex justify-between items-center">
+						{/* <div className="flex justify-between items-center">
 							<p>
 								Результаты: (
 								{filterState.isLoading && products.list.length === 0
 									? "#количество товаров"
-									: products.limit}
+									: products.total}
 								)
 							</p>
 							<select
@@ -143,7 +161,7 @@ export default function CatalogPage() {
 								<option value="cheap">Сначала дешевые</option>
 								<option value="expensive">Сначала дорогие</option>
 							</select>
-						</div>
+						</div> */}
 
 						<div className="grid grid-cols-3 gap-6">
 							{filterState.isLoading && products.list.length === 0

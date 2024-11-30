@@ -25,7 +25,7 @@ export const CatalogItem: FC<CatalogItemProps> = ({
 	const router = useRouter();
 
 	const handleClick = () => {
-		router.push("/catalog/" + id);
+		router.push("/products/" + id);
 	};
 
 	return (
