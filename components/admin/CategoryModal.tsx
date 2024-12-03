@@ -17,35 +17,43 @@ export const CategoryModal = () => {
 		tag: "",
 	});
 
-	// Format name to generate tag
 	const formatToTag = (name: string) => {
 		return transliterate(name.trim()).toLowerCase().replace(/\s+/g, "_");
 	};
 
-	// Handle form submission for adding and editing
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		const tagName = formatToTag(form.name);
 
 		try {
 			if (categoryId) {
-				// Editing an existing category
-				const response = await axios.put(API_URL + "categories/" + categoryId, {
-					name: form.name,
-					tag: tagName,
-				});
+				const response = await axios.put(
+					API_URL + "categories/" + categoryId,
+					{
+						name: form.name,
+						tag: tagName,
+					},
+					{
+						withCredentials: true,
+					}
+				);
 
 				if (response.status === 200) {
 					setForm({ name: "", tag: "" });
 					setIsShown(false);
-					setCategoryId(null); // Reset categoryId after editing
+					setCategoryId(null);
 				}
 			} else {
-				// Adding a new category
-				const response = await axios.post(API_URL + "categories", {
-					name: form.name,
-					tag: tagName,
-				});
+				const response = await axios.post(
+					API_URL + "categories",
+					{
+						name: form.name,
+						tag: tagName,
+					},
+					{
+						withCredentials: true,
+					}
+				);
 
 				if (response.status === 200) {
 					setForm({ name: "", tag: "" });
@@ -57,7 +65,6 @@ export const CategoryModal = () => {
 		}
 	};
 
-	// Pre-fill form if editing a category
 	useEffect(() => {
 		if (categoryId) {
 			(async () => {

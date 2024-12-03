@@ -21,9 +21,15 @@ export const BrandModal = () => {
 		e.preventDefault();
 		try {
 			if (countryId) {
-				const response = await axios.put(API_URL + route + countryId, {
-					name: form.name,
-				});
+				const response = await axios.put(
+					API_URL + route + countryId,
+					{
+						name: form.name,
+					},
+					{
+						withCredentials: true,
+					}
+				);
 
 				if (response.status === 200) {
 					setForm({ name: "" });
@@ -31,9 +37,13 @@ export const BrandModal = () => {
 					setCountryId(null);
 				}
 			} else {
-				const response = await axios.post(API_URL + route, {
-					name: form.name,
-				});
+				const response = await axios.post(
+					API_URL + route,
+					{
+						name: form.name,
+					},
+					{ withCredentials: true }
+				);
 
 				if (response.status === 200) {
 					setForm({ name: "" });
@@ -49,7 +59,9 @@ export const BrandModal = () => {
 		if (countryId) {
 			(async () => {
 				try {
-					const response = await axios.get(API_URL + route + countryId);
+					const response = await axios.get(API_URL + route + countryId, {
+						withCredentials: true,
+					});
 					setForm({ name: response.data.name });
 				} catch (error) {
 					console.error("Ошибка при загрузке данных категории:", error);

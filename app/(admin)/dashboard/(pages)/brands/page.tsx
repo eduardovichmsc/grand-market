@@ -7,16 +7,23 @@ import axios from "axios";
 import { useSetAtom } from "jotai";
 import { useEffect, useState } from "react";
 
+interface BrandsType {
+	id: number;
+	name: string;
+}
+
 export default function AdminCategoriesPage() {
-	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const [isLoading] = useState<boolean>(false);
 	const setIsModalShown = useSetAtom(isBrandModalShown);
 	const setEditingBrandId = useSetAtom(editingBrandId);
 
-	const [brands, setBrands] = useState<any>([]);
+	const [brands, setBrands] = useState<BrandsType[]>([]);
 
 	const getBrands = async () => {
 		try {
-			const response = await axios.get(API_URL + "manufacturers");
+			const response = await axios.get(API_URL + "manufacturers", {
+				withCredentials: true,
+			});
 			setBrands(response.data);
 		} catch (error) {
 			console.error(error);

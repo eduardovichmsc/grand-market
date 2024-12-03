@@ -19,9 +19,13 @@ export const BrandModal = () => {
 		e.preventDefault();
 		try {
 			if (brandId) {
-				const response = await axios.put(API_URL + "manufacturers/" + brandId, {
-					name: form.name,
-				});
+				const response = await axios.put(
+					API_URL + "manufacturers/" + brandId,
+					{
+						name: form.name,
+					},
+					{ withCredentials: true }
+				);
 
 				if (response.status === 200) {
 					setForm({ name: "" });
@@ -29,9 +33,15 @@ export const BrandModal = () => {
 					setBrandId(null);
 				}
 			} else {
-				const response = await axios.post(API_URL + "manufacturers/", {
-					name: form.name,
-				});
+				const response = await axios.post(
+					API_URL + "manufacturers/",
+					{
+						name: form.name,
+					},
+					{
+						withCredentials: true,
+					}
+				);
 
 				if (response.status === 200) {
 					setForm({ name: "" });
@@ -48,7 +58,8 @@ export const BrandModal = () => {
 			(async () => {
 				try {
 					const response = await axios.get(
-						API_URL + "manufacturers/" + brandId
+						API_URL + "manufacturers/" + brandId,
+						{ withCredentials: true }
 					);
 					setForm({ name: response.data.name });
 				} catch (error) {

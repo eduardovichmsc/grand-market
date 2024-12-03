@@ -11,6 +11,12 @@ import axios from "axios";
 import { useSetAtom } from "jotai";
 import { useEffect, useState } from "react";
 
+interface CategoriesType {
+	id: number;
+	name: string;
+	tag: string;
+}
+
 export default function AdminCategoriesPage() {
 	const route = "categories/";
 
@@ -19,7 +25,7 @@ export default function AdminCategoriesPage() {
 	const setIsModalShown = useSetAtom(isCategoryModalShown);
 	const setEditingCategoryId = useSetAtom(editingCategoryId);
 
-	const [categories, setCategories] = useState<any>([]);
+	const [categories, setCategories] = useState<CategoriesType[]>([]);
 
 	const getCategories = async () => {
 		try {
@@ -35,7 +41,9 @@ export default function AdminCategoriesPage() {
 
 	const removeCategory = async (id: number) => {
 		try {
-			const response = await axios.delete(API_URL + route + id);
+			const response = await axios.delete(API_URL + route + id, {
+				withCredentials: true,
+			});
 			if (response.status === 200) {
 				showAlert(true);
 				setIsModalShown(false);

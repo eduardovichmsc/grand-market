@@ -2,7 +2,6 @@
 import { useAtomValue } from "jotai";
 import { Loader2 } from "lucide-react";
 import { useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 
 import { isGlobalLoading } from "@/model/atoms";
 

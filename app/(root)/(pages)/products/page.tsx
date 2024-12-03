@@ -13,7 +13,14 @@ import axios from "axios";
 import { useSetAtom } from "jotai";
 import { Search } from "lucide-react";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+
+interface ProductsState {
+	total: number;
+	list: object[];
+	totalPages: number;
+	limit: number;
+}
 
 export default function CatalogPage() {
 	const setIsGlobalLoading = useSetAtom(isGlobalLoading);
@@ -31,33 +38,41 @@ export default function CatalogPage() {
 	});
 
 	// продукт
-	const [products, setProducts] = useState<any>({
+	const [products, setProducts] = useState<ProductsState>({
 		total: 0,
 		list: [],
 		totalPages: 0,
 		limit: 0,
 	});
 
-	const getAllProducts = async (page: number = 1) => {
-		try {
-			setIsGlobalLoading(true);
-			const response = await axios.get(API_URL + "products", {
-				params: {
-					search: filterState.searchValue,
-					page: page,
-					categoryId: filterState.selectedCategory || undefined,
-					manufacturerId: filterState.selectedBrand || undefined,
-				},
-			});
-			console.log(response);
+	const getAllProducts = useCallback(
+		async (page: number = 1) => {
+			try {
+				setIsGlobalLoading(true);
+				const response = await axios.get(API_URL + "products", {
+					params: {
+						search: filterState.searchValue,
+						page: page,
+						categoryId: filterState.selectedCategory || undefined,
+						manufacturerId: filterState.selectedBrand || undefined,
+					},
+				});
+				console.log(response);
 
-			setProducts(response.data);
-		} catch (error) {
-			console.error(error);
-		} finally {
-			setIsGlobalLoading(false);
-		}
-	};
+				setProducts(response.data);
+			} catch (error) {
+				console.error(error);
+			} finally {
+				setIsGlobalLoading(false);
+			}
+		},
+		[
+			filterState.searchValue,
+			filterState.selectedBrand,
+			filterState.selectedCategory,
+			setIsGlobalLoading,
+		]
+	);
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
@@ -68,7 +83,7 @@ export default function CatalogPage() {
 
 	useEffect(() => {
 		getAllProducts(filterState.currentPagination);
-	}, [filterState.currentPagination]);
+	}, [filterState.currentPagination, getAllProducts]);
 
 	const handlePaginationChange = (page: number) => {
 		setFilterState((prevState) => ({ ...prevState, currentPagination: page }));

@@ -2,13 +2,19 @@
 
 import clsx from "clsx";
 import { useAtomValue, useSetAtom } from "jotai";
-import { ChangeEvent, useEffect, useState } from "react";
-import { isAuthModalOpen } from "@/model/atoms";
+import React, { ChangeEvent, useEffect, useState } from "react";
+import { isAuthenticated, isAuthModalOpen } from "@/model/atoms";
 import { motion, AnimatePresence } from "framer-motion";
+import axios from "axios";
+import { API_URL } from "@/static";
+import { useRouter } from "next/navigation";
 
 export const AuthorizationModal = () => {
+	const setIsAuthenticated = useSetAtom(isAuthenticated);
+
 	const isOpen = useAtomValue(isAuthModalOpen);
 	const setIsOpen = useSetAtom(isAuthModalOpen);
+	const router = useRouter();
 
 	const [form, setForm] = useState<{ email: string; password: string }>({
 		email: "",
@@ -24,6 +30,21 @@ export const AuthorizationModal = () => {
 	};
 
 	const closeModal = () => setIsOpen(false);
+
+	const handleSubmit = async (e: React.FormEvent) => {
+		e.preventDefault();
+		try {
+			const response = await axios.post(API_URL + "users/login/", form);
+			console.log(response);
+
+			if (response.status === 201) {
+				setIsAuthenticated(true);
+				router.push("/dashboard");
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	};
 
 	useEffect(() => {
 		if (isOpen) {
@@ -56,7 +77,9 @@ export const AuthorizationModal = () => {
 						<p className="font-extrabold text-2xl pb-8">
 							Войдите в учетную запись
 						</p>
-						<form action="" className="flex flex-col gap-4">
+						<form
+							onSubmit={(e) => handleSubmit(e)}
+							className="flex flex-col gap-4">
 							<div className="relative">
 								<input
 									type="email"

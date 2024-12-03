@@ -11,7 +11,7 @@ import { FilterState } from "@/types/types";
 import axios from "axios";
 import { useSetAtom } from "jotai";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export default function AdminProductPage() {
 	const searchQuery = useSearchParams();
@@ -21,7 +21,7 @@ export default function AdminProductPage() {
 	const setEditingProductId = useSetAtom(editingProductId);
 	const setIsModalShown = useSetAtom(isProductModalShown);
 
-	const [filterState, setFilterState] = useState<FilterState>({
+	const [filterState] = useState<FilterState>({
 		searchValue: searchQuery.get("search") || "",
 		selectId: "popular",
 		currentPagination: 1,
@@ -37,28 +37,36 @@ export default function AdminProductPage() {
 		limit: 0,
 	});
 
-	const getAllProducts = async (page: number = 1) => {
-		try {
-			setIsLoading(true);
-			const response = await axios.get(API_URL + "products", {
-				params: {
-					search: filterState.searchValue,
-					page: page,
-					categoryId: filterState.selectedCategory || undefined,
-					manufacturerId: filterState.selectedBrand || undefined,
-				},
-			});
-			console.log(response);
+	const getAllProducts = useCallback(
+		async (page: number = 1) => {
+			try {
+				setIsLoading(true);
+				const response = await axios.get(API_URL + "products", {
+					params: {
+						search: filterState.searchValue,
+						page: page,
+						categoryId: filterState.selectedCategory || undefined,
+						manufacturerId: filterState.selectedBrand || undefined,
+					},
+					withCredentials: true,
+				});
+				console.log(response);
 
-			setProducts(response.data);
-		} catch (error) {
-			console.error(error);
-		} finally {
-			setIsLoading(false);
-		}
-	};
+				setProducts(response.data);
+			} catch (error) {
+				console.error(error);
+			} finally {
+				setIsLoading(false);
+			}
+		},
+		[
+			filterState.searchValue,
+			filterState.selectedBrand,
+			filterState.selectedCategory,
+		]
+	);
 
-	const handleEditProduct = (id) => {
+	const handleEditProduct = (id: number) => {
 		setIsEditing(true);
 		setEditingProductId(id);
 		setIsModalShown(true);
@@ -83,7 +91,7 @@ export default function AdminProductPage() {
 
 	useEffect(() => {
 		getAllProducts();
-	}, [filterState.currentPagination]);
+	}, [filterState.currentPagination, getAllProducts]);
 
 	return (
 		<div className="space-y-6">

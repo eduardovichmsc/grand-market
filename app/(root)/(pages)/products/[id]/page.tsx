@@ -10,14 +10,14 @@ import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export default function ProductPageById() {
 	// модалка загрузки
 	const setIsLoadingModal = useSetAtom(isGlobalLoading);
 	setIsLoadingModal(true);
 
-	const [isLoading, setIsLoading] = useState(true);
+	const [, setIsLoading] = useState(true);
 	const { id } = useParams();
 
 	const [product, setProduct] = useState<ProductType | undefined>();
@@ -29,7 +29,7 @@ export default function ProductPageById() {
 		categoryName?: string;
 	}>({});
 
-	const fetchDetails = async () => {
+	const fetchDetails = useCallback(async () => {
 		try {
 			const categoryName = await axios.get(
 				API_URL + "categories/" + product?.categoryId
@@ -50,7 +50,7 @@ export default function ProductPageById() {
 		} catch (error) {
 			console.error(error);
 		}
-	};
+	}, [product]);
 
 	useEffect(() => {
 		const fetchProduct = async () => {
@@ -68,7 +68,7 @@ export default function ProductPageById() {
 
 	useEffect(() => {
 		fetchDetails();
-	}, [product]);
+	}, [fetchDetails, product]);
 
 	if (!product) {
 		return <div className="container p-10"></div>;

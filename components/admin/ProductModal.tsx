@@ -36,7 +36,7 @@ export const ProductModal = () => {
 		errorMessage: string
 	) => {
 		try {
-			const response = await axios.get(url);
+			const response = await axios.get(url, { withCredentials: true });
 			if (response.data && response.data.length > 0) {
 				setState(response.data);
 			} else {
@@ -57,7 +57,9 @@ export const ProductModal = () => {
 		if (isEditing && productId) {
 			(async () => {
 				try {
-					const response = await axios.get(`${API_URL}products/${productId}`);
+					const response = await axios.get(`${API_URL}products/${productId}`, {
+						withCredentials: true,
+					});
 					reset(response.data);
 				} catch (error) {
 					console.error("Ошибка загрузки данных продукта:", error);

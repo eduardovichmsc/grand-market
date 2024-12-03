@@ -7,14 +7,19 @@ import axios from "axios";
 import { useSetAtom } from "jotai";
 import { useEffect, useState } from "react";
 
+interface CountriesType {
+	id: number;
+	name: string;
+}
+
 export default function AdminCountriesPage() {
 	const route = "countries/";
 
-	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const [isLoading] = useState<boolean>(false);
 	const setIsModalShown = useSetAtom(isBrandModalShown);
 	const setEditingBrandId = useSetAtom(editingBrandId);
 
-	const [countries, setCountries] = useState<any>([]);
+	const [countries, setCountries] = useState<CountriesType[]>([]);
 
 	const getCountries = async () => {
 		try {
@@ -27,7 +32,9 @@ export default function AdminCountriesPage() {
 
 	const removeCountry = async (id: number) => {
 		try {
-			const response = await axios.delete(API_URL + route + id);
+			const response = await axios.delete(API_URL + route + id, {
+				withCredentials: true,
+			});
 			console.log(response);
 
 			if (response.status === 200) {
