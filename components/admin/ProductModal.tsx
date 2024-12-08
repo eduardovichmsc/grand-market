@@ -12,54 +12,92 @@ import {
 import { useForm } from "react-hook-form";
 import clsx from "clsx";
 
-export const ProductModal = () => {
+interface Category {
+	id: number;
+	name: string;
+}
+
+interface Brand {
+	id: number;
+	name: string;
+}
+
+interface Country {
+	id: number;
+	name: string;
+}
+
+interface ProductForm {
+	name: string;
+	description: string;
+	price: string;
+	categoryId: string;
+	manufacturerId: string;
+	countryId: string;
+	image?: FileList;
+}
+
+export const ProductModal: React.FC = () => {
 	const [isShown, setIsShown] = useAtom(isProductModalShown);
 	const [isEditing, setIsEditing] = useAtom(isProductEditing);
 	const [productId, setEditingProductId] = useAtom(editingProductId);
 
-	const [categories, setCategories] = useState([]);
-	const [brands, setBrands] = useState([]);
-	const [countries, setCountries] = useState([]);
+	const [categories, setCategories] = useState<Category[]>([]);
+	const [brands, setBrands] = useState<Brand[]>([]);
+	const [countries, setCountries] = useState<Country[]>([]);
 
 	const {
 		register,
 		handleSubmit,
 		reset,
 		formState: { errors },
-	} = useForm({
-		defaultValues: {},
-	});
+	} = useForm<ProductForm>();
 
-	const fetchData = async (
+	const fetchData = async <T,>(
 		url: string,
-		setState: any,
+		setState: React.Dispatch<React.SetStateAction<T[]>>,
 		errorMessage: string
 	) => {
 		try {
-			const response = await axios.get(url, { withCredentials: true });
-			if (response.data && response.data.length > 0) {
+			const response = await axios.get<T[]>(url, { withCredentials: true });
+			if (response.data?.length > 0) {
 				setState(response.data);
 			} else {
 				console.error(errorMessage);
 			}
 		} catch (error) {
-			console.error(error);
+			console.error(`Ошибка при загрузке данных с ${url}:`, error);
 		}
 	};
 
 	useEffect(() => {
-		fetchData(API_URL + "categories", setCategories, "Категории не найдены");
-		fetchData(API_URL + "manufacturers", setBrands, "Производители не найдены");
-		fetchData(API_URL + "countries", setCountries, "Страны не найдены");
+		fetchData<Category>(
+			API_URL + "categories",
+			setCategories,
+			"Категории не найдены"
+		);
+		fetchData<Brand>(
+			API_URL + "manufacturers",
+			setBrands,
+			"Производители не найдены"
+		);
+		fetchData<Country>(
+			API_URL + "countries",
+			setCountries,
+			"Страны не найдены"
+		);
 	}, []);
 
 	useEffect(() => {
 		if (isEditing && productId) {
 			(async () => {
 				try {
-					const response = await axios.get(`${API_URL}products/${productId}`, {
-						withCredentials: true,
-					});
+					const response = await axios.get<ProductForm>(
+						`${API_URL}products/${productId}`,
+						{
+							withCredentials: true,
+						}
+					);
 					reset(response.data);
 				} catch (error) {
 					console.error("Ошибка загрузки данных продукта:", error);
@@ -70,7 +108,7 @@ export const ProductModal = () => {
 		}
 	}, [isEditing, productId, reset]);
 
-	const onSubmit = async (data) => {
+	const onSubmit = async (data: ProductForm) => {
 		const formData = new FormData();
 
 		formData.append("name", data.name);

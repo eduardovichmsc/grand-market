@@ -7,64 +7,65 @@ import {
 	isProductModalShown,
 } from "@/model/atoms";
 import { API_URL } from "@/static";
+import { ProductsStateType } from "@/types/product.types";
 import { FilterState } from "@/types/types";
 import axios from "axios";
 import { useSetAtom } from "jotai";
-import { useSearchParams } from "next/navigation";
+import { SearchWithSuspense } from "@/components/SearchWithSuspense";
 import { useCallback, useEffect, useState } from "react";
 
 export default function AdminProductPage() {
-	const searchQuery = useSearchParams();
 	const [isLoading, setIsLoading] = useState(false);
 
 	const setIsEditing = useSetAtom(isProductEditing);
 	const setEditingProductId = useSetAtom(editingProductId);
 	const setIsModalShown = useSetAtom(isProductModalShown);
 
-	const [filterState] = useState<FilterState>({
-		searchValue: searchQuery.get("search") || "",
+	const [filterState, setFilterState] = useState<FilterState>({
+		searchValue: "",
 		selectId: "popular",
 		currentPagination: 1,
 		isLoading: true,
-		selectedCategory: "",
-		selectedBrand: "",
+		selectedCategory: undefined,
+		selectedBrand: undefined,
 	});
 
-	const [products, setProducts] = useState<any>({
+	const [products, setProducts] = useState<ProductsStateType>({
 		total: 0,
 		list: [],
 		totalPages: 0,
 		limit: 0,
 	});
 
-	const getAllProducts = useCallback(
-		async (page: number = 1) => {
-			try {
-				setIsLoading(true);
-				const response = await axios.get(API_URL + "products", {
-					params: {
-						search: filterState.searchValue,
-						page: page,
-						categoryId: filterState.selectedCategory || undefined,
-						manufacturerId: filterState.selectedBrand || undefined,
-					},
-					withCredentials: true,
-				});
-				console.log(response);
+	const getAllProducts = useCallback(async () => {
+		try {
+			setIsLoading(true);
+			const response = await axios.get(API_URL + "products", {
+				params: {
+					search: filterState.searchValue,
+					page: filterState.currentPagination,
+					categoryId: filterState.selectedCategory,
+					manufacturerId: filterState.selectedBrand,
+				},
+				withCredentials: true,
+			});
 
-				setProducts(response.data);
-			} catch (error) {
-				console.error(error);
-			} finally {
-				setIsLoading(false);
-			}
-		},
-		[
-			filterState.searchValue,
-			filterState.selectedBrand,
-			filterState.selectedCategory,
-		]
-	);
+			setProducts(response.data);
+		} catch (error) {
+			console.error("Ошибка при загрузке данных продуктов:", error);
+		} finally {
+			setIsLoading(false);
+		}
+	}, [filterState]);
+
+	useEffect(() => {
+		getAllProducts();
+	}, [
+		filterState.currentPagination,
+		filterState.searchValue,
+		filterState.selectedCategory,
+		filterState.selectedBrand,
+	]);
 
 	const handleEditProduct = (id: number) => {
 		setIsEditing(true);
@@ -80,21 +81,16 @@ export default function AdminProductPage() {
 
 	const removeProduct = async (id: number) => {
 		try {
-			const response = await axios.delete(API_URL + "products/" + id);
-			if (response.status === 200) {
-				getAllProducts();
-			}
+			await axios.delete(API_URL + "products/" + id);
+			getAllProducts();
 		} catch (error) {
-			console.error(error);
+			console.error("Ошибка при удалении продукта:", error);
 		}
 	};
 
-	useEffect(() => {
-		getAllProducts();
-	}, [filterState.currentPagination, getAllProducts]);
-
 	return (
 		<div className="space-y-6">
+			{/* Header */}
 			<div className="w-full flex justify-between items-end">
 				<p className="text-4xl">Продукты</p>
 				<button
@@ -103,6 +99,11 @@ export default function AdminProductPage() {
 					Добавить новый продукт
 				</button>
 			</div>
+
+			{/* Search */}
+			<SearchWithSuspense />
+
+			{/* Таблица продуктов */}
 			<table className="w-full table-auto border-collapse">
 				<thead className="text-left">
 					<tr className="*:font-normal">
@@ -118,7 +119,13 @@ export default function AdminProductPage() {
 					</tr>
 				</thead>
 				<tbody className="text-left">
-					{isLoading === false &&
+					{isLoading ? (
+						<tr>
+							<td colSpan={9} className="text-center py-6">
+								Загружаем...
+							</td>
+						</tr>
+					) : products.list.length > 0 ? (
 						products.list.map((product) => (
 							<tr key={product.id}>
 								<td className="table-cell">{product.id}</td>
@@ -143,7 +150,14 @@ export default function AdminProductPage() {
 									</button>
 								</td>
 							</tr>
-						))}
+						))
+					) : (
+						<tr>
+							<td colSpan={9} className="text-center py-6">
+								Нет данных.
+							</td>
+						</tr>
+					)}
 				</tbody>
 			</table>
 		</div>

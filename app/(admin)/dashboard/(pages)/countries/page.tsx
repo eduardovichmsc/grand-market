@@ -3,14 +3,10 @@
 import { formatDate } from "@/app/(admin)/functions";
 import { editingBrandId, isBrandModalShown } from "@/model/atoms";
 import { API_URL } from "@/static";
+import { CountriesType } from "@/types/types";
 import axios from "axios";
 import { useSetAtom } from "jotai";
 import { useEffect, useState } from "react";
-
-interface CountriesType {
-	id: number;
-	name: string;
-}
 
 export default function AdminCountriesPage() {
 	const route = "countries/";

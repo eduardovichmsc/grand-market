@@ -27,7 +27,7 @@ export default function ProductPageById() {
 		countryName?: string;
 		brandName?: string;
 		categoryName?: string;
-	}>({});
+	}>({ brandName: "", categoryName: "", countryName: "" });
 
 	const fetchDetails = useCallback(async () => {
 		try {
@@ -80,9 +80,9 @@ export default function ProductPageById() {
 
 	return (
 		<main className="container py-28">
-			<section className="w-[85%] mx-auto space-y-40">
-				<div className="flex gap-10">
-					<div className="basis-3/5">
+			<section className="w-full md:w-[85%] mx-auto space-y-40">
+				<div className="flex flex-col md:flex-row gap-10">
+					<div className="basis-full md:basis-3/5">
 						<div
 							className={clsx("relative w-full aspect-[9/5]", {
 								"bg-black/10": !product.image,
@@ -97,10 +97,10 @@ export default function ProductPageById() {
 							)}
 						</div>
 					</div>
-					<div className="basis-2/5 flex flex-col gap-4">
+					<div className="basis-full md:basis-2/5 flex flex-col gap-4">
 						<p className="uppercase font-semibold text-4xl">{product?.name}</p>
 						<div>
-							<p className="font-medium text-res-green text-xl">
+							<p className="font-medium text-res-green text-2xl md:text-xl">
 								от {formatedPrice} ₸
 							</p>
 						</div>
@@ -109,58 +109,62 @@ export default function ProductPageById() {
 						<Link
 							href={""}
 							className="py-4 w-full bg-res-green flex justify-center items-center gap-2 text-white rounded-xl hover:opacity-90">
-							<p className="text-lg uppercase">Заказать</p>
+							<p className="text-xl md:text-lg uppercase">Заказать</p>
 							<ArrowRight className="p-0.5" />
 						</Link>
 
 						{/* Описание */}
-						<div className="space-y-2 mt-4">
-							<p className="text-res-green font-semibold text-xl">Описание</p>
+						<div className="space-y-4 md:space-y-2 mt-4">
+							<p className="text-res-green font-semibold text-2xl md:text-xl">
+								Описание
+							</p>
 							<hr className="bg-res-green w-full h-[4px]" />
 							<div className="">
-								<p className="font-medium text-muted-foreground text-lg">
+								<p className="font-medium text-muted-foreground text-xl md:text-lg">
 									{product.description}
 								</p>
 							</div>
 						</div>
 
 						{/* Детали */}
-						<div className="space-y-2 mt-4">
-							<p className="text-res-green font-semibold text-xl">Детали</p>
+						<div className="space-y-4 md:space-y-2 mt-4">
+							<p className="text-res-green font-semibold text-2xl md:text-xl">
+								Детали
+							</p>
 							<hr className="bg-res-green w-full h-[4px]" />
 
 							<div className="">
 								<ul className="list-none space-y-1">
-									<li className="flex justify-between text-lg">
+									<li className="flex justify-between text-xl md:text-lg">
 										<p className="text-res-green font-medium">
 											Тип холодоснабжения
 										</p>
 										<p className="text-muted-foreground">
-											{details.categoryName?.length > 0
+											{details.categoryName && details.categoryName.length > 0
 												? details.categoryName
 												: "Не указано"}
 										</p>
 									</li>
-									<li className="flex justify-between text-lg">
+									<li className="flex justify-between text-xl md:text-lg">
 										<p className="text-res-green font-medium">Бренд</p>
 										<p className="text-muted-foreground">
-											{details.brandName?.length > 0
+											{details.brandName && details.brandName.length > 0
 												? details.brandName
 												: "Не указано"}
 										</p>
 									</li>
-									<li className="flex justify-between text-lg">
+									<li className="flex justify-between text-xl md:text-lg">
 										<p className="text-res-green font-medium">
 											Гарантия, месяц
 										</p>
 										<p className="text-muted-foreground">12</p>
 									</li>
-									<li className="flex justify-between text-lg">
+									<li className="flex justify-between text-xl md:text-lg">
 										<p className="text-res-green font-medium">
 											Страна производства
 										</p>
 										<p className="text-muted-foreground">
-											{details.countryName?.length > 0
+											{details.countryName && details.countryName.length > 0
 												? details.countryName
 												: "Не указано"}
 										</p>

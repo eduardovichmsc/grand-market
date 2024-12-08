@@ -1,11 +1,11 @@
 import { atom } from "jotai";
 
-// authentication
-export const isAuthenticated = atom(false);
-
 export const isSidebarOpen = atom(false);
 export const isAuthModalOpen = atom(false);
 export const isContactsModalOpen = atom(false);
+
+// authentication
+export const isAuthenticated = atom(false);
 
 // modals
 export const isGlobalLoading = atom(false);

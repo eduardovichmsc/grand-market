@@ -5,7 +5,6 @@ import { AdminNavbar } from "@/components/admin/AdminNavbar";
 import "./admin.css";
 import { CategoryModal } from "@/components/admin/CategoryModal";
 import { ProductModal } from "@/components/admin/ProductModal";
-import { Alert } from "@/components/ui/alert";
 import { BrandModal } from "@/components/admin/BrandsModal";
 import { CheckForAuth } from "./checkForAuth";
 
@@ -32,9 +31,6 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
 		<main className="w-screen h-screen flex flex-col items-center gap-6">
 			{/* check for authorization */}
 			<CheckForAuth />
-
-			{/* alert */}
-			<Alert />
 
 			{/* modals */}
 			<ProductModal />

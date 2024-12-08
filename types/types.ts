@@ -8,6 +8,28 @@ export interface FilterState {
 	selectId: string;
 	currentPagination: number;
 	isLoading: boolean;
-	selectedCategory: string;
-	selectedBrand: string;
+	selectedCategory: number | undefined;
+	selectedBrand: number | undefined;
+}
+
+export interface BrandsType {
+	id: number;
+	name: string;
+	createdAt?: string | undefined;
+	updatedAt?: string | undefined;
+}
+
+export interface CategoriesType {
+	id: number;
+	name: string;
+	tag: string;
+	createdAt?: string | undefined;
+	updatedAt?: string | undefined;
+}
+
+export interface CountriesType {
+	id: number;
+	name: string;
+	createdAt?: string | undefined;
+	updatedAt?: string | undefined;
 }

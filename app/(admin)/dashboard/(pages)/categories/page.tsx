@@ -15,6 +15,8 @@ interface CategoriesType {
 	id: number;
 	name: string;
 	tag: string;
+	createdAt?: string | undefined;
+	updatedAt?: string | undefined;
 }
 
 export default function AdminCategoriesPage() {

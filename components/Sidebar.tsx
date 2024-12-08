@@ -32,7 +32,7 @@ export const Sidebar = () => {
 			{isOpen && (
 				<motion.div
 					className={clsx(
-						"z-50 bg-black/25 fixed w-screen right-0 h-screen backdrop-blur-xl transition-all flex flex-col justify-end"
+						"z-50 bg-black/25 fixed w-screen right-0 h-dvh backdrop-blur-xl transition-all flex flex-col justify-end"
 					)}
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
@@ -59,7 +59,7 @@ export const Sidebar = () => {
 						))}
 					</div>
 					<button
-						className="bg-white/20 backdrop-blur-lg py-10 h-fit"
+						className="bg-white/20 backdrop-blur-lg py-14 h-fit"
 						onClick={toggleSidebar}>
 						<p className="text-white text-3xl">Свернуть</p>
 					</button>

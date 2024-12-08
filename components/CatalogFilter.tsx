@@ -2,8 +2,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
-
-import { Checkbox } from "@/components/ui/checkbox";
+import { BrandsType, CategoriesType } from "@/types/types";
 
 export const CatalogFilter = ({
 	selectedCategory,
@@ -11,9 +10,15 @@ export const CatalogFilter = ({
 	selectedBrand,
 	setSelectedBrand,
 	handleFilterSubmit,
+}: {
+	selectedCategory: number | undefined;
+	setSelectedCategory: (category: number | undefined) => void;
+	selectedBrand: number | undefined;
+	setSelectedBrand: (brand: number | undefined) => void;
+	handleFilterSubmit: () => void;
 }) => {
-	const [categories, setCategories] = useState([]);
-	const [brands, setBrands] = useState([]);
+	const [categories, setCategories] = useState<CategoriesType[]>([]);
+	const [brands, setBrands] = useState<BrandsType[]>([]);
 
 	const [isLoading, setIsLoading] = useState(true);
 
@@ -55,16 +60,23 @@ export const CatalogFilter = ({
 										initial={{ opacity: 0, y: -10 }}
 										animate={{ opacity: 1, y: 0 }}
 										exit={{ opacity: 0, y: -10 }}
-										transition={{ duration: 0.1 }}
-										onClick={() =>
-											setSelectedCategory(
-												selectedCategory === category.id
-													? undefined
-													: category.id
-											)
-										}>
-										<Checkbox id={category.name} />
-										<label htmlFor={category.name}>{category.name}</label>
+										transition={{ duration: 0.1 }}>
+										<input
+											type="radio"
+											id={`category-${category.id}`}
+											name="category"
+											checked={selectedCategory === category.id}
+											onChange={() =>
+												setSelectedCategory(
+													selectedCategory === category.id
+														? undefined
+														: category.id
+												)
+											}
+										/>
+										<label htmlFor={`category-${category.id}`}>
+											{category.name}
+										</label>
 									</motion.li>
 								);
 							})}
@@ -85,14 +97,19 @@ export const CatalogFilter = ({
 										initial={{ opacity: 0, y: -10 }}
 										animate={{ opacity: 1, y: 0 }}
 										exit={{ opacity: 0, y: -10 }}
-										transition={{ duration: 0.1 }}
-										onClick={() =>
-											setSelectedBrand(
-												selectedBrand === brand.id ? undefined : brand.id
-											)
-										}>
-										<Checkbox id={brand.name} />
-										<label htmlFor={brand.name}>{brand.name}</label>
+										transition={{ duration: 0.1 }}>
+										<input
+											type="radio"
+											id={`brand-${brand.id}`}
+											name="brand"
+											checked={selectedBrand === brand.id}
+											onChange={() =>
+												setSelectedBrand(
+													selectedBrand === brand.id ? undefined : brand.id
+												)
+											}
+										/>
+										<label htmlFor={`brand-${brand.id}`}>{brand.name}</label>
 									</motion.li>
 								);
 							})}
@@ -102,7 +119,7 @@ export const CatalogFilter = ({
 			)}
 
 			<button
-				className="transition bg-res-green hover:bg-res-green/95 active:bg-res-green/90 text-white py-3 rounded-xl"
+				className="hidden transition bg-res-green hover:bg-res-green/95 active:bg-res-green/90 text-white py-3 rounded-xl"
 				onClick={handleFilterSubmit}>
 				Применить
 			</button>

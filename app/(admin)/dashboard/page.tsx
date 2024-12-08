@@ -4,7 +4,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 export default function DashboardPage() {
-	const [data, setData] = useState({});
+	const [data, setData] = useState<{ email: string }>({ email: "" });
 	const [, setIsLoading] = useState(false);
 
 	const getUser = async () => {

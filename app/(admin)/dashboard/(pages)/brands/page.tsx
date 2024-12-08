@@ -3,16 +3,12 @@
 import { formatDate } from "@/app/(admin)/functions";
 import { editingBrandId, isBrandModalShown } from "@/model/atoms";
 import { API_URL } from "@/static";
+import { BrandsType } from "@/types/types";
 import axios from "axios";
 import { useSetAtom } from "jotai";
 import { useEffect, useState } from "react";
 
-interface BrandsType {
-	id: number;
-	name: string;
-}
-
-export default function AdminCategoriesPage() {
+export default function AdminBrandsPage() {
 	const [isLoading] = useState<boolean>(false);
 	const setIsModalShown = useSetAtom(isBrandModalShown);
 	const setEditingBrandId = useSetAtom(editingBrandId);
