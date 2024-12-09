@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { API_URL } from "@/static";
+import { API_URL } from "@/apiiii";
 import { useAtom } from "jotai";
 import {
 	editingProductId,

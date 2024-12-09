@@ -2,7 +2,7 @@
 
 import { formatDate } from "@/app/(admin)/functions";
 import { editingBrandId, isBrandModalShown } from "@/model/atoms";
-import { API_URL } from "@/static";
+import { API_URL } from "@/apiiii";
 import { BrandsType } from "@/types/types";
 import axios from "axios";
 import { useSetAtom } from "jotai";

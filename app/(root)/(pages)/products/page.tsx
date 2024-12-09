@@ -6,11 +6,11 @@ import { CatalogItem } from "@/components/CatalogItem";
 import { SkeletonCatalogFilter } from "@/components/skeletons/SkeletonCatalogFilter";
 import { SkeletonCatalogItem } from "@/components/skeletons/SkeletonCatalogItem";
 import { isGlobalLoading } from "@/model/atoms";
-import { API_URL } from "@/static";
+import { API_URL } from "@/apiiii";
 import { ProductsStateType } from "@/types/product.types";
 import { FilterState } from "@/types/types";
 import axios from "axios";
-import { useSetAtom } from "jotai";
+import { useAtom } from "jotai";
 import { Search } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useCallback, useEffect, useRef, useState } from "react";
@@ -51,7 +51,7 @@ const SearchHandler = ({ searchQuery }: { searchQuery: string | null }) => {
 };
 
 export default function CatalogPage() {
-	const setIsGlobalLoading = useSetAtom(isGlobalLoading);
+	const [, setIsGlobalLoading] = useAtom(isGlobalLoading);
 	const scrollRef = useRef<HTMLDivElement>(null);
 
 	const [filterState, setFilterState] = useState<FilterState>({

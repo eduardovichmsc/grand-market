@@ -1,4 +1,4 @@
-import { API_URL } from "@/static";
+import { API_URL } from "@/apiiii";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";

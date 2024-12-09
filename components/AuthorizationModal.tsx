@@ -6,7 +6,7 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import { isAuthenticated, isAuthModalOpen } from "@/model/atoms";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
-import { API_URL } from "@/static";
+import { API_URL } from "@/apiiii";
 import { useRouter } from "next/navigation";
 
 export const AuthorizationModal = () => {

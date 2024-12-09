@@ -1,7 +1,7 @@
 "use client";
 import usePriceFormatter from "@/hooks/usePriceFormatter";
 import { isGlobalLoading } from "@/model/atoms";
-import { API_URL } from "@/static";
+import { API_URL } from "@/apiiii";
 import { ProductType } from "@/types/product.types";
 import axios from "axios";
 import clsx from "clsx";

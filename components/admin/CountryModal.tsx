@@ -3,7 +3,7 @@
 import { useAtom } from "jotai";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { API_URL } from "@/static";
+import { API_URL } from "@/apiiii";
 import { editingCountrydId, isCountryModalShown } from "@/model/atoms";
 import clsx from "clsx";
 

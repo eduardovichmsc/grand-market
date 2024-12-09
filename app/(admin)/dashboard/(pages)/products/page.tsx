@@ -6,7 +6,7 @@ import {
 	isProductEditing,
 	isProductModalShown,
 } from "@/model/atoms";
-import { API_URL } from "@/static";
+import { API_URL } from "@/apiiii";
 import { ProductsStateType } from "@/types/product.types";
 import { FilterState } from "@/types/types";
 import axios from "axios";

@@ -6,7 +6,7 @@ import {
 	isCategoryModalShown,
 	editingCategoryId,
 } from "@/model/atoms";
-import { API_URL } from "@/static";
+import { API_URL } from "@/apiiii";
 import axios from "axios";
 import { useSetAtom } from "jotai";
 import { useEffect, useState } from "react";
