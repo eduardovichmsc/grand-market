@@ -12,43 +12,7 @@ import { FilterState } from "@/types/types";
 import axios from "axios";
 import { useAtom } from "jotai";
 import { Search } from "lucide-react";
-import { useSearchParams } from "next/navigation";
 import { Suspense, useCallback, useEffect, useRef, useState } from "react";
-
-// Search Handler с обертыванием Suspense
-const SearchWithSuspense = () => {
-	const searchQuery = useSearchParams().get("search");
-	return (
-		<Suspense fallback={<div>Загружаем поиск...</div>}>
-			<SearchHandler searchQuery={searchQuery} />
-		</Suspense>
-	);
-};
-
-const SearchHandler = ({ searchQuery }: { searchQuery: string | null }) => {
-	const [localSearchValue, setLocalSearchValue] = useState(searchQuery || "");
-
-	const handleSearchChange = (value: string) => {
-		setLocalSearchValue(value);
-	};
-
-	return (
-		<div className="flex justify-center -mt-8 relative">
-			<form action="" className="relative flex flex-col justify-center">
-				<input
-					type="text"
-					placeholder="Поиск по каталогу"
-					className="relative text-lg border-res-green border-2 w-[50rem] py-4 px-4"
-					value={localSearchValue}
-					onChange={(e) => handleSearchChange(e.target.value)}
-				/>
-				<button type="submit" className="bg-white absolute right-1 p-2">
-					<Search className="transition text-res-green cursor-pointer hover:text-res-green/80" />
-				</button>
-			</form>
-		</div>
-	);
-};
 
 export default function CatalogPage() {
 	const [, setIsGlobalLoading] = useAtom(isGlobalLoading);
@@ -70,32 +34,26 @@ export default function CatalogPage() {
 		limit: 0,
 	});
 
-	const getAllProducts = useCallback(
-		async (page: number = 1) => {
-			try {
-				setIsGlobalLoading(true);
-				const response = await axios.get(API_URL + "products", {
-					params: {
-						search: filterState.searchValue,
-						page: page,
-						categoryId: filterState.selectedCategory || undefined,
-						manufacturerId: filterState.selectedBrand || undefined,
-					},
-				});
-				setProducts(response.data);
-			} catch (error) {
-				console.error(error);
-			} finally {
-				setIsGlobalLoading(false);
-			}
-		},
-		[
-			filterState.searchValue,
-			filterState.selectedBrand,
-			filterState.selectedCategory,
-			setIsGlobalLoading,
-		]
-	);
+	const getAllProducts = async (page: number = 1) => {
+		try {
+			setIsGlobalLoading(true);
+			const response = await axios.get(API_URL + "products", {
+				params: {
+					search: filterState.searchValue,
+					page: page,
+					categoryId: filterState.selectedCategory || undefined,
+					manufacturerId: filterState.selectedBrand || undefined,
+				},
+			});
+			console.log(response.config.params);
+
+			setProducts(response.data);
+		} catch (error) {
+			console.error(error);
+		} finally {
+			setIsGlobalLoading(false);
+		}
+	};
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
@@ -107,7 +65,11 @@ export default function CatalogPage() {
 
 	useEffect(() => {
 		getAllProducts(filterState.currentPagination);
-	}, [filterState.currentPagination, getAllProducts]);
+	}, [
+		filterState.currentPagination,
+		filterState.selectedBrand,
+		filterState.selectedCategory,
+	]);
 
 	const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -133,7 +95,28 @@ export default function CatalogPage() {
 					isBordered
 				/>
 
-				<SearchWithSuspense />
+				<div className="flex justify-center -mt-8 relative">
+					<form
+						onSubmit={handleSearchSubmit}
+						action=""
+						className="relative flex flex-col justify-center">
+						<input
+							type="text"
+							placeholder="Поиск по каталогу"
+							className="relative text-lg border-res-green border-2 w-[50rem] py-4 px-4"
+							value={filterState.searchValue}
+							onChange={(e) =>
+								setFilterState((prev) => ({
+									...prev,
+									searchValue: e.target.value,
+								}))
+							}
+						/>
+						<button type="submit" className="bg-white absolute right-1 p-2">
+							<Search className="transition text-res-green cursor-pointer hover:text-res-green/80" />
+						</button>
+					</form>
+				</div>
 
 				<section
 					className="relative container py-28 space-y-36"

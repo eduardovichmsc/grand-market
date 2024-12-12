@@ -42,6 +42,11 @@ export const CatalogFilter = ({
 		fetchCategories();
 	}, []);
 
+	const resetFilterState = () => {
+		setSelectedBrand(undefined);
+		setSelectedCategory(undefined);
+	};
+
 	return (
 		<div className="basis-1/4 flex flex-col gap-10">
 			{!isLoading && (
@@ -122,6 +127,12 @@ export const CatalogFilter = ({
 				className="hidden transition bg-res-green hover:bg-res-green/95 active:bg-res-green/90 text-white py-3 rounded-xl"
 				onClick={handleFilterSubmit}>
 				Применить
+			</button>
+
+			<button
+				className="transition bg-res-green hover:bg-res-green/95 active:bg-res-green/90 text-white py-3 rounded-xl"
+				onClick={resetFilterState}>
+				Сбросить
 			</button>
 		</div>
 	);

@@ -7,7 +7,7 @@ const SearchHandler = () => {
 	const searchParams = useSearchParams();
 	const searchValue = searchParams.get("search") || "";
 
-	return <p>Текущее значение поиска: {searchValue}</p>;
+	return <p>{searchValue}</p>;
 };
 
 export const SearchWithSuspense = () => {

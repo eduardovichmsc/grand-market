@@ -7,6 +7,7 @@ import axios from "axios";
 import { API_URL } from "@/apiiii";
 import { isCategoryModalShown, editingCategoryId } from "@/model/atoms";
 import clsx from "clsx";
+import { formatToTag } from "@/app/(admin)/functions";
 
 export const CategoryModal = () => {
 	const [isShown, setIsShown] = useAtom(isCategoryModalShown);
@@ -16,10 +17,6 @@ export const CategoryModal = () => {
 		name: "",
 		tag: "",
 	});
-
-	const formatToTag = (name: string) => {
-		return transliterate(name.trim()).toLowerCase().replace(/\s+/g, "_");
-	};
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
@@ -45,7 +42,7 @@ export const CategoryModal = () => {
 				}
 			} else {
 				const response = await axios.post(
-					API_URL + "categories",
+					API_URL + "categories/",
 					{
 						name: form.name,
 						tag: tagName,

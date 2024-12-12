@@ -10,8 +10,8 @@
 	@apply w-full border border-res-green text-black py-1 px-3 resize-none;
 }
 .edit {
-	@apply w-full h-max bg-blue-600 text-white py-1 hover:opacity-90;
+	@apply w-full h-max bg-blue-600 text-white py-1 px-2 hover:opacity-90;
 }
 .delete {
-	@apply w-full h-max bg-red-600 text-white py-1 hover:opacity-90;
+	@apply w-full h-max bg-red-600 text-white py-1 px-2 hover:opacity-90;
 }
