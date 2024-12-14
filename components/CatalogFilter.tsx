@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { BrandsType, CategoriesType } from "@/types/types";
+import { API_URL } from "@/apiiii";
 
 export const CatalogFilter = ({
 	selectedCategory,
@@ -25,12 +26,8 @@ export const CatalogFilter = ({
 	useEffect(() => {
 		const fetchCategories = async () => {
 			try {
-				const categoriesResponse = await axios.get(
-					"http://localhost:5000/categories"
-				);
-				const brandsResponse = await axios.get(
-					"http://localhost:5000/manufacturers"
-				);
+				const categoriesResponse = await axios.get(API_URL + "categories");
+				const brandsResponse = await axios.get(API_URL + "manufacturers");
 				setCategories(categoriesResponse.data);
 				setBrands(brandsResponse.data);
 			} catch (error) {

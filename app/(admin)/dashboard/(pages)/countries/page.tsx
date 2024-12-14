@@ -1,7 +1,7 @@
 "use client";
 
 import { formatDate } from "@/app/(admin)/functions";
-import { editingBrandId, isBrandModalShown } from "@/model/atoms";
+import { editingBrandId, isCountryModalShown } from "@/model/atoms";
 import { API_URL } from "@/apiiii";
 import { CountriesType } from "@/types/types";
 import axios from "axios";
@@ -12,7 +12,7 @@ export default function AdminCountriesPage() {
 	const route = "countries/";
 
 	const [isLoading] = useState<boolean>(false);
-	const setIsModalShown = useSetAtom(isBrandModalShown);
+	const setIsModalShown = useSetAtom(isCountryModalShown);
 	const setEditingBrandId = useSetAtom(editingBrandId);
 
 	const [countries, setCountries] = useState<CountriesType[]>([]);

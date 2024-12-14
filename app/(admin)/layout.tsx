@@ -7,6 +7,7 @@ import { CategoryModal } from "@/components/admin/CategoryModal";
 import { ProductModal } from "@/components/admin/ProductModal";
 import { BrandModal } from "@/components/admin/BrandsModal";
 import { CheckForAuth } from "./checkForAuth";
+import { CountryModal } from "@/components/admin/CountryModal";
 
 export const metadata: Metadata = {
 	title: "Панель управления - Grand Market",
@@ -36,6 +37,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
 			<ProductModal />
 			<CategoryModal />
 			<BrandModal />
+			<CountryModal />
 
 			{/* mini banner */}
 			<div className="w-full py-2 flex justify-center bg-res-green">

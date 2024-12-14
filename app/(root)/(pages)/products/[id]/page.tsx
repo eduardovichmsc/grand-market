@@ -104,7 +104,7 @@ export default function ProductPageById() {
 								})}>
 								{product.image && (
 									<Image
-										src={"http://localhost:5000/uploads/" + product.image}
+										src={API_URL + "uploads/" + product.image}
 										fill
 										alt={product.image || "photo"}
 										className="object-contain"

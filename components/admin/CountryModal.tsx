@@ -7,7 +7,7 @@ import { API_URL } from "@/apiiii";
 import { editingCountrydId, isCountryModalShown } from "@/model/atoms";
 import clsx from "clsx";
 
-export const BrandModal = () => {
+export const CountryModal = () => {
 	const route = "countries/";
 
 	const [isShown, setIsShown] = useAtom(isCountryModalShown);
