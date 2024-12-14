@@ -31,7 +31,7 @@ export const CatalogItem: FC<CatalogItemProps> = ({
 	return (
 		<div
 			className={clsx(
-				"p-6 cursor-pointer rounded-xl overflow-hidden shadow-md flex flex-col gap-4 hover:opacity-95" +
+				"transition-all border border-black/[2%] hover:border-black/10 p-6 cursor-pointer rounded-xl overflow-hidden shadow-md flex flex-col gap-4 hover:opacity-95" +
 					" " +
 					className
 			)}
@@ -54,7 +54,7 @@ export const CatalogItem: FC<CatalogItemProps> = ({
 				<Link
 					href={link}
 					className="py-3 w-full bg-res-green flex justify-center items-center text-white rounded-xl">
-					<p className="text-base uppercase">Купить</p>
+					<p className="text-base uppercase">Заказать</p>
 				</Link>
 			</div>
 		</div>

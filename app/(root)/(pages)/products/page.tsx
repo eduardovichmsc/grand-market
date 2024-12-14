@@ -81,12 +81,7 @@ export default function CatalogPage() {
 	};
 
 	return (
-		<Suspense
-			fallback={
-				<div className="w-dvw h-dvh flex justify-center items-center">
-					Загружаем...
-				</div>
-			}>
+		<>
 			<main>
 				<Banner
 					image="/for-business/banner.png"
@@ -103,7 +98,7 @@ export default function CatalogPage() {
 						<input
 							type="text"
 							placeholder="Поиск по каталогу"
-							className="relative text-lg border-res-green border-2 w-[50rem] py-4 px-4"
+							className="relative text-lg border-res-green border-2 w-[90vw] sm:w-[50rem] py-4 px-4"
 							value={filterState.searchValue}
 							onChange={(e) =>
 								setFilterState((prev) => ({
@@ -112,8 +107,10 @@ export default function CatalogPage() {
 								}))
 							}
 						/>
-						<button type="submit" className="bg-white absolute right-1 p-2">
-							<Search className="transition text-res-green cursor-pointer hover:text-res-green/80" />
+						<button
+							type="submit"
+							className="bg-white absolute right-1 py-1 px-2 sm:p-2 group">
+							<Search className="transition text-res-green cursor-pointer group-hover:text-res-green/80" />
 						</button>
 					</form>
 				</div>
@@ -145,27 +142,38 @@ export default function CatalogPage() {
 						)}
 
 						<div className="basis-full md:basis-3/4 space-y-8">
+							{products.total !== 0 && (
+								<p className="text-lg">
+									Результаты: <span className="">{products.total}</span>
+								</p>
+							)}
 							<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-								{filterState.isLoading && products.list.length === 0
-									? Array.from({ length: 5 }).map((_, index) => (
-											<SkeletonCatalogItem key={index} />
-									  ))
-									: products.list.map((item, index) => (
-											<CatalogItem
-												key={index}
-												id={item.id}
-												name={item.name}
-												image={item.image}
-												description={item.description}
-												link={"/catalog/" + item.id}
-												className=""
-											/>
-									  ))}
+								{filterState.isLoading && products.list.length === 0 ? (
+									Array.from({ length: 5 }).map((_, index) => (
+										<SkeletonCatalogItem key={index} />
+									))
+								) : products.total === 0 ? (
+									<div>
+										<p className="text-lg">Не смогли найти то что вы искали!</p>
+									</div>
+								) : (
+									products.list.map((item, index) => (
+										<CatalogItem
+											key={index}
+											id={item.id}
+											name={item.name}
+											image={item.image}
+											description={item.description}
+											link={"/catalog/" + item.id}
+											className=""
+										/>
+									))
+								)}
 							</div>
 						</div>
 					</div>
 				</section>
 			</main>
-		</Suspense>
+		</>
 	);
 }

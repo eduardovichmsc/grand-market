@@ -1,5 +1,6 @@
 import { Banner } from "@/components/Banner";
 import { Metadata } from "next";
+import Image from "next/image";
 // import Image from "next/image";
 
 export const metadata: Metadata = {
@@ -34,8 +35,16 @@ export default function ForBusinessPage() {
 			<section className="container py-28 space-y-36">
 				<div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 *:rounded-2xl">
 					{projectImages.map((item) => (
-						<div key={item} className="aspect-[6/7] bg-res-green">
-							{/* <Image src={item} fill objectFit="contain"  alt="" /> */}
+						<div
+							key={item}
+							className="relative aspect-[6/7] bg-black overflow-hidden group">
+							<Image
+								src={item}
+								fill
+								objectFit="cover"
+								className="transition group-hover:opacity-90"
+								alt={item}
+							/>
 						</div>
 					))}
 				</div>

@@ -31,6 +31,7 @@ interface ProductForm {
 	name: string;
 	description: string;
 	price: string;
+	priceTo: string;
 	categoryId: string;
 	manufacturerId: string;
 	countryId: string;
@@ -114,6 +115,7 @@ export const ProductModal: React.FC = () => {
 		formData.append("name", data.name);
 		formData.append("description", data.description);
 		formData.append("price", data.price);
+		formData.append("priceTo", data.priceTo);
 		formData.append("categoryId", data.categoryId);
 		formData.append("manufacturerId", data.manufacturerId);
 		formData.append("countryId", data.countryId);
@@ -178,17 +180,28 @@ export const ProductModal: React.FC = () => {
 						</div>
 
 						<div>
+							<label htmlFor="" className="">
+								Цена
+							</label>
 							<input
 								type="number"
-								placeholder="Цена продукта"
+								placeholder="Начальная цена продукта - (от)"
 								className="input"
 								{...register("price", {
-									required: "Цена обязательна",
+									required: "Цена ОТ обязательна",
 									valueAsNumber: true,
 								})}
 							/>
-							{errors.price && (
-								<p className="text-red-500">{errors.price.message}</p>
+							<input
+								type="number"
+								placeholder="Окончательная цена продукта - (до)"
+								className="input -mt-px"
+								{...register("priceTo", {
+									valueAsNumber: true,
+								})}
+							/>
+							{errors.priceTo && (
+								<p className="text-red-500">{errors.priceTo.message}</p>
 							)}
 						</div>
 

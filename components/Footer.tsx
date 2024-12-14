@@ -1,4 +1,5 @@
 "use client";
+import { NavbarLinks } from "@/config/pages.config";
 import { isAuthModalOpen } from "@/model/atoms";
 
 import { useSetAtom } from "jotai";
@@ -25,24 +26,14 @@ export const Footer = () => {
 				<div className="basis-full md:basis-1/4 flex flex-col gap-8 justify-center sm:justify-stretch">
 					<p className="text-res-green font-extrabold text-2xl">Информация</p>
 					<div className="flex justify-center md:justify-stretch flex-col gap-4 text-xl text-res-green">
-						<Link href={"/about"} className="w-fit">
-							О нас
-						</Link>
-						<Link href={"/about"} className="w-fit">
-							Услуги
-						</Link>
-						<Link href={"/about"} className="w-fit">
-							Наши преимущества
-						</Link>
-						<Link href={"/about"} className="w-fit">
-							Виды оборудование для бизнеса
-						</Link>
-						<Link href={"/about"} className="w-fit">
-							Наши работы
-						</Link>
-						<Link href={"/about"} className="w-fit">
-							Контакты
-						</Link>
+						{NavbarLinks.map((item) => (
+							<Link
+								key={item.title}
+								href={item.href}
+								className="transition w-fit hover:text-res-green/60">
+								{item.title}
+							</Link>
+						))}
 						<button
 							className="w-fit text-res-green hover:underline"
 							onClick={() => setIsOpen((prev) => !prev)}
@@ -54,31 +45,49 @@ export const Footer = () => {
 				<div className="basis-full md:basis-1/4 flex flex-col gap-8 justify-center sm:justify-stretch">
 					<p className="text-res-green font-extrabold text-2xl">Каталог</p>
 					<div className="flex justify-center md:justify-stretch flex-col gap-4 text-xl text-res-green">
-						<Link href={"/about"} className="w-fit">
+						<Link
+							href={"/about"}
+							className="transition w-fit hover:text-res-green/60">
 							Фронтальные стеллажи
 						</Link>
-						<Link href={"/about"} className="w-fit">
+						<Link
+							href={"/about"}
+							className="transition w-fit hover:text-res-green/60">
 							Торговые стеллажи
 						</Link>
-						<Link href={"/about"} className="w-fit">
+						<Link
+							href={"/about"}
+							className="transition w-fit hover:text-res-green/60">
 							Торговое оборудование
 						</Link>
-						<Link href={"/about"} className="w-fit">
+						<Link
+							href={"/about"}
+							className="transition w-fit hover:text-res-green/60">
 							Кухонное оборудование
 						</Link>
-						<Link href={"/about"} className="w-fit">
+						<Link
+							href={"/about"}
+							className="transition w-fit hover:text-res-green/60">
 							Холодильное оборудование
 						</Link>
-						<Link href={"/about"} className="w-fit">
+						<Link
+							href={"/about"}
+							className="transition w-fit hover:text-res-green/60">
 							Витрины
 						</Link>
-						<Link href={"/about"} className="w-fit">
+						<Link
+							href={"/about"}
+							className="transition w-fit hover:text-res-green/60">
 							Кассовые боксы
 						</Link>
-						<Link href={"/about"} className="w-fit">
+						<Link
+							href={"/about"}
+							className="transition w-fit hover:text-res-green/60">
 							Паллетные стеллажи
 						</Link>
-						<Link href={"/about"} className="w-fit">
+						<Link
+							href={"/about"}
+							className="transition w-fit hover:text-res-green/60">
 							Нейтральное оборудование
 						</Link>
 					</div>
@@ -86,13 +95,19 @@ export const Footer = () => {
 				<div className="basis-full md:basis-1/4 flex flex-col gap-8 justify-center sm:justify-stretch">
 					<p className="text-res-green font-extrabold text-2xl">Контакты</p>
 					<div className="flex justify-center md:justify-stretch flex-col gap-4 text-xl text-res-green">
-						<Link href={"/about"} className="w-fit">
+						<Link
+							href={"/about"}
+							className="transition w-fit hover:text-res-green/60">
 							Атырау - Курмангазы 106
 						</Link>
-						<Link href={"/about"} className="w-fit">
+						<Link
+							href={"/about"}
+							className="transition w-fit hover:text-res-green/60">
 							Актау - мкр 29а, 112 / 2
 						</Link>
-						<Link href={"/about"} className="w-fit">
+						<Link
+							href={"/about"}
+							className="transition w-fit hover:text-res-green/60">
 							Актобе - ул. Нокина 34А
 						</Link>
 					</div>

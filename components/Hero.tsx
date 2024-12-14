@@ -10,7 +10,7 @@ export const Hero = () => {
 
 	return (
 		<div className="relative">
-			<div className="bg-res-green flex min-h-[50rem] xl:min-h-[55rem]">
+			<div className="bg-gradient-to-bl via-35% from-zinc-50 via-res-green/95 to-res-green flex min-h-[50rem] xl:min-h-[55rem]">
 				<div className="container flex flex-col md:flex-row">
 					<div className="flex flex-col items-center md:items-stretch justify-center w-full md:w-1/2 h-full gap-12 md:gap-8 xl:gap-10 px-10 md:px-0">
 						<div className="font-extrabold text-white *:leading-tight">
@@ -18,26 +18,26 @@ export const Hero = () => {
 							<p className="text-big">Оборудование</p>
 							<p className="text-big">Для Торговли</p>
 						</div>
-						<p className="font-medium text-center md:text-start text-res-grey text-2xl">
+						<p className="font-medium text-center md:text-start text-res-grey text-2xl md:w-[80%] xl:w-[85%] 2xl:w-[82%]">
 							Создайте комфортные условия для ваших клиентов с помощью
 							проверенных решений.
 						</p>
 						<div className="w-full md:w-fit flex flex-col md:flex-row gap-4 md:gap-[inherit]">
-							<button className="transition flex justify-center items-center border-2 border-res-white rounded-2xl aspect-[16/5] h-20 hover:opacity-90">
+							<button className="transition flex justify-center items-center border-2 border-res-white rounded-2xl aspect-[16/5] h-20 md:h-16 hover:opacity-90">
 								<p
-									className="font-medium text-white text-3xl"
+									className="font-medium text-white text-2xl"
 									onClick={() => openContactsModal(true)}>
 									Связаться
 								</p>
 							</button>
 							<Link
 								href={"/products"}
-								className="transition flex justify-center items-center sm:place-self-end bg-white rounded-2xl w-full md:w-fit sm:aspect-[16/5] h-20 gap-1 hover:bg-white/90 hover:opacity-90">
-								<p className="font-medium text-res-green text-3xl">Товары</p>
+								className="transition flex justify-center items-center sm:place-self-end bg-white rounded-2xl w-full md:w-fit sm:aspect-[16/5] h-20 md:h-16 gap-1 hover:bg-white/90 hover:opacity-90">
+								<p className="font-medium text-res-green text-2xl">Товары</p>
 							</Link>
 						</div>
 					</div>
-					<div className="hidden md:flex relative w-full md:w-1/2 h-full items-center">
+					<div className="relative hidden md:flex w-full md:w-1/2 h-full items-center">
 						<div className="absolute w-[100%] min-h-[976px] left-0 top-60">
 							<Image
 								src={"/artica.png"}
@@ -47,7 +47,7 @@ export const Hero = () => {
 								alt=""
 							/>
 						</div>
-						<div className="absolute w-[80%] min-h-[760px] top-0 -right-[4.25rem]">
+						<div className="absolute w-[80%] min-h-[760px] top-0 left-56">
 							<Image
 								src={"/group1.png"}
 								width={790}

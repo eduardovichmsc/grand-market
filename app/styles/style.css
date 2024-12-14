@@ -1,10 +1,14 @@
 .section-title {
 	@apply font-extrabold text-4xl md:text-5xl;
 }
+
+.section-container {
+	@apply py-28 space-y-48 md:space-y-48 xl:space-y-48 relative z-0;
+}
 /* pr-10 */
 
 .text-big {
-	@apply text-[4rem] sm:text-[5rem] xl:text-8xl;
+	@apply text-[4rem] sm:text-[5rem] xl:text-[5.5rem] xl:leading-tight;
 }
 
 .inner {

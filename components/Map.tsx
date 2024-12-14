@@ -209,7 +209,7 @@ export const Map = () => {
 								height="450"
 								style={{ border: 0 }}
 								className="size-full"
-								loading="lazy"
+								loading="eager"
 							/>
 						)}
 					</div>

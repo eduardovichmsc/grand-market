@@ -6,19 +6,13 @@ import { Map } from "@/components/Map";
 import { Metadata } from "next";
 import { clients, partners } from "@/config/static";
 import dynamic from "next/dynamic";
+import { NewProducts } from "@/components/NewProducts";
 
 export const metadata: Metadata = {
 	title: "Торговое оборудование для магазинов - Grand Market",
 	description:
 		"Торговое оборудование для магазинов по лучшим ценам в Атырау, Актау и Актобе",
 };
-
-const newProducts = [
-	{ title: "Brenta SG", price: "150 000" },
-	{ title: "Artica", price: "200 000" },
-	{ title: "Nordica", price: "350 000" },
-	{ title: "Berg", price: "150 000" },
-];
 
 const services = [
 	{ title: "Продажа торгового оборудования", image: "/services/cart.svg" },
@@ -146,7 +140,7 @@ export default function Home() {
 				</div>
 
 				{/* Последние поступления - new products */}
-				<div className="bg-res-green container flex flex-col justify-center rounded-2xl py-20 px-12 gap-10">
+				<div className="bg-res-green container flex flex-col justify-center rounded-2xl py-14 px-12 gap-10">
 					<div className="flex flex-col sm:flex-row gap-[inherit] sm:gap-0 justify-between items-center">
 						<p className="section-title text-white">Последние поступления : </p>
 						<Link
@@ -159,25 +153,8 @@ export default function Home() {
 						</Link>
 					</div>
 					<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 text-white gap-10 xl:gap-5">
-						{/* place there map */}
-						{newProducts.map((item, index) => (
-							<div key={index} className="space-y-4">
-								<div className="w-full aspect-square xl:aspect-[6/7] rounded-xl bg-res-light-green"></div>
-								<div className="flex justify-between">
-									<div className="">
-										<p className="uppercase font-medium text-4xl xl:text-3xl 2xl:text-4xl">
-											{item.title}
-										</p>
-										<p className="uppercase text-2xl 2xl:text-xl">
-											{item.price} ₸
-										</p>
-									</div>
-									<button className="aspect-square h-full relative rounded-2xl bg-res-light-green">
-										<Plus className="text-res-green size-16 p-2" />
-									</button>
-								</div>
-							</div>
-						))}
+						{/* map */}
+						<NewProducts />
 					</div>
 				</div>
 
@@ -206,11 +183,11 @@ export default function Home() {
 					</Link>
 					<div className="flex flex-col md:flex-row h-full gap-10 md:gap-6 md:mt-10">
 						<div className="basis-full md:basis-1/2 flex flex-col gap-6">
-							<div className="w-full aspect-[4/2] bg-res-green/20 rounded-2xl shadow-md relative overflow-hidden">
+							<div className="transition-all opacity-90 hover:opacity-100 w-full aspect-[4/2] bg-res-green/20 rounded-2xl shadow-md relative overflow-hidden">
 								<Image src={"/projects/1.png"} fill objectFit="cover" alt="" />
 							</div>
 							<div className="w-full aspect-[4/2] flex gap-6">
-								<div className="w-1/2 h-full bg-res-green/20 rounded-2xl shadow-md relative overflow-hidden">
+								<div className="transition-all opacity-90 hover:opacity-100 w-1/2 h-full bg-res-green/20 rounded-2xl shadow-md relative overflow-hidden">
 									<Image
 										src={"/projects/2.png"}
 										fill
@@ -218,7 +195,7 @@ export default function Home() {
 										alt=""
 									/>
 								</div>
-								<div className="w-1/2 h-full bg-res-green/20 rounded-2xl shadow-md relative overflow-hidden">
+								<div className="transition-all opacity-90 hover:opacity-100 w-1/2 h-full bg-res-green/20 rounded-2xl shadow-md relative overflow-hidden">
 									<Image
 										src={"/projects/3.png"}
 										fill
@@ -230,11 +207,11 @@ export default function Home() {
 						</div>
 
 						<div className="basis-full md:basis-1/2 flex flex-col md:flex-row gap-6">
-							<div className="w-full md:w-1/2 h-full bg-res-green/20 rounded-2xl shadow-md relative overflow-hidden">
+							<div className="transition-all opacity-90 hover:opacity-100 w-full md:w-1/2 h-full bg-res-green/20 rounded-2xl shadow-md relative overflow-hidden">
 								<Image src={"/projects/4.png"} fill objectFit="cover" alt="" />
 							</div>
 							<div className="w-full md:w-1/2 h-full flex flex-col gap-6">
-								<div className="w-full h-1/2 bg-res-green/20 rounded-2xl shadow-md relative overflow-hidden">
+								<div className="transition-all opacity-90 hover:opacity-100 w-full h-1/2 bg-res-green/20 rounded-2xl shadow-md relative overflow-hidden">
 									<Image
 										src={"/projects/5.png"}
 										fill
@@ -242,7 +219,7 @@ export default function Home() {
 										alt=""
 									/>
 								</div>
-								<div className="w-full h-1/2 bg-res-green/20 rounded-2xl shadow-md relative overflow-hidden">
+								<div className="transition-all opacity-90 hover:opacity-100 w-full h-1/2 bg-res-green/20 rounded-2xl shadow-md relative overflow-hidden">
 									<Image
 										src={"/projects/6.png"}
 										fill

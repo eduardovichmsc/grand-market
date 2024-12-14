@@ -5,18 +5,19 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper/modules";
 import Image from "next/image";
-import { FC } from "react";
 import useWindowSize from "@/hooks/useWindowSize";
 import { SwiperObjectType } from "@/types/types";
 
-interface SwiperComponentProps {
+const SwiperComponent = ({
+	sectionTitle,
+	array,
+	perView = 6,
+}: {
 	sectionTitle: string;
 	array: SwiperObjectType[];
-}
-
-const SwiperComponent: FC<SwiperComponentProps> = ({ sectionTitle, array }) => {
+	perView?: number;
+}) => {
 	const { width } = useWindowSize();
-
 	const safeWidth = width || 1200;
 
 	if (width === undefined) return <div>Загрузка...</div>;
@@ -34,7 +35,7 @@ const SwiperComponent: FC<SwiperComponentProps> = ({ sectionTitle, array }) => {
 				<Swiper
 					modules={[Autoplay, Pagination]}
 					loop={true}
-					slidesPerView={safeWidth > 1200 ? 7 : safeWidth > 900 ? 5 : 3.5}
+					slidesPerView={safeWidth > 1200 ? perView : safeWidth > 900 ? 5 : 3.5}
 					spaceBetween={safeWidth > 1200 ? 60 : safeWidth > 900 ? 30 : 15}
 					autoplay={{
 						delay: 2000,
