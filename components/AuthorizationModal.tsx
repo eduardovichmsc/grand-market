@@ -2,15 +2,18 @@
 
 import clsx from "clsx";
 import { useAtomValue, useSetAtom } from "jotai";
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import { isAuthenticated, isAuthModalOpen } from "@/model/atoms";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
 import { API_URL } from "@/apiiii";
 import { useRouter } from "next/navigation";
+import nookies, { setCookie } from "nookies";
 
 export const AuthorizationModal = () => {
 	const setIsAuthenticated = useSetAtom(isAuthenticated);
+
+	const emailRef = useRef<HTMLInputElement>(null);
 
 	const isOpen = useAtomValue(isAuthModalOpen);
 	const setIsOpen = useSetAtom(isAuthModalOpen);
@@ -35,10 +38,18 @@ export const AuthorizationModal = () => {
 		e.preventDefault();
 		try {
 			const response = await axios.post(API_URL + "users/login/", form);
-			console.log(response);
+			// console.log(response);
 
 			if (response.status === 201) {
 				setIsAuthenticated(true);
+
+				// 30 days
+				nookies.set(null, "Authorization", response.data.token, {
+					path: "/",
+					maxAge: 30 * 24 * 60 * 60,
+					secure: process.env.NODE_ENV === "production",
+				});
+
 				router.push("/dashboard");
 			}
 		} catch (error) {
@@ -49,6 +60,7 @@ export const AuthorizationModal = () => {
 	useEffect(() => {
 		if (isOpen) {
 			document.body.style.overflow = "hidden";
+			emailRef.current?.focus();
 		} else {
 			document.body.style.overflow = "";
 		}
@@ -82,6 +94,7 @@ export const AuthorizationModal = () => {
 							className="flex flex-col gap-4">
 							<div className="relative">
 								<input
+									ref={emailRef}
 									type="email"
 									placeholder=""
 									className={clsx("w-full border border-res-green p-2", "peer")}
@@ -129,7 +142,7 @@ export const AuthorizationModal = () => {
 							</div>
 							<button
 								className={clsx(
-									"transition-colors w-full bg-res-green p-2 text-white hover:bg-res-green/90 disabled:bg-black/60"
+									"transition-colors w-full bg-res-green p-2 text-white hover:bg-res-green/90 disabled:bg-black/60 focus:bg-res-green/90 focus:outline outline-cyan-500"
 								)}
 								disabled={
 									form.email.length === 0 || form.password.length === 0

@@ -5,6 +5,7 @@ import clsx from "clsx";
 import { useSetAtom } from "jotai";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import nookies from "nookies";
 
 export const AdminNavbar = () => {
 	const pathname = usePathname();
@@ -13,6 +14,8 @@ export const AdminNavbar = () => {
 	const router = useRouter();
 
 	const handleSignOut = () => {
+		nookies.destroy(null, "Authorization", { path: "/" });
+
 		setIsAuthenticated(false);
 		router.push("/");
 	};

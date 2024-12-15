@@ -1,5 +1,6 @@
 import { atom } from "jotai";
 
+// main modals
 export const isSidebarOpen = atom(false);
 export const isAuthModalOpen = atom(false);
 export const isContactsModalOpen = atom(false);
@@ -7,8 +8,10 @@ export const isContactsModalOpen = atom(false);
 // authentication
 export const isAuthenticated = atom(false);
 
-// modals
+// loading
 export const isGlobalLoading = atom(false);
+
+// admin -- modals
 export const isProductModalShown = atom(false);
 export const isCategoryModalShown = atom(false);
 export const isBrandModalShown = atom(false);
