@@ -1,6 +1,14 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+	async rewrites() {
+		// nest.js -- backend
+		return [
+			{
+				source: "/api/:path*",
+				destination: "http://localhost:5000/:path*",
+			},
+		];
+	},
 	images: {
 		remotePatterns: [
 			{
@@ -19,4 +27,4 @@ const nextConfig: NextConfig = {
 	},
 };
 
-export default nextConfig;
+module.exports = nextConfig;
