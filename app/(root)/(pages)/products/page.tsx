@@ -12,7 +12,7 @@ import { FilterState } from "@/types/types";
 import axios from "axios";
 import { useAtom } from "jotai";
 import { Search } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export default function CatalogPage() {
 	const [, setIsGlobalLoading] = useAtom(isGlobalLoading);
