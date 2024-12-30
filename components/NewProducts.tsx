@@ -37,8 +37,6 @@ export const NewProducts = () => {
 			setProducts(response.data.list);
 		};
 		fetchProduct();
-
-		console.log(products);
 	}, []);
 
 	return (

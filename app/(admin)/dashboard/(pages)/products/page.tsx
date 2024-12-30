@@ -65,6 +65,7 @@ export default function AdminProductPage() {
 		filterState.searchValue,
 		filterState.selectedCategory,
 		filterState.selectedBrand,
+		getAllProducts,
 	]);
 
 	const handleEditProduct = (id: number) => {

@@ -34,26 +34,34 @@ export default function CatalogPage() {
 		limit: 0,
 	});
 
-	const getAllProducts = async (page: number = 1) => {
-		try {
-			setIsGlobalLoading(true);
-			const response = await axios.get(API_URL + "products", {
-				params: {
-					search: filterState.searchValue,
-					page: page,
-					categoryId: filterState.selectedCategory || undefined,
-					manufacturerId: filterState.selectedBrand || undefined,
-				},
-			});
-			console.log(response.config.params);
+	const getAllProducts = useCallback(
+		async (page: number = 1) => {
+			try {
+				setIsGlobalLoading(true);
+				const response = await axios.get(API_URL + "products", {
+					params: {
+						search: filterState.searchValue,
+						page: page,
+						categoryId: filterState.selectedCategory || undefined,
+						manufacturerId: filterState.selectedBrand || undefined,
+					},
+				});
+				console.log(response.config.params);
 
-			setProducts(response.data);
-		} catch (error) {
-			console.error(error);
-		} finally {
-			setIsGlobalLoading(false);
-		}
-	};
+				setProducts(response.data);
+			} catch (error) {
+				console.error(error);
+			} finally {
+				setIsGlobalLoading(false);
+			}
+		},
+		[
+			setIsGlobalLoading,
+			filterState.searchValue,
+			filterState.selectedCategory,
+			filterState.selectedBrand,
+		]
+	);
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
@@ -69,6 +77,7 @@ export default function CatalogPage() {
 		filterState.currentPagination,
 		filterState.selectedBrand,
 		filterState.selectedCategory,
+		getAllProducts,
 	]);
 
 	const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
