@@ -26,4 +26,4 @@ export const editingCountrydId = atom<number | null>(null);
 
 // alert
 export const isAlertShown = atom(false);
-export const alertContent = atom("");
+export const alertState = atom("");

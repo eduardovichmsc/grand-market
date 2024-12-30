@@ -15,6 +15,8 @@ export const AuthorizationModal = () => {
 
 	const emailRef = useRef<HTMLInputElement>(null);
 
+	const [state, setState] = useState("");
+
 	const isOpen = useAtomValue(isAuthModalOpen);
 	const setIsOpen = useSetAtom(isAuthModalOpen);
 	const router = useRouter();
@@ -38,19 +40,25 @@ export const AuthorizationModal = () => {
 		e.preventDefault();
 		try {
 			const response = await axios.post(API_URL + "users/login/", form);
-			// console.log(response);
+			const userByEmail = await axios.get(API_URL + "users/" + form.email);
+			console.log(response);
 
 			if (response.status === 201) {
-				setIsAuthenticated(true);
+				if (userByEmail.data.role === "admin") {
+					// 1 hour
+					nookies.set(null, "Authorization", response.data.token, {
+						path: "/",
+						maxAge: 60 * 60,
+						secure: process.env.NODE_ENV === "production",
+					});
 
-				// 30 days
-				nookies.set(null, "Authorization", response.data.token, {
-					path: "/",
-					maxAge: 30 * 24 * 60 * 60,
-					secure: process.env.NODE_ENV === "production",
-				});
-
-				router.push("/dashboard");
+					router.push("/dashboard");
+					setIsAuthenticated(true);
+					return 0;
+				}
+				setState("Нету доступа");
+			} else {
+				setState("Пользователь не найден");
 			}
 		} catch (error) {
 			console.error(error);
@@ -69,6 +77,8 @@ export const AuthorizationModal = () => {
 			document.body.style.overflow = "";
 		};
 	}, [isOpen]);
+
+	console.log(state);
 
 	return (
 		<AnimatePresence>
@@ -149,6 +159,7 @@ export const AuthorizationModal = () => {
 								}>
 								Войти
 							</button>
+							<p className="font-medium text-red-500">{state}</p>
 						</form>
 					</motion.div>
 				</motion.div>
