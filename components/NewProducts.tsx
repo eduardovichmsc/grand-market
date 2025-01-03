@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import { API_URL } from "@/apiiii";
@@ -37,6 +38,8 @@ export const NewProducts = () => {
 			setProducts(response.data.list);
 		};
 		fetchProduct();
+
+		console.log(products);
 	}, []);
 
 	return (
