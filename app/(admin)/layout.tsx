@@ -30,9 +30,6 @@ export const metadata: Metadata = {
 export default function AdminLayout({ children }: { children: ReactNode }) {
 	return (
 		<main className="w-screen h-screen flex flex-col items-center gap-6">
-			{/* check for authorization */}
-			<CheckForAuth />
-
 			{/* modals */}
 			<ProductModal />
 			<CategoryModal />

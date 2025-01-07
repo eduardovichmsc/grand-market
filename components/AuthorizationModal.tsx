@@ -15,7 +15,7 @@ export const AuthorizationModal = () => {
 
 	const emailRef = useRef<HTMLInputElement>(null);
 
-	const [state, setState] = useState("");
+	const [authState, setAuthState] = useState("");
 
 	const isOpen = useAtomValue(isAuthModalOpen);
 	const setIsOpen = useSetAtom(isAuthModalOpen);
@@ -47,18 +47,18 @@ export const AuthorizationModal = () => {
 				if (userByEmail.data.role === "admin") {
 					// 1 hour
 					nookies.set(null, "Authorization", response.data.token, {
-						path: "/",
-						maxAge: 60 * 60,
-						secure: process.env.NODE_ENV === "production",
+						path: "/dashboard",
+						httpOnly: false,
+						maxAge: 60 * 60 * 1000,
 					});
 
 					router.push("/dashboard");
 					setIsAuthenticated(true);
-					return 0;
+				} else {
+					setAuthState("Нету доступа");
 				}
-				setState("Нету доступа");
 			} else {
-				setState("Пользователь не найден");
+				setAuthState("Пользователь не найден");
 			}
 		} catch (error) {
 			console.error(error);
@@ -77,8 +77,6 @@ export const AuthorizationModal = () => {
 			document.body.style.overflow = "";
 		};
 	}, [isOpen]);
-
-	console.log(state);
 
 	return (
 		<AnimatePresence>
@@ -159,7 +157,10 @@ export const AuthorizationModal = () => {
 								}>
 								Войти
 							</button>
-							<p className="font-medium text-red-500">{state}</p>
+							<p className="font-medium text-red-500">
+								{authState}
+								ds
+							</p>
 						</form>
 					</motion.div>
 				</motion.div>
