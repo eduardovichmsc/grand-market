@@ -2,7 +2,6 @@
 "use client";
 
 import { API_URL } from "@/apiiii";
-import usePriceFormatter from "@/hooks/usePriceFormatter";
 import { priceFormatter } from "@/model/functions";
 import { ProductType } from "@/types/product.types";
 import axios from "axios";
@@ -11,12 +10,12 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const newProducts = [
-	{ title: "Brenta SG", price: "150 000" },
-	{ title: "Artica", price: "200 000" },
-	{ title: "Nordica", price: "350 000" },
-	{ title: "Berg", price: "150 000" },
-];
+// const newProducts = [
+// 	{ title: "Brenta SG", price: "150 000" },
+// 	{ title: "Artica", price: "200 000" },
+// 	{ title: "Nordica", price: "350 000" },
+// 	{ title: "Berg", price: "150 000" },
+// ];
 
 export const NewProducts = () => {
 	const router = useRouter();
@@ -51,7 +50,7 @@ export const NewProducts = () => {
 					onClick={() => handleClick(item.id)}>
 					<div className="relative w-full aspect-square xl:aspect-[6/7] rounded-xl bg-white">
 						<Image
-							src={"http://localhost:5000/uploads/" + item.image}
+							src={API_URL + "uploads/" + item.image}
 							objectFit="contain"
 							alt={item.name}
 							fill
