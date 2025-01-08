@@ -144,7 +144,7 @@ export default function Home() {
 					<div className="flex flex-col sm:flex-row gap-[inherit] sm:gap-0 justify-between items-center">
 						<p className="section-title text-white">Последние поступления : </p>
 						<Link
-							href={"/for-business"}
+							href={"/products"}
 							className="transition flex justify-center items-center sm:place-self-end bg-white rounded-2xl w-full sm:w-fit sm:aspect-[16/5] h-20 gap-1 hover:bg-white/90">
 							<p className="font-medium text-res-green text-xl">
 								Посмотреть все
