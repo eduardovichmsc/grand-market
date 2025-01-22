@@ -12,6 +12,10 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { priceFormatter } from "@/model/functions";
+import { categoriesArray } from "@/store/categories";
+import { manufacturersArray } from "@/store/manufacturers";
+import { countriesArray } from "@/store/countries";
+import { productsArray } from "@/store/products";
 
 export default function ProductPageById() {
 	const router = useRouter();
@@ -33,26 +37,25 @@ export default function ProductPageById() {
 
 	const fetchDetails = useCallback(async () => {
 		try {
-			const categoryName = await axios.get(
-				API_URL + "categories/" + product?.categoryId
+			const categoryName = categoriesArray.find(
+				(category) => category.id === product?.categoryId
 			);
-			const brandName = await axios.get(
-				API_URL + "manufacturers/" + product?.manufacturerId
+			const brandName = manufacturersArray.find(
+				(manufacturer) => manufacturer.id === product?.manufacturerId
 			);
-			const countryName = await axios.get(
-				API_URL + "countries/" + product?.countryId
+			const countryName = countriesArray.find(
+				(country) => country.id === product?.countryId
 			);
 			setDetails((prevData) => ({
 				...prevData,
-
-				brandName: brandName.data.name,
-				categoryName: categoryName.data.name,
-				countryName: countryName.data.name,
+				brandName: brandName?.name,
+				categoryName: categoryName?.name,
+				countryName: countryName?.name,
 			}));
 		} catch (error) {
 			console.error(error);
 		}
-	}, [product]);
+	}, [product?.categoryId, product?.countryId, product?.manufacturerId]);
 
 	console.log(product);
 
@@ -69,8 +72,9 @@ export default function ProductPageById() {
 	useEffect(() => {
 		const fetchProduct = async () => {
 			try {
-				const response = await axios.get(API_URL + "products/" + id);
-				setProduct(response.data);
+				const response = productsArray.find((product) => product.id === +id);
+				setProduct(response);
+				console.log(response);
 			} catch (error) {
 				console.error(error);
 			} finally {
@@ -104,7 +108,7 @@ export default function ProductPageById() {
 								})}>
 								{product.image && (
 									<Image
-										src={API_URL + "uploads/" + product.image}
+										src={"/uploads/" + product.image}
 										fill
 										alt={product.image || "photo"}
 										className="object-contain"

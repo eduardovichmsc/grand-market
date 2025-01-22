@@ -35,7 +35,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 			<FloatingButton />
 
 			{/* modals */}
-			<AuthorizationModal />
+			{/* <AuthorizationModal /> */}
 			<ContactsModal />
 			<LoadingModal />
 

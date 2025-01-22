@@ -1,13 +1,30 @@
 "use client";
 import { NavbarLinks } from "@/config/pages.config";
 import { isAuthModalOpen } from "@/model/atoms";
+import { categoriesArray } from "@/store/categories";
+import { CategoriesType } from "@/types/types";
 
 import { useSetAtom } from "jotai";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export const Footer = () => {
 	const setIsOpen = useSetAtom(isAuthModalOpen);
+
+	const [categories, setCategories] = useState<CategoriesType[]>([]);
+
+	useEffect(() => {
+		const fetchCategories = async () => {
+			try {
+				const categoriesResponse = categoriesArray;
+				setCategories(categoriesResponse);
+			} catch (error) {
+				console.error(error);
+			}
+		};
+		fetchCategories();
+	}, []);
 
 	return (
 		<footer className="container py-10 space-y-10 mt-10">
@@ -35,7 +52,7 @@ export const Footer = () => {
 							</Link>
 						))}
 						<button
-							className="w-fit text-res-green hover:underline"
+							className="w-fit text-res-green hover:underline hidden"
 							onClick={() => setIsOpen((prev) => !prev)}
 							aria-label="Войти в аккаунт">
 							Войти в аккаунт
@@ -45,51 +62,15 @@ export const Footer = () => {
 				<div className="basis-full md:basis-1/4 flex flex-col gap-8 justify-center sm:justify-stretch">
 					<p className="text-res-green font-extrabold text-2xl">Каталог</p>
 					<div className="flex justify-center md:justify-stretch flex-col gap-4 text-xl text-res-green">
-						<Link
-							href={"/about"}
-							className="transition w-fit hover:text-res-green/60">
-							Фронтальные стеллажи
-						</Link>
-						<Link
-							href={"/about"}
-							className="transition w-fit hover:text-res-green/60">
-							Торговые стеллажи
-						</Link>
-						<Link
-							href={"/about"}
-							className="transition w-fit hover:text-res-green/60">
-							Торговое оборудование
-						</Link>
-						<Link
-							href={"/about"}
-							className="transition w-fit hover:text-res-green/60">
-							Кухонное оборудование
-						</Link>
-						<Link
-							href={"/about"}
-							className="transition w-fit hover:text-res-green/60">
-							Холодильное оборудование
-						</Link>
-						<Link
-							href={"/about"}
-							className="transition w-fit hover:text-res-green/60">
-							Витрины
-						</Link>
-						<Link
-							href={"/about"}
-							className="transition w-fit hover:text-res-green/60">
-							Кассовые боксы
-						</Link>
-						<Link
-							href={"/about"}
-							className="transition w-fit hover:text-res-green/60">
-							Паллетные стеллажи
-						</Link>
-						<Link
-							href={"/about"}
-							className="transition w-fit hover:text-res-green/60">
-							Нейтральное оборудование
-						</Link>
+						{categories.length !== 0 &&
+							categories.map((category) => (
+								<Link
+									key={category.id}
+									href={"/products"}
+									className="transition w-fit hover:text-res-green/60">
+									{category.name}
+								</Link>
+							))}
 					</div>
 				</div>
 				<div className="basis-full md:basis-1/4 flex flex-col gap-8 justify-center sm:justify-stretch">

@@ -3,6 +3,7 @@
 
 import { API_URL } from "@/apiiii";
 import { priceFormatter } from "@/model/functions";
+import { productsArray } from "@/store/products";
 import { ProductType } from "@/types/product.types";
 import axios from "axios";
 import { Plus } from "lucide-react";
@@ -28,17 +29,12 @@ export const NewProducts = () => {
 
 	useEffect(() => {
 		const fetchProduct = async () => {
-			const response = await axios.get(API_URL + "products", {
-				params: { limit: 4 },
-			});
-			if (response.status !== 200) {
-				throw new Error("Ошибка получения новых продуктов");
-			}
-			setProducts(response.data.list);
+			const response = productsArray;
+			const lastFourProducts = response.slice(-4);
+			setProducts(lastFourProducts);
 		};
-		fetchProduct();
 
-		console.log(products);
+		fetchProduct();
 	}, []);
 
 	return (
@@ -50,7 +46,7 @@ export const NewProducts = () => {
 					onClick={() => handleClick(item.id)}>
 					<div className="relative w-full aspect-square xl:aspect-[6/7] rounded-xl bg-white">
 						<Image
-							src={API_URL + "uploads/" + item.image}
+							src={"/uploads/" + item.image}
 							objectFit="contain"
 							alt={item.name}
 							fill

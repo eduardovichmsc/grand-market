@@ -24,9 +24,13 @@ export const CatalogItem: FC<CatalogItemProps> = ({
 }) => {
 	const router = useRouter();
 
+	// const imgRoute = "http://localhost:3000/";
+
 	const handleClick = () => {
 		router.push("/products/" + id);
 	};
+
+	console.log(image);
 
 	return (
 		<div
@@ -37,12 +41,7 @@ export const CatalogItem: FC<CatalogItemProps> = ({
 			)}
 			onClick={handleClick}>
 			<div className="relative aspect-[4/3]">
-				<Image
-					src={API_URL + "uploads/" + (image || "")}
-					fill
-					objectFit="contain"
-					alt={name}
-				/>
+				<Image src={"/uploads/" + image} fill objectFit="contain" alt={name} />
 			</div>
 			<div className="flex-1 flex flex-col gap-[inherit]">
 				<div className="flex-1 flex items-end">

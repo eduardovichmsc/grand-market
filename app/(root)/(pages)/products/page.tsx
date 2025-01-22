@@ -14,6 +14,7 @@ import axios from "axios";
 import { useAtom } from "jotai";
 import { Search } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { productsArray } from "@/store/products";
 
 export default function CatalogPage() {
 	const [, setIsGlobalLoading] = useAtom(isGlobalLoading);
@@ -23,7 +24,7 @@ export default function CatalogPage() {
 		searchValue: "",
 		selectId: "popular",
 		currentPagination: 1,
-		isLoading: true,
+		isLoading: false,
 		selectedCategory: undefined,
 		selectedBrand: undefined,
 	});
@@ -35,22 +36,55 @@ export default function CatalogPage() {
 		limit: 0,
 	});
 
+	// const getAllProducts = async (page: number = 1) => {
+	// 	try {
+	// 		setIsGlobalLoading(true);
+	// 		const response = await axios.get(API_URL + "products", {
+	// 			params: {
+	// 				search: filterState.searchValue,
+	// 				page: page,
+	// 				categoryId: filterState.selectedCategory || undefined,
+	// 				manufacturerId: filterState.selectedBrand || undefined,
+	// 			},
+	// 		});
+	// 		console.log(response.config.params);
+
+	// 		setProducts(response.data);
+	// 	} catch (error) {
+	// 		console.error(error);
+	// 	} finally {
+	// 		setIsGlobalLoading(false);
+	// 	}
+	// };
+
 	const getAllProducts = async (page: number = 1) => {
 		try {
 			setIsGlobalLoading(true);
-			const response = await axios.get(API_URL + "products", {
-				params: {
-					search: filterState.searchValue,
-					page: page,
-					categoryId: filterState.selectedCategory || undefined,
-					manufacturerId: filterState.selectedBrand || undefined,
-				},
-			});
-			console.log(response.config.params);
+			const filteredProducts = productsArray
+				.filter(
+					(product) =>
+						(!filterState.searchValue ||
+							product.name
+								.toLowerCase()
+								.includes(filterState.searchValue.toLowerCase())) &&
+						(!filterState.selectedCategory ||
+							product.categoryId === filterState.selectedCategory) &&
+						(!filterState.selectedBrand ||
+							product.manufacturerId === filterState.selectedBrand)
+				)
+				.slice((page - 1) * 10, page * 10);
 
-			setProducts(response.data);
+			const total = productsArray.length;
+			const totalPages = Math.ceil(total / 10);
+
+			setProducts({
+				list: filteredProducts,
+				total,
+				totalPages,
+				limit: 10,
+			});
 		} catch (error) {
-			console.error(error);
+			console.error("Failed to fetch products:", error);
 		} finally {
 			setIsGlobalLoading(false);
 		}
@@ -120,7 +154,7 @@ export default function CatalogPage() {
 					className="relative container py-28 space-y-36"
 					ref={scrollRef}>
 					<div className="w-full min-h-[50vh] flex flex-col md:flex-row gap-10">
-						{filterState.isLoading && products.list.length === 0 ? (
+						{isGlobalLoading && products.list.length === 0 ? (
 							<SkeletonCatalogFilter />
 						) : (
 							<CatalogFilter
