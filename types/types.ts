@@ -6,6 +6,7 @@ export interface SwiperObjectType {
 export interface FilterState {
 	searchValue: string;
 	selectId: string;
+	searchMade: number;
 	currentPagination: number;
 	isLoading: boolean;
 	selectedCategory: number | undefined;

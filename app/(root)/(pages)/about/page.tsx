@@ -40,7 +40,7 @@ export default function AboutPage() {
 								alt="Карта Grand-Market"
 							/>
 						</div>
-						<p className="font-medium text-2xl lg:text-3xl xl:text-2xl">
+						<p className="font-medium text-2xl lg:text-3xl xl:text-2xl text-justify lg:justify-normal">
 							<span>
 								GRAND MARKET - имеет 3 Филиала в городах Атырау, Актау и Актобе.
 								В 2023 году наша команда планирует открыть филиал в городе

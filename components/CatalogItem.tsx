@@ -30,8 +30,6 @@ export const CatalogItem: FC<CatalogItemProps> = ({
 		router.push("/products/" + id);
 	};
 
-	console.log(image);
-
 	return (
 		<div
 			className={clsx(

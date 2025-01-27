@@ -24,6 +24,7 @@ export default function AdminProductPage() {
 
 	const [filterState, setFilterState] = useState<FilterState>({
 		searchValue: "",
+		searchMade: 0,
 		selectId: "popular",
 		currentPagination: 1,
 		isLoading: true,

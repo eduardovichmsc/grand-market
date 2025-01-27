@@ -23,8 +23,9 @@ export default function CatalogPage() {
 	const [filterState, setFilterState] = useState<FilterState>({
 		searchValue: "",
 		selectId: "popular",
+		searchMade: 0,
 		currentPagination: 1,
-		isLoading: false,
+		isLoading: true,
 		selectedCategory: undefined,
 		selectedBrand: undefined,
 	});
@@ -104,10 +105,15 @@ export default function CatalogPage() {
 		filterState.currentPagination,
 		filterState.selectedBrand,
 		filterState.selectedCategory,
+		filterState.searchMade,
 	]);
 
 	const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+		setFilterState((prevState) => ({
+			...prevState,
+			searchMade: prevState.searchMade + 1,
+		}));
 		getAllProducts(1);
 	};
 

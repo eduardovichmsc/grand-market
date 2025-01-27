@@ -89,7 +89,7 @@ export const AboutCompanyComponent = () => {
 				</div>
 
 				{/* текст */}
-				<p className="font-medium text-res-green text-2xl lg:text-3xl xl:text-2xl">
+				<p className="font-medium text-res-green text-2xl lg:text-3xl xl:text-2xl text-justify lg:justify-normal">
 					{content[value]}
 				</p>
 			</div>

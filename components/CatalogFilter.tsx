@@ -88,7 +88,7 @@ export const CatalogFilter = ({
 					</div>
 
 					{/* Производители */}
-					<div className="space-y-4">
+					<div className="space-y-4 hidden">
 						<div className="flex justify-between items-center">
 							<p className="font-bold">Производители</p>
 						</div>
