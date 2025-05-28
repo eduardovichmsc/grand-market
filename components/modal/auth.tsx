@@ -6,9 +6,8 @@ import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import { isAuthenticated, isAuthModalOpen } from "@/model/atoms";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
-import { API_URL } from "@/apiiii";
 import { useRouter } from "next/navigation";
-import nookies, { setCookie } from "nookies";
+import nookies from "nookies";
 
 export const AuthorizationModal = () => {
 	const setIsAuthenticated = useSetAtom(isAuthenticated);
@@ -39,8 +38,8 @@ export const AuthorizationModal = () => {
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		try {
-			const response = await axios.post(API_URL + "users/login/", form);
-			const userByEmail = await axios.get(API_URL + "users/" + form.email);
+			const response = await axios.post("users/login/", form);
+			const userByEmail = await axios.get("users/" + form.email);
 			console.log(response);
 
 			if (response.status === 201) {

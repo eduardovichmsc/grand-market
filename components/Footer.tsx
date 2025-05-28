@@ -1,31 +1,9 @@
-"use client";
 import { NavbarLinks } from "@/config/pages.config";
-import { isAuthModalOpen } from "@/model/atoms";
-import { categoriesArray } from "@/store/categories";
-import { CategoriesType } from "@/types/types";
-
-import { useSetAtom } from "jotai";
+import { categories } from "@/entities/categories";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 export const Footer = () => {
-	const setIsOpen = useSetAtom(isAuthModalOpen);
-
-	const [categories, setCategories] = useState<CategoriesType[]>([]);
-
-	useEffect(() => {
-		const fetchCategories = async () => {
-			try {
-				const categoriesResponse = categoriesArray;
-				setCategories(categoriesResponse);
-			} catch (error) {
-				console.error(error);
-			}
-		};
-		fetchCategories();
-	}, []);
-
 	return (
 		<footer className="container py-10 space-y-10 mt-10">
 			<div className="flex flex-col sm:flex-row flex-wrap lg:flex-nowrap justify-between h-full gap-y-14 md:gap-14">
@@ -51,12 +29,6 @@ export const Footer = () => {
 								{item.title}
 							</Link>
 						))}
-						<button
-							className="w-fit text-res-green hover:underline hidden"
-							onClick={() => setIsOpen((prev) => !prev)}
-							aria-label="Войти в аккаунт">
-							Войти в аккаунт
-						</button>
 					</div>
 				</div>
 				<div className="basis-full md:basis-1/4 flex flex-col gap-8 justify-center sm:justify-stretch">

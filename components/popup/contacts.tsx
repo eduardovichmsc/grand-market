@@ -1,6 +1,6 @@
 "use client";
 import { useAtomValue, useSetAtom } from "jotai";
-import { isContactsModalOpen } from "../model/atoms";
+import { isContactsModalOpen } from "../../model/atoms";
 
 export const ContactsPopup = () => {
 	const isOpen = useAtomValue(isContactsModalOpen);

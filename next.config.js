@@ -14,14 +14,30 @@ const nextConfig = {
 			{
 				hostname: "localhost",
 			},
+			{
+				hostname: "i.pinimg.com",
+			},
+			{
+				protocol: "https",
+				hostname: "maeks.ru",
+				port: "",
+				pathname: "**",
+			},
+			{
+				protocol: "https",
+				hostname: "stahler.ru",
+				pathname: "**",
+			},
+			{
+				protocol: "https",
+				hostname: "www.unitrade-orel.ru",
+				pathname: "/**",
+			},
 			// {
 			// 	protocol: "http",
 			// 	hostname: "89.46.33.172",
 			// 	port: "5000",
 			// 	pathname: "/uploads/**",
-			// },
-			// {
-			// 	hostname: "i.pinimg.com",
 			// },
 		],
 	},

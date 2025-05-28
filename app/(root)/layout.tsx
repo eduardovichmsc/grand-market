@@ -1,16 +1,15 @@
 import { ReactNode } from "react";
 
-import { Navbar } from "@/components/Navbar";
-import { MiniBanner } from "@/components/MiniBanner";
+import { MiniBanner } from "@/components/banner/MiniBanner";
 import { Footer } from "@/components/Footer";
-import { Sidebar } from "@/components/Sidebar";
-import { AuthorizationModal } from "@/components/AuthorizationModal";
-import { ContactsModal } from "@/components/ContactsModal";
+import { Sidebar } from "@/components/sidebar";
+import { ContactsModal } from "@/components/modal/contacts";
 import { FloatingButton } from "@/components/FloatingButton";
-import { LoadingModal } from "@/components/LoadingModal";
 import { Montserrat } from "next/font/google";
 import clsx from "clsx";
 import { Metadata } from "next";
+import { LoadingModal } from "@/components/modal/loading";
+import { Navbar } from "@/components/Navbar";
 
 const montserrat = Montserrat({
 	weight: ["300", "400", "500", "600", "700", "800"],

@@ -4,8 +4,8 @@ import axios from "axios";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
-import { locationData } from "../config/contacts.config";
-import { LocationType } from "../types/static.types";
+import { locationData } from "@/config/contacts.config";
+import { LocationType } from "@/types/types";
 
 export const Map = () => {
 	const [location, setLocation] = useState<{

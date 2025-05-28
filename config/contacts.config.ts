@@ -1,4 +1,4 @@
-import { LocationType } from "@/types/static.types";
+import { LocationType } from "@/types/types";
 
 export const locationData: LocationType[] = [
 	{

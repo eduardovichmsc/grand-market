@@ -1,8 +1,8 @@
 import Link from "next/link";
 
-import { MiniBanner } from "@/components/MiniBanner";
+import { MiniBanner } from "@/components/banner/MiniBanner";
+import { Sidebar } from "@/components/sidebar";
 import { Navbar } from "@/components/Navbar";
-import { Sidebar } from "@/components/Sidebar";
 
 export default function NotFoundPage() {
 	return (

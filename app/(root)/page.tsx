@@ -1,12 +1,12 @@
-import { Hero } from "@/components/Hero";
-import { ChevronRight, Plus } from "lucide-react";
+import { Hero } from "@/components/sections/hero";
+import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Map } from "@/components/Map";
+import { Map } from "@/components/sections/map";
 import { Metadata } from "next";
 import { clients, partners } from "@/config/static";
 import dynamic from "next/dynamic";
-import { NewProducts } from "@/components/NewProducts";
+import { RecentProducts } from "@/components/sections/recent_products";
 
 export const metadata: Metadata = {
 	title: "Торговое оборудование для магазинов - Grand Market",
@@ -154,7 +154,7 @@ export default function Home() {
 					</div>
 					<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 text-white gap-10 xl:gap-5">
 						{/* map */}
-						<NewProducts />
+						<RecentProducts />
 					</div>
 				</div>
 

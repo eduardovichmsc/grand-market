@@ -4,7 +4,7 @@ import { useAtomValue, useSetAtom } from "jotai";
 import { XIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { isContactsModalOpen } from "../model/atoms";
+import { isContactsModalOpen } from "../../model/atoms";
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 

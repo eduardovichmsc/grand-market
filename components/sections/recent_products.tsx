@@ -1,10 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import { API_URL } from "@/apiiii";
+import { catalog } from "@/entities/catalog";
 import { priceFormatter } from "@/model/functions";
-import { productsArray } from "@/store/products";
-import { ProductType } from "@/types/product.types";
 import axios from "axios";
 import { Plus } from "lucide-react";
 import Image from "next/image";
@@ -18,47 +16,39 @@ import { useEffect, useState } from "react";
 // 	{ title: "Berg", price: "150 000" },
 // ];
 
-export const NewProducts = () => {
+export const RecentProducts = () => {
 	const router = useRouter();
 
-	const [products, setProducts] = useState<ProductType[]>([]);
-
+	const newProducts = catalog.list.slice(-4);
 	const handleClick = (id: number) => {
 		router.push("/products/" + id);
 	};
 
-	useEffect(() => {
-		const fetchProduct = async () => {
-			const response = productsArray;
-			const lastFourProducts = response.slice(-4);
-			setProducts(lastFourProducts);
-		};
-
-		fetchProduct();
-	}, []);
-
 	return (
 		<>
-			{products.map((item, index) => (
+			{newProducts.map((product, index) => (
 				<div
 					key={index}
 					className="ease-in-out duration-300 transition-all hover:p-4 hover:bg-white/10 space-y-4 rounded-2xl group cursor-pointer"
-					onClick={() => handleClick(item.id)}>
+					onClick={() => handleClick(product.id)}>
 					<div className="relative w-full aspect-square xl:aspect-[6/7] rounded-xl bg-white">
 						<Image
-							src={"/uploads/" + item.image}
+							src={product.preview_image[0]}
 							objectFit="contain"
-							alt={item.name}
+							alt={product.name}
 							fill
+							className="p-4"
 						/>
 					</div>
 					<div className="flex justify-between">
 						<div className="space-y-1">
 							<p className="uppercase font-medium text-4xl xl:text-3xl 2xl:text-2xl line-clamp-1">
-								{item.name}
+								{product.name}
 							</p>
 							<p className="duration-300 transition-all uppercase text-2xl 2xl:text-xl text-res-grey group-hover:text-white">
-								{priceFormatter(item.price)} ₸
+								{product.price?.start
+									? `${priceFormatter(product.price?.start)} ₸`
+									: "Не указано"}
 							</p>
 						</div>
 						<button className="aspect-square h-full relative rounded-2xl bg-res-light-green">

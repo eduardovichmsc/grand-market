@@ -1,5 +1,5 @@
-import { Banner } from "@/components/Banner";
-import { AboutCompanyComponent } from "@/components/AboutCompany";
+import { Banner } from "@/components/banner/Banner";
+import { AboutCompanyComponent } from "@/components/sections/about_company";
 import { clients, partners } from "@/config/static";
 import Image from "next/image";
 import { Metadata } from "next";

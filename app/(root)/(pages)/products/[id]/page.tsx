@@ -1,100 +1,31 @@
 "use client";
-import usePriceFormatter from "@/hooks/usePriceFormatter";
-import { isGlobalLoading } from "@/model/atoms";
-import { API_URL } from "@/apiiii";
-import { ProductType } from "@/types/product.types";
-import axios from "axios";
 import clsx from "clsx";
-import { useSetAtom } from "jotai";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, LoaderIcon } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import { useState } from "react";
+
+import { useProduct } from "@/hooks/useProducts";
+import { catalog } from "@/entities/catalog";
 import { priceFormatter } from "@/model/functions";
-import { categoriesArray } from "@/store/categories";
-import { manufacturersArray } from "@/store/manufacturers";
-import { countriesArray } from "@/store/countries";
-import { productsArray } from "@/store/products";
+import { categories } from "@/entities/categories";
 
 export default function ProductPageById() {
-	const router = useRouter();
-
-	// модалка загрузки
-	const setIsLoadingModal = useSetAtom(isGlobalLoading);
-	setIsLoadingModal(true);
-
-	const [, setIsLoading] = useState(true);
 	const { id } = useParams();
+	const product = useProduct(catalog.list, +id);
 
-	const [product, setProduct] = useState<ProductType | undefined>();
+	const [imageArray, setImageArray] = useState<string[]>(
+		product?.preview_image || ["/placeholder.svg"]
+	);
+	const [imageLoading, setImageLoading] = useState<boolean>(true);
 
-	const [details, setDetails] = useState<{
-		countryName?: string;
-		brandName?: string;
-		categoryName?: string;
-	}>({ brandName: "", categoryName: "", countryName: "" });
-
-	const fetchDetails = useCallback(async () => {
-		try {
-			const categoryName = categoriesArray.find(
-				(category) => category.id === product?.categoryId
-			);
-			const brandName = manufacturersArray.find(
-				(manufacturer) => manufacturer.id === product?.manufacturerId
-			);
-			const countryName = countriesArray.find(
-				(country) => country.id === product?.countryId
-			);
-			setDetails((prevData) => ({
-				...prevData,
-				brandName: brandName?.name,
-				categoryName: categoryName?.name,
-				countryName: countryName?.name,
-			}));
-		} catch (error) {
-			console.error(error);
-		}
-	}, [product?.categoryId, product?.countryId, product?.manufacturerId]);
-
-	console.log(product);
-
-	const handleOrder = () => {
+	const handleOrder = (name: string, category: string) => {
 		const text = `
 			Здравствуйте,\n\n
-			 Я хочу заказать у вас ${product?.categoryId} - ${product?.name}.
+			 Я хочу заказать у вас ${category} - ${name}.
 		`;
-
 		const phone = "+77019265005";
-		router.push("https://wa.me/" + phone + "?text=" + text);
 	};
-
-	useEffect(() => {
-		const fetchProduct = async () => {
-			try {
-				const response = productsArray.find((product) => product.id === +id);
-				setProduct(response);
-				console.log(response);
-			} catch (error) {
-				console.error(error);
-			} finally {
-				setIsLoading(false);
-			}
-		};
-		fetchProduct();
-	}, [id]);
-
-	useEffect(() => {
-		fetchDetails();
-	}, [fetchDetails, product]);
-
-	if (!product) {
-		return <div className="container p-10"></div>;
-	}
-
-	if (product) {
-		setIsLoadingModal(false);
-	}
 
 	return (
 		<main className="container py-28">
@@ -104,15 +35,25 @@ export default function ProductPageById() {
 						<div className="basis-full md:basis-3/5">
 							<div
 								className={clsx("relative w-full aspect-[9/5]", {
-									"bg-black/10": !product.image,
+									"bg-black/10": !product.preview_image[0],
 								})}>
-								{product.image && (
-									<Image
-										src={"/uploads/" + product.image}
-										fill
-										alt={product.image || "photo"}
-										className="object-contain"
-									/>
+								<Image
+									src={imageArray[0]}
+									fill
+									onError={() => setImageArray(["/placeholder.svg"])}
+									alt={product.name || "photo"}
+									onLoadingComplete={() => setImageLoading(false)}
+									className={clsx(
+										"transition-all duration-150 object-contain",
+										{
+											"opacity-75 blur-xl": imageLoading,
+										}
+									)}
+								/>
+								{imageLoading && (
+									<div className="size-full flex justify-center items-center">
+										<LoaderIcon className="animate-spin" />
+									</div>
 								)}
 							</div>
 						</div>
@@ -121,14 +62,17 @@ export default function ProductPageById() {
 								{product?.name}
 							</p>
 							<div className="space-y-2">
-								{product.priceTo && product.priceTo !== 0 ? (
-									<p className="font-medium text-res-green text-2xl md:text-xl">
-										от {priceFormatter(product.price)} до{" "}
-										{priceFormatter(product.priceTo)} ₸
-									</p>
+								{product.price?.start ? (
+									product.price?.start && (
+										<p className="font-medium text-res-green text-2xl md:text-xl">
+											от {priceFormatter(product.price.start)}
+											<span className="px-2">до</span>
+											{product.price.end && priceFormatter(product.price.end)} ₸
+										</p>
+									)
 								) : (
 									<p className="font-medium text-res-green text-2xl md:text-xl">
-										от {priceFormatter(product.price)} ₸
+										Не указано
 									</p>
 								)}
 								<p className="text-black/50 w-fit">
@@ -139,23 +83,70 @@ export default function ProductPageById() {
 							{/* Кнопка - заказать */}
 							<button
 								className="py-4 w-full bg-res-green flex justify-center items-center gap-2 text-white rounded-xl hover:opacity-90"
-								onClick={handleOrder}>
+								onClick={() =>
+									handleOrder(
+										product.name,
+										categories.find(
+											(category) => category.id === product.category_id
+										)?.name || ""
+									)
+								}>
 								<p className="text-xl md:text-lg uppercase">Заказать</p>
 								<ArrowRight className="p-0.5" />
 							</button>
 
 							{/* Описание */}
-							<div className="space-y-4 md:space-y-2 mt-4">
-								<p className="text-res-green font-semibold text-2xl md:text-xl">
-									Описание
-								</p>
-								<hr className="bg-res-green w-full h-[4px]" />
-								<div className="">
-									<p className="font-medium text-muted-foreground text-xl md:text-lg">
-										{product.description}
+							{product.description.length > 0 && (
+								<div className="space-y-4 md:space-y-2 mt-4">
+									<p className="text-res-green font-semibold text-2xl md:text-xl">
+										Описание
 									</p>
+									<hr className="bg-res-green w-full h-[4px]" />
+									<div className="">
+										<p className="font-medium text-muted-foreground text-xl md:text-lg">
+											{product.description}
+										</p>
+									</div>
 								</div>
-							</div>
+							)}
+
+							{/* Преимущества */}
+							{product.advantages && (
+								<div className="space-y-4 md:space-y-2 mt-4">
+									<p className="text-res-green font-semibold text-2xl md:text-xl">
+										Преимущества
+									</p>
+									<hr className="bg-res-green w-full h-[4px]" />
+									<ul className="list-disc">
+										{product.advantages.map((advantage, index) => (
+											<li
+												key={index}
+												className="font-medium text-muted-foreground text-xl md:text-lg">
+												{advantage}
+											</li>
+										))}
+									</ul>
+								</div>
+							)}
+
+							{/* Модификаций */}
+							{product.modifications && (
+								<div className="space-y-4 md:space-y-2 mt-4">
+									<p className="text-res-green font-semibold text-2xl md:text-xl">
+										Модификаций
+									</p>
+									<hr className="bg-res-green w-full h-[4px]" />
+									<ul className="list-disc">
+										{product.modifications.map((modification, index) => (
+											<li
+												key={index}
+												className="font-medium text-muted-foreground text-xl md:text-lg">
+												{modification}
+											</li>
+										))}
+									</ul>
+								</div>
+							)}
 
 							{/* Детали */}
 							<div className="space-y-4 md:space-y-2 mt-4">
@@ -166,39 +157,74 @@ export default function ProductPageById() {
 
 								<div className="">
 									<ul className="list-none space-y-1">
-										<li className="flex justify-between text-xl md:text-lg">
-											<p className="text-res-green font-medium text-left">
-												Тип холодоснабжения
-											</p>
-											<p className="text-muted-foreground text-right">
-												{details.categoryName && details.categoryName.length > 0
-													? details.categoryName
-													: "Не указано"}
-											</p>
-										</li>
+										{/* Тип холодоснабжения */}
+										{product.cooling_details && (
+											<li className="flex justify-between text-xl md:text-lg">
+												<p className="text-res-green font-medium text-left">
+													Тип холодоснабжения
+												</p>
+												<p className="text-muted-foreground text-right">
+													{product.cooling_details.cooling_type
+														? product.cooling_details.cooling_type
+														: "Не указано"}
+												</p>
+											</li>
+										)}
+
+										{/* Бренд */}
 										<li className="flex justify-between text-xl md:text-lg">
 											<p className="text-res-green font-medium text-left">
 												Бренд
 											</p>
 											<p className="text-muted-foreground text-right">
-												{details.brandName && details.brandName.length > 0
-													? details.brandName
-													: "Не указано"}
+												{product.brand ? product.brand : "Не указано"}
 											</p>
 										</li>
+
+										{/* Коробак - Длина / Глубина / Высота */}
+										{product.box_details && (
+											<>
+												{product.box_details.box_len && (
+													<li className="flex justify-between text-xl md:text-lg">
+														<p className="text-res-green font-medium text-left">
+															Длина
+														</p>
+														<p className="text-muted-foreground text-right">
+															{product.box_details.box_len}
+														</p>
+													</li>
+												)}
+												{product.box_details.box_depth && (
+													<li className="flex justify-between text-xl md:text-lg">
+														<p className="text-res-green font-medium text-left">
+															Глубина
+														</p>
+														<p className="text-muted-foreground text-right">
+															{product.box_details.box_depth}
+														</p>
+													</li>
+												)}
+												{product.box_details.box_height && (
+													<li className="flex justify-between text-xl md:text-lg">
+														<p className="text-res-green font-medium text-left">
+															Высота
+														</p>
+														<p className="text-muted-foreground text-right">
+															{product.box_details.box_height}
+														</p>
+													</li>
+												)}
+											</>
+										)}
+
+										{/* Гарантия */}
 										<li className="flex justify-between text-xl md:text-lg">
 											<p className="text-res-green font-medium text-left">
 												Гарантия, месяц
 											</p>
-											<p className="text-muted-foreground text-right">12</p>
-										</li>
-										<li className="flex justify-between text-xl md:text-lg">
-											<p className="text-res-green font-medium text-left">
-												Страна производства
-											</p>
 											<p className="text-muted-foreground text-right">
-												{details.countryName && details.countryName.length > 0
-													? details.countryName
+												{product.warranty_months
+													? product.warranty_months
 													: "Не указано"}
 											</p>
 										</li>
