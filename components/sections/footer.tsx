@@ -148,7 +148,7 @@ export const Footer = () => {
 				{/* Копирайт */}
 				<div className="flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 pt-8">
 					<p className="mb-2 sm:mb-0">
-						© {currentYear} Название Вашей Компании. Все права защищены.
+						© {currentYear} Grand Market. Все права защищены.
 					</p>
 					<p>
 						Разработано{" "}
