@@ -9,9 +9,9 @@ import { motion, AnimatePresence } from "framer-motion";
 
 interface Props {
 	selectedCategory: number | null;
-	onSelect: (id: number | null) => void;
+	onCategoryChange: (id: number | null) => void;
 	selectedSubcategory: number | null;
-	onSubcategorySelect: (id: number | null) => void;
+	onSubcategoryChange: (id: number | null) => void;
 	className?: string;
 }
 
@@ -19,9 +19,9 @@ const MAX_VISIBLE_INITIAL_CATEGORIES = 5;
 
 export const CatalogFilter = ({
 	selectedCategory,
-	onSelect,
+	onCategoryChange,
 	selectedSubcategory,
-	onSubcategorySelect,
+	onSubcategoryChange,
 	className,
 }: Props) => {
 	const [showAll, setShowAll] = useState(false);
@@ -45,10 +45,10 @@ export const CatalogFilter = ({
 			onClick={() => {
 				const newCategoryId =
 					selectedCategory === category.id ? null : category.id;
-				onSelect(newCategoryId);
+				onCategoryChange(newCategoryId);
 
 				if (newCategoryId !== selectedCategory) {
-					onSubcategorySelect(null);
+					onSubcategoryChange(null);
 				}
 			}}
 			className={clsx(
@@ -79,7 +79,7 @@ export const CatalogFilter = ({
 		<motion.button
 			key={`subcategory-${subcategory.id}`}
 			onClick={() =>
-				onSubcategorySelect(
+				onSubcategoryChange(
 					selectedSubcategory === subcategory.id ? null : subcategory.id
 				)
 			}

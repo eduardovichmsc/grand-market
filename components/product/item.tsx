@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { LoaderIcon } from "lucide-react";
 
 export interface Props {
 	id: number;
@@ -23,6 +25,8 @@ export const CatalogItem = ({
 		e.currentTarget.srcset = "";
 	};
 
+	const [imageLoading, setImageLoading] = useState<boolean>(true);
+
 	return (
 		<motion.article
 			className="bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer flex flex-col h-full transition-all duration-300 ease-in-out hover:shadow-xl focus-within:ring-2 focus-within:ring-res-green focus-within:ring-offset-2"
@@ -41,10 +45,16 @@ export const CatalogItem = ({
 					src={image || "/placeholder.svg"}
 					alt={name || "Изображение продукта"}
 					fill
+					onLoad={() => setImageLoading(false)}
 					sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
 					className="object-cover transition-transform duration-300 group-hover:scale-105"
 					onError={handleError}
 				/>
+				{imageLoading && (
+					<div className="absolute inset-0 flex justify-center items-center bg-gray-100/50">
+						<LoaderIcon className="animate-spin text-res-green size-8 sm:size-10" />
+					</div>
+				)}{" "}
 			</div>
 			<div className="p-4 flex flex-col flex-grow">
 				<h3

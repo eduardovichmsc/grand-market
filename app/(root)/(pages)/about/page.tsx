@@ -22,7 +22,7 @@ export default function AboutPage() {
 	return (
 		<main className="bg-gray-50/50">
 			<BannerDefault
-				image="/about/banner.png"
+				image="/banner/about.png"
 				bigText="О компании"
 				smallText="Ваш эксперт в мире торгового оборудования"
 			/>

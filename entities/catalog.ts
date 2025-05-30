@@ -36,8 +36,8 @@ export const catalog: CatalogListType = {
 			purpose_id: 1,
 			brand: "MAGMA",
 			preview_image: [
-				"https://maeks.ru/upload/icms/images/catalog/crete_%D1%88%D0%BA%D0%B0%D1%84%20002%20%D0%BF%D1%80%D0%BE%D0%B7%D1%80%20(1)_78.png",
-				"https://maeks.ru/upload/icms/images/catalog/main_additional_42.png",
+				"https://maeks.ru/upload/icms/images/catalog/creteDG_002%20%D1%83%D0%BC%D0%B5%D0%BD%D1%8C%D1%88%20%D0%BF%D1%80%D0%BE%D0%B7%D1%80%20%D1%84%D0%BE%D0%BD.png",
+				"https://maeks.ru/upload/icms/images/catalog/creteDG_001%20%D1%83%D0%BC%D0%B5%D0%BD%D1%8C%D1%88%20%D0%BF%D1%80%D0%BE%D0%B7%D1%80%20%D1%84%D0%BE%D0%BD.png",
 			],
 			name: "MAGMA Crete DG",
 			dimensions: {

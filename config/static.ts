@@ -19,3 +19,78 @@ export const partners: SwiperObjectType[] = [
 	{ title: "Abat", image: "/partners/abat.png" },
 	{ title: "Snezh", image: "/partners/snezh.png" },
 ];
+
+export const projectImages = [
+	{
+		src: "/projects/1.png",
+		title: "",
+
+		description: "",
+	},
+	{
+		src: "/projects/2.png",
+		title: "",
+
+		description: "",
+	},
+	{
+		src: "/projects/3.png",
+		title: "",
+
+		description: "",
+	},
+	{
+		src: "/projects/4.png",
+		title: "",
+
+		description: "",
+	},
+	{
+		src: "/projects/5.png",
+		title: "",
+
+		description: "",
+	},
+	{
+		src: "/projects/6.png",
+		title: "",
+
+		description: "",
+	},
+	{
+		src: "/projects/7.png",
+		title: "",
+
+		description: "",
+	},
+	{
+		src: "/projects/8.png",
+		title: "",
+
+		description: "",
+	},
+	{
+		src: "/projects/9.png",
+		title: "",
+
+		description: "",
+	},
+	{
+		src: "/projects/10.png",
+		title: "",
+
+		description: "",
+	},
+	{
+		src: "/projects/11.png",
+		title: "",
+
+		description: "",
+	},
+	{
+		src: "/projects/12.png",
+		title: "",
+
+		description: "",
+	},
+];

@@ -10,7 +10,7 @@ import { Footer } from "@/components/sections/footer";
 
 import { LoadingModal } from "@/components/modal/loading";
 import { ContactsModal } from "@/components/modal/contacts";
-import { FloatingButton } from "@/components/FloatingButton";
+import { FloatingButton } from "@/components/ui/floating_button";
 
 export const metadata: Metadata = {
 	title: "Торговое оборудование для магазинов - Grand Market",

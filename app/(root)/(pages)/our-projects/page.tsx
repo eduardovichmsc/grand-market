@@ -3,83 +3,8 @@
 import { BannerDefault } from "@/components/banner/default";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { XIcon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-
-const projectImages = [
-	{
-		src: "/projects/1.png",
-		title: "",
-
-		description: "",
-	},
-	{
-		src: "/projects/2.png",
-		title: "",
-
-		description: "",
-	},
-	{
-		src: "/projects/3.png",
-		title: "",
-
-		description: "",
-	},
-	{
-		src: "/projects/4.png",
-		title: "",
-
-		description: "",
-	},
-	{
-		src: "/projects/5.png",
-		title: "",
-
-		description: "",
-	},
-	{
-		src: "/projects/6.png",
-		title: "",
-
-		description: "",
-	},
-	{
-		src: "/projects/7.png",
-		title: "",
-
-		description: "",
-	},
-	{
-		src: "/projects/8.png",
-		title: "",
-
-		description: "",
-	},
-	{
-		src: "/projects/9.png",
-		title: "",
-
-		description: "",
-	},
-	{
-		src: "/projects/10.png",
-		title: "",
-
-		description: "",
-	},
-	{
-		src: "/projects/11.png",
-		title: "",
-
-		description: "",
-	},
-	{
-		src: "/projects/12.png",
-		title: "",
-
-		description: "",
-	},
-];
+import { projectImages } from "@/config/static";
 
 export default function OurProjectsPage() {
 	const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -111,7 +36,7 @@ export default function OurProjectsPage() {
 	return (
 		<main className="bg-gray-50/50 min-h-screen">
 			<BannerDefault
-				image="/projects/banner.png"
+				image="/banner/our_projects.png"
 				bigText="Наши реализованные проекты"
 				smallText="Вдохновитесь нашими успешными решениями для бизнеса"
 				overlayOpacity={0.4}
@@ -137,9 +62,8 @@ export default function OurProjectsPage() {
 							<Image
 								src={project.src}
 								fill
-								style={{ objectFit: "cover" }}
 								alt={project.title || `Проект ${index + 1}`}
-								className="transition-transform duration-300 ease-in-out group-hover:scale-105"
+								className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
 								sizes="(max-width: 640px) 90vw, (max-width: 768px) 45vw, (max-width: 1024px) 30vw, 23vw"
 								quality={80}
 							/>

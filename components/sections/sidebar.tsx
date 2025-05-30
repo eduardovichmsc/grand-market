@@ -32,7 +32,7 @@ export const Sidebar = () => {
 			{isOpen && (
 				<motion.div
 					className={clsx(
-						"z-50 bg-black/25 fixed w-screen right-0 h-dvh backdrop-blur-xl transition-all flex flex-col justify-end"
+						"z-50 bg-black/50 fixed w-screen right-0 h-dvh backdrop-blur-xl transition-all flex flex-col justify-end"
 					)}
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}

@@ -1,6 +1,6 @@
 "use client";
 import clsx from "clsx";
-import { ArrowLeftIcon, ArrowRight, LoaderIcon, ShareIcon } from "lucide-react";
+import { ArrowLeftIcon, ArrowRight, LoaderIcon, ShareIcon } from "lucide-react"; // No ArrowLeftIcon in original, keep if intended elsewhere
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -9,7 +9,8 @@ import { useProduct } from "@/hooks/useProduct";
 import { catalog } from "@/entities/catalog";
 import { priceFormatter } from "@/model/functions";
 import { categories } from "@/entities/categories";
-import { Breadcrumb } from "@/components/custom-ui/breadcrumb";
+import { Breadcrumb } from "@/components/custom_ui/breadcrumb";
+import { Alert } from "@/components/custom_ui/alert";
 
 export default function ProductPageById() {
 	const { id } = useParams();
@@ -18,6 +19,9 @@ export default function ProductPageById() {
 	const [imageArray, setImageArray] = useState<string[]>(["/placeholder.svg"]);
 	const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);
 	const [imageLoading, setImageLoading] = useState<boolean>(true);
+
+	const [showShareAlert, setShowShareAlert] = useState<boolean>(false);
+	const [shareAlertMessage, setShareAlertMessage] = useState<string>("");
 
 	useEffect(() => {
 		if (product?.preview_image && product.preview_image.length > 0) {
@@ -54,7 +58,31 @@ export default function ProductPageById() {
 			 Я хочу заказать у вас ${category} - ${name}.
 		`;
 		const phone = "+77019265005";
+		// const whatsappUrl = `https://wa.me/${phone.replace(/\+/g, "")}?text=${encodeURIComponent(text)}`;
+		// window.open(whatsappUrl, "_blank");
+		console.log("Order text:", text, "Phone:", phone);
 	};
+
+	const handleShareClick = async () => {
+		const urlToShare = window.location.href;
+		try {
+			if (navigator.clipboard && navigator.clipboard.writeText) {
+				await navigator.clipboard.writeText(urlToShare);
+				setShareAlertMessage("Ссылка скопирована в буфер обмена");
+			} else {
+				setShareAlertMessage("Ссылка для копирования: " + urlToShare);
+			}
+		} catch (err) {
+			setShareAlertMessage(
+				"Не удалось скопировать ссылку. Попробуйте вручную."
+			);
+		}
+		setShowShareAlert(true);
+	};
+
+	useEffect(() => {
+		window.scrollTo({ top: 0, behavior: "smooth" });
+	}, [id]);
 
 	return (
 		<main className="container py-28">
@@ -77,7 +105,7 @@ export default function ProductPageById() {
 											? `${product.name} - Image ${selectedImageIndex + 1}`
 											: `Photo ${selectedImageIndex + 1}`
 									}
-									onLoadingComplete={() => setImageLoading(false)}
+									onLoad={() => setImageLoading(false)}
 									className={clsx(
 										"transition-all duration-300 object-contain",
 										{
@@ -94,6 +122,7 @@ export default function ProductPageById() {
 									</div>
 								)}
 							</div>
+
 							{/* Предпросмотр - навигация */}
 							{imageArray.length > 1 && (
 								<div className="w-full overflow-x-auto pb-1 scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-gray-100">
@@ -160,13 +189,14 @@ export default function ProductPageById() {
 							<div className="flex gap-[inherit]">
 								{/* Кнопка - заказать */}
 								<button
+									type="button"
 									className="basis-[7/8] py-4 w-full bg-res-green flex justify-center items-center gap-2 text-white rounded-xl hover:opacity-90"
 									onClick={() =>
 										handleOrder(
 											product.name,
 											categories.find(
 												(category) => category.id === product.category_id
-											)?.name || ""
+											)?.name || "товар" // Fallback for category name
 										)
 									}>
 									<p className="text-xl md:text-lg uppercase">Заказать</p>
@@ -174,13 +204,16 @@ export default function ProductPageById() {
 								</button>
 
 								{/* Кнопка - поделиться */}
-								<button className="min-h-20 md:min-h-max aspect-square h-full py-4 border-2 flex justify-center items-center rounded-xl hover:opacity-90 hover:bg-gray-100 text-res-green border-gray-300">
+								<button
+									type="button"
+									onClick={handleShareClick}
+									className="min-h-20 md:min-h-max aspect-square h-full py-4 border-2 flex justify-center items-center rounded-xl hover:opacity-90 hover:bg-gray-100 text-res-green border-gray-300">
 									<ShareIcon className="p-0.5" />
 								</button>
 							</div>
 
 							{/* Описание */}
-							{product.description.length > 0 && (
+							{product.description && product.description.length > 0 && (
 								<div className="space-y-4 md:space-y-2 mt-4">
 									<p className="text-res-green font-semibold text-2xl md:text-xl">
 										Описание
@@ -195,13 +228,15 @@ export default function ProductPageById() {
 							)}
 
 							{/* Характеристики */}
-							{product.advantages && (
+							{product.advantages && product.advantages.length > 0 && (
 								<div className="space-y-4 md:space-y-2 mt-4">
 									<p className="text-res-green font-semibold text-2xl md:text-xl">
 										Характеристики
 									</p>
 									<hr className="bg-res-green w-full h-[4px]" />
-									<ul className="list-disc disc">
+									<ul className="list-disc disc ml-5 space-y-1">
+										{" "}
+										{/* Added ml-5 and space-y-1 */}
 										{product.advantages.map((advantage, index) => (
 											<li
 												key={index}
@@ -214,13 +249,15 @@ export default function ProductPageById() {
 							)}
 
 							{/* Модификаций */}
-							{product.modifications && (
+							{product.modifications && product.modifications.length > 0 && (
 								<div className="space-y-4 md:space-y-2 mt-4">
 									<p className="text-res-green font-semibold text-2xl md:text-xl">
 										Модификаций
 									</p>
 									<hr className="bg-res-green w-full h-[4px]" />
-									<ul className="list-disc">
+									<ul className="list-disc ml-5 space-y-1">
+										{" "}
+										{/* Added ml-5 and space-y-1 */}
 										{product.modifications.map((modification, index) => (
 											<li
 												key={index}
@@ -242,15 +279,13 @@ export default function ProductPageById() {
 								<div className="">
 									<ul className="list-none space-y-1">
 										{/* Тип холодоснабжения */}
-										{product.cooling_details && (
+										{product.cooling_details?.cooling_type && (
 											<li className="flex justify-between text-xl md:text-lg">
 												<p className="text-res-green font-medium text-left">
 													Тип холодоснабжения
 												</p>
 												<p className="text-muted-foreground text-right">
-													{product.cooling_details.cooling_type
-														? product.cooling_details.cooling_type
-														: "Не указано"}
+													{product.cooling_details.cooling_type}
 												</p>
 											</li>
 										)}
@@ -318,13 +353,21 @@ export default function ProductPageById() {
 						</div>
 					</div>
 				) : (
-					<div className="w-dvw h-dvh">
-						<p>Не смогли найти данный продукт</p>
+					<div className="w-full h-[50vh] flex justify-center items-center">
+						<p className="text-2xl text-muted-foreground">
+							Не смогли найти данный продукт
+						</p>
 					</div>
 				)}
-
-				<div className=""></div>
 			</section>
+
+			{/* Рендер Alert */}
+			<Alert
+				show={showShareAlert}
+				message={shareAlertMessage}
+				onClose={() => setShowShareAlert(false)}
+				duration={5000}
+			/>
 		</main>
 	);
 }

@@ -135,3 +135,8 @@ body {
 .custom-scrollbar-thin::-webkit-scrollbar-thumb:hover {
 	background: rgba(255, 255, 255, 0.5);
 }
+
+/* selection */
+*::selection {
+	@apply text-black/75 bg-res-light-green/75;
+}

@@ -98,7 +98,6 @@ export const ProductModal = ({ productId, onClose }: Props) => {
 				<div className="flex flex-col md:flex-row gap-6 md:gap-10">
 					{/* Фото карточка - STICKY PART */}
 					<div className="md:sticky md:top-0 md:self-start basis-full md:basis-3/5 lg:basis-[55%] flex flex-col gap-3 md:gap-4 md:max-h-[calc(90vh-4rem)] md:py-2">
-						{" "}
 						{/* Главное фото */}
 						<div className="relative w-full aspect-[16/10] sm:aspect-[4/3] md:aspect-[16/10] bg-gray-50 rounded-lg overflow-hidden">
 							<Image

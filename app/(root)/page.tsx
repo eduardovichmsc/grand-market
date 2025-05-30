@@ -34,12 +34,7 @@ export default function Home() {
 			<section className="section-container">
 				{/* Сервисы - services */}
 				<div className="relative container mt-0 md:-mt-24 lg:-mt-36 xl:-mt-48">
-					{" "}
-					{/* Adjusted negative margin for better overlap */}
-					<span
-						className="absolute -top-24 md:-top-32"
-						id="services"></span>{" "}
-					{/* Adjusted anchor scroll position */}
+					<span className="absolute -top-24 md:-top-32" id="services"></span>{" "}
 					<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 md:gap-6">
 						{services.map((service, index) => (
 							<div
@@ -54,8 +49,6 @@ export default function Home() {
 									/>
 								</div>
 								<p className="font-semibold text-sm md:text-base xl:text-lg text-res-green line-clamp-2 leading-tight">
-									{" "}
-									{/* Removed uppercase, adjusted font size/weight */}
 									{service.title}
 								</p>
 							</div>
@@ -68,9 +61,7 @@ export default function Home() {
 					<span className="absolute -top-24 md:-top-32" id="advantages"></span>
 					<h2 className="section-title text-res-green mb-10 md:mb-12 lg:mb-16">
 						Наши преимущества:
-					</h2>{" "}
-					{/* Added margin-bottom */}
-					{/* Consider a more flexible height or min-height instead of fixed height if content varies */}
+					</h2>
 					<div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
 						{/* Card 1: Высокое качество */}
 						<div className="lg:row-span-2 bg-gray-900 rounded-2xl shadow-lg relative overflow-hidden group p-8 md:p-10 flex flex-col justify-end min-h-[300px] md:min-h-[400px] lg:min-h-[auto]">
@@ -82,7 +73,6 @@ export default function Home() {
 								alt="Высокое качество оборудования"
 							/>
 							<div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/25 to-transparent group-hover:from-black/50"></div>{" "}
-							{/* Gradient overlay for text readability */}
 							<div className="relative text-white space-y-2 md:space-y-3">
 								<h3 className="font-semibold text-2xl md:text-3xl lg:text-4xl">
 									Высокое качество
@@ -114,7 +104,6 @@ export default function Home() {
 							</div>
 						</div>
 
-						{/* Nested Grid for bottom two advantages */}
 						<div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
 							{/* Card 3: Доставка и установка */}
 							<div className="bg-gray-900 rounded-2xl shadow-lg relative overflow-hidden group p-6 md:p-8 flex flex-col justify-end min-h-[200px] md:min-h-[250px]">
@@ -172,7 +161,6 @@ export default function Home() {
 						</Link>
 					</div>
 					<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 text-white gap-10 xl:gap-4">
-						{/* map */}
 						<RecentProducts />
 					</div>
 				</div>
