@@ -119,8 +119,8 @@ export default function ProductsPage() {
 	// Ключ для анимации списка товаров.
 	// Изменение ключа перезапустит анимацию списка
 	const listAnimationKey = useMemo(() => {
-		return `${selectedCategory}-${selectedSubcategory}-${searchValue}-${currentPage}`;
-	}, [selectedCategory, selectedSubcategory, searchValue, currentPage]);
+		return `${selectedCategory}-${selectedSubcategory}-${currentPage}`;
+	}, [selectedCategory, selectedSubcategory, currentPage]);
 
 	// --- (useEffect) ---
 
@@ -202,9 +202,8 @@ export default function ProductsPage() {
 
 					<div className="md:basis-3/4 space-y-6 sm:space-y-8">
 						<p className="font-medium text-base sm:text-lg text-gray-700">
-							{visibleData.length > 0
-								? `Найдено ${visibleData.length} товаров`
-								: "По вашему запросу ничего не найдено."}
+							{visibleData.length > 0 &&
+								`Найдено ${visibleData.length} товаров`}
 						</p>
 
 						{/* Список товаров */}
