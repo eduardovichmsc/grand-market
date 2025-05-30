@@ -1,12 +1,28 @@
+export interface CategoryItemType {
+	id: number;
+	name: string;
+	code: string;
+}
+
+export interface SubcategoryItemType {
+	id: number;
+	parent_id: number;
+	name: string;
+	code: string;
+}
+
+// -------------------------------
 export interface CatalogItemType {
 	id: number;
 	category_id: number;
+	subcategory_id?: number;
 	purpose_id: number;
 	brand: string;
 	preview_image: string[];
 	name: string;
 	description: string;
 	advantages?: string[];
+	complects?: string[];
 	price?: {
 		start: number;
 		end?: number;

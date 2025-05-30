@@ -5,7 +5,8 @@ export const catalog: CatalogListType = {
 		// Холодильные горки
 		{
 			id: 0,
-			category_id: 0,
+			category_id: 2,
+			subcategory_id: 102,
 			purpose_id: 1,
 			brand: "MAGMA",
 			preview_image: [
@@ -30,7 +31,8 @@ export const catalog: CatalogListType = {
 		},
 		{
 			id: 1,
-			category_id: 0,
+			category_id: 2,
+			subcategory_id: 102,
 			purpose_id: 1,
 			brand: "MAGMA",
 			preview_image: [
@@ -48,7 +50,8 @@ export const catalog: CatalogListType = {
 		},
 		{
 			id: 2,
-			category_id: 0,
+			category_id: 2,
+			subcategory_id: 102,
 			purpose_id: 1,
 			brand: "MAGMA",
 			preview_image: [
@@ -66,7 +69,8 @@ export const catalog: CatalogListType = {
 		},
 		{
 			id: 3,
-			category_id: 0,
+			category_id: 2,
+			subcategory_id: 102,
 			purpose_id: 1,
 			brand: "MAGMA",
 			preview_image: [
@@ -84,7 +88,8 @@ export const catalog: CatalogListType = {
 		},
 		{
 			id: 4,
-			category_id: 0,
+			category_id: 2,
+			subcategory_id: 102,
 			purpose_id: 1,
 			brand: "MAGMA",
 			preview_image: [
@@ -102,7 +107,8 @@ export const catalog: CatalogListType = {
 		},
 		{
 			id: 5,
-			category_id: 0,
+			category_id: 2,
+			subcategory_id: 102,
 			purpose_id: 1,
 			brand: "MAGMA",
 			preview_image: [
@@ -119,7 +125,8 @@ export const catalog: CatalogListType = {
 		},
 		{
 			id: 6,
-			category_id: 0,
+			category_id: 2,
+			subcategory_id: 102,
 			purpose_id: 1,
 			brand: "MAGMA",
 			preview_image: [
@@ -137,7 +144,8 @@ export const catalog: CatalogListType = {
 		},
 		{
 			id: 7,
-			category_id: 0,
+			category_id: 2,
+			subcategory_id: 102,
 			purpose_id: 1,
 			brand: "MAGMA",
 			preview_image: [
@@ -155,7 +163,8 @@ export const catalog: CatalogListType = {
 		},
 		{
 			id: 8,
-			category_id: 0,
+			category_id: 2,
+			subcategory_id: 102,
 			purpose_id: 1,
 			brand: "MAGMA",
 			preview_image: [
@@ -173,7 +182,8 @@ export const catalog: CatalogListType = {
 		},
 		{
 			id: 9,
-			category_id: 0,
+			category_id: 2,
+			subcategory_id: 102,
 			purpose_id: 1,
 			brand: "MAGMA",
 			preview_image: [
@@ -191,7 +201,8 @@ export const catalog: CatalogListType = {
 		},
 		{
 			id: 10,
-			category_id: 0,
+			category_id: 2,
+			subcategory_id: 102,
 			purpose_id: 1,
 			brand: "MAGMA",
 			preview_image: [
@@ -209,7 +220,8 @@ export const catalog: CatalogListType = {
 		},
 		{
 			id: 11,
-			category_id: 0,
+			category_id: 2,
+			subcategory_id: 102,
 			purpose_id: 1,
 			brand: "MAGMA",
 			preview_image: [
@@ -376,6 +388,7 @@ export const catalog: CatalogListType = {
 		{
 			id: 19,
 			category_id: 2,
+			subcategory_id: 100,
 			purpose_id: 1,
 			brand: "MAGMA",
 			preview_image: [
@@ -394,6 +407,7 @@ export const catalog: CatalogListType = {
 		{
 			id: 20,
 			category_id: 2,
+			subcategory_id: 100,
 			purpose_id: 1,
 			brand: "MAGMA",
 			preview_image: [
@@ -412,6 +426,7 @@ export const catalog: CatalogListType = {
 		{
 			id: 21,
 			category_id: 2,
+			subcategory_id: 100,
 			purpose_id: 1,
 			brand: "MAGMA",
 			preview_image: [
@@ -431,7 +446,8 @@ export const catalog: CatalogListType = {
 		// Встроенный холод
 		{
 			id: 22,
-			category_id: 3,
+			category_id: 2,
+			subcategory_id: 101,
 			purpose_id: 1,
 			brand: "MAGMA",
 			preview_image: [
@@ -449,7 +465,8 @@ export const catalog: CatalogListType = {
 		},
 		{
 			id: 23,
-			category_id: 3,
+			category_id: 2,
+			subcategory_id: 101,
 			purpose_id: 1,
 			brand: "MAGMA",
 			preview_image: [
@@ -467,7 +484,8 @@ export const catalog: CatalogListType = {
 		},
 		{
 			id: 24,
-			category_id: 3,
+			category_id: 2,
+			subcategory_id: 101,
 			purpose_id: 1,
 			brand: "MAGMA",
 			preview_image: [
@@ -485,7 +503,8 @@ export const catalog: CatalogListType = {
 		},
 		{
 			id: 25,
-			category_id: 3,
+			category_id: 2,
+			subcategory_id: 101,
 			purpose_id: 1,
 			brand: "MAGMA",
 			preview_image: [
@@ -2017,8 +2036,6 @@ export const catalog: CatalogListType = {
 				material: "",
 			},
 		},
-
-		// Корзины
 		{
 			id: 110,
 			category_id: 6,
@@ -2032,6 +2049,604 @@ export const catalog: CatalogListType = {
 			name: "Корзина для торгового зала металлическая",
 			description:
 				"Металлические покупательские корзины для торгового зала становятся неотъемлемой частью современного ритейла, обеспечивая удобство и функциональность для покупателей. Эти корзины, выполненные из металла, идеально подходят для использования в магазинах, супермаркетах и других торговых точках. \nОдним из популярных вариантов является железная корзина с одной ручкой, которая позволяет легко переносить покупки. Металлическая покупательская корзина отличается высокой прочностью и долговечностью, что делает её идеальным выбором для интенсивного использования. В дополнение к этому, сетчатая металлическая корзина с двумя ручками обеспечивает дополнительный комфорт при транспортировке товаров.",
+			box_details: {
+				material: "",
+			},
+		},
+		{
+			id: 111,
+			category_id: 9,
+			purpose_id: 0,
+			brand: "Unknown",
+			preview_image: [
+				"https://www.unitrade-orel.ru/w/image/price/6af2de15a1c60a4a9a1dc73284c5f3df.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/1c925c87a43801477a0dc3efab8c24ec.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/fccae1a852da887fb392b16faad6b758.jpeg",
+			],
+			name: "Ролл - контейнер вкатываемый сетчатый передвижной (ROLLBOX)",
+			description:
+				"Контейнер на колёсах предназначен для хранения и транспортировки грузов как в нутри торгового предприятия или склада, так и для перевозки товаров транспортными компаниями. Контейнер данного типа используется в качестве многоразовой оборотной тары и благодаря своему конструктиву удобен для транспортировки в не загруженом виде без необходимости полной разборки, что позволяет существенно сэкономить время и рабочую площадь компании перевозчика.",
+			box_details: {
+				material: "",
+			},
+		},
+		{
+			id: 112,
+			category_id: 9,
+			purpose_id: 0,
+			brand: "Unknown",
+			preview_image: [
+				"https://www.unitrade-orel.ru/w/image/price/ddb10f38eeec43005b04abc1a6b8d108.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/ca5cb03430cdeb83b747a87c2a081b19.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/7f325556717e65dd78de64efde3880bf.jpeg",
+			],
+			name: "Контейнер сетчатый на колёсах с регулируемыми полками",
+			description:
+				"Металлический сетчатый контейнер предназначен для перевозки грузов на складе. Разборный, что упрощает его транспортировку.",
+			complects: [
+				"2  регулируемыми по высоте полками (можно оставить только одну)",
+				"откидной дверцей (снимается при необходимости)",
+				"4 колёсами F-75мм, 2 из которых имеют фиксирующий тормоз, что позволяет легко перемещать контейнер по торговому залу и устанавливать его в заданом положении без риска самопроизвольного отката",
+			],
+			box_details: {
+				box_len: "700 мм",
+				box_height: "800 мм",
+				material: "",
+			},
+		},
+		{
+			id: 113,
+			category_id: 9,
+			purpose_id: 0,
+			brand: "Unknown",
+			preview_image: [
+				"https://www.unitrade-orel.ru/w/image/price/5d93dfbb22915a4451142f5023e8caac.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/2018fdf769fe870281b1f35171b5bd96.jpeg",
+			],
+			name: "Контейнер сетчатый на колёсах без двери",
+			description:
+				"Металлический сетчатый контейнер предназначен для перевозки грузов на складе. Разборный, что упрощает его транспортировку.",
+			complects: [
+				"1  полкой, которую можно регулировать по высоте (при желании можно докомплектовать полками)",
+				"4 колёсами F-75мм, 2 из которых имеют фиксирующий тормоз, что позволяет легко перемещать контейнер по торговому залу и устанавливать его в заданом положении без риска самопроизвольного отката. ",
+			],
+			box_details: {
+				box_len: "700 мм",
+				box_height: "800 мм",
+				material: "",
+			},
+		},
+		{
+			id: 114,
+			category_id: 9,
+			purpose_id: 0,
+			brand: "Unknown",
+			preview_image: [
+				"https://www.unitrade-orel.ru/w/image/price/d1004e8953aa9bbc3cd895cf32608067.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/0176035a3d5b7a587990fda1290a3681.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/18b8ebbe02e120c4fd9aa43ece6350f4.jpeg",
+			],
+			name: "Тележка для консолидации с держателем ТСД",
+			description:
+				"Тележка для консолидации с держателем ТСД — это удобное и практичное решение для организации рабочего процесса на складе или в магазине. Эта тележка идеально подходит для хранения и транспортировки товаров различных размеров и веса. Благодаря сетчатым полкам товары хорошо просматриваются, что облегчает процесс инвентаризации и поиска нужных предметов. Прочные колёса обеспечивают надёжность и устойчивость тележки при движении, а удобная ручка делает транспортировку товаров максимально комфортной. На одной из сторон тележки закреплен держатель терменала считывания данных (ТСД).",
+			complects: [
+				"1  полкой, которую можно регулировать по высоте (при желании можно докомплектовать полками)",
+				"4 колёсами F-75мм, 2 из которых имеют фиксирующий тормоз, что позволяет легко перемещать контейнер по торговому залу и устанавливать его в заданом положении без риска самопроизвольного отката. ",
+			],
+			advantages: [
+				"количество полок — 4",
+				"материал полок — сетка",
+				"грузоподъёмность полки — 105 кг",
+				"грузоподъёмность тележки — 360 кг",
+				"размер полок — 1660 х 550 х 26 мм",
+				"колёса — платформенные, 5 шт., диаметр 125 мм",
+			],
+			box_details: {
+				box_len: "170 см",
+				box_height: "140 см",
+				material: "",
+			},
+		},
+		{
+			id: 115,
+			category_id: 9,
+			purpose_id: 0,
+			brand: "Unknown",
+			preview_image: [
+				"https://www.unitrade-orel.ru/w/image/price/507cb7046d28586b6e4d56e9d370ee15.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/791c4b57d18e9ea6a16ae0fed1665de5.jpeg",
+			],
+			name: "Платформенная тележка с зацепом",
+			description: "",
+			box_details: {
+				box_len: "1286 мм",
+				box_depth: "807 мм",
+				box_height: "885 мм",
+				material: "",
+			},
+		},
+		{
+			id: 116,
+			category_id: 9,
+			purpose_id: 0,
+			brand: "Unknown",
+			preview_image: [
+				"https://www.unitrade-orel.ru/w/image/price/ac5a0afb833bd0eea756076afea708e3.jpeg",
+			],
+			name: "Платформенная тележка с сетчатыми бортами",
+			description: "",
+			box_details: {
+				box_len: "1286 мм",
+				box_depth: "807 мм",
+				box_height: "885 мм",
+				material: "",
+			},
+		},
+		{
+			id: 117,
+			category_id: 9,
+			purpose_id: 0,
+			brand: "Unknown",
+			preview_image: [
+				"https://www.unitrade-orel.ru/w/image/price/6fc2230527b222868cab63f40f950820.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/c58db1cadbf6d0ae16199de8c9647ccd.jpeg",
+			],
+			name: "Ролл - контейнер сетчатый передвижной (ROLLBOX)",
+			description:
+				"Сетчатые контейнеры на крлёсах используются для транспортировки и хранения различных грузов. Отличное решение для складских помещений, торговых залов и производственных участков. (в стандартном комплекте - основание, 2 боковины, 1 полка. Возможна компл-ция дополнительными полками)",
+			box_details: {
+				material: "",
+			},
+		},
+		{
+			id: 118,
+			category_id: 9,
+			purpose_id: 0,
+			brand: "Unknown",
+			preview_image: [
+				"https://www.unitrade-orel.ru/image/price/9585c92897a46e4daa566a2dc0f6b115.gif",
+			],
+			name: "Ролл-контейнер сетчатый быстроразборный",
+			description: "",
+			box_details: {
+				box_len: "600 мм",
+				box_depth: "800 мм",
+				box_height: "1800 мм",
+				material: "",
+			},
+		},
+		{
+			id: 119,
+			category_id: 9,
+			purpose_id: 0,
+			brand: "Unknown",
+			preview_image: [
+				"https://www.unitrade-orel.ru/w/image/price/ba6a3c97365ac673b5169bcfa73bbfa1.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/c69658e5187aae8635dc0be842edc176.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/a90f03e6278c84d87b5121bab4232500.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/97b8b58ca1aef91c6ee02aa04947294c.jpeg",
+			],
+			name: 'Корзина для стеллажей "MEGA" G 370 - 470',
+			description:
+				'Корзина "Mega" состоит из металлической проволоки и полос. Подходит для комплектации торгового оборудования. \nТак как сетчатые корзины не имеют зафиксированных боковых стенок их можно установить вплотную, что позволит сделать 1 длинный стеллаж с продукцией. Данный тип корзин используют для выкладки товаров в магазинах продуктов и одежы. За счет жесткого пластинчатого каркаса  (состоит из полос, на которые крепятся корзины) выдерживает больший вес. \nВ комплекте к корзине есть возможность преобрести стенки и перегородки (изначально в комплекте не идут). \nПерегородки можно вставить в любом количестве (на любом расстоянии друг от друга между прутками проволоки).',
+			box_details: {
+				box_len: "1000 / 1250 мм",
+				box_depth: "466 мм",
+				box_height: "223 мм",
+				material: "",
+			},
+		},
+		{
+			id: 120,
+			category_id: 9,
+			purpose_id: 0,
+			brand: "Unknown",
+			preview_image: [
+				"https://www.unitrade-orel.ru/w/image/price/ca50a4227358b3c3eda827ca95ec8c66.jpeg",
+			],
+			name: "Корзина стеллажная на кронштейнах H",
+			description:
+				"Корзина для стеллажей данного типа имеет кронштейны на задней стенке для установки ее в торговых стеллажах с перфорацией.",
+			box_details: {
+				box_len: "665 / 1000 / 1250 мм",
+				box_depth: "370 / 470 мм",
+				box_height: "160 / 320 мм",
+				material: "",
+			},
+		},
+		{
+			id: 121,
+			category_id: 9,
+			purpose_id: 0,
+			brand: "Unknown",
+			preview_image: [
+				"https://www.unitrade-orel.ru/w/image/price/aa19d978e99acd19baa92f19813100a5.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/56ef57e476e1eb698207975b4760ba0e.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/741cac910788adc7aaf46cee72a519d4.jpeg",
+			],
+			name: "Корзины стеллажные штабелируемые в ассортименте",
+			description:
+				"Металлическая корзина ставится на полку стеллажа. Верхние крючки дают возможность ставить корзины друг на друга. Корзины могут быть использованы в хозяйственных нуждах для хранения картошки и других овощей в погребах и на балконе. Штабелируема конструкиця позволяет выбрать варианты высоты и соорудить подобие стеллажа.",
+			box_details: {
+				box_len: "490 / 640 / 980 / 1200 мм",
+				box_depth: "400 / 500 / 600 / 700 / 800 / 900 мм",
+				box_height: "200 / 250 / 300 мм",
+				material: "",
+			},
+		},
+		{
+			id: 122,
+			category_id: 9,
+			purpose_id: 0,
+			brand: "Unknown",
+			preview_image: [
+				"https://www.unitrade-orel.ru/w/image/price/269cd4d29819c4e212cdd75e312131be.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/51e09ef53d6c94a90f9498666ba9ae71.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/0446178de0ea9a96de5df16743ca6a44.jpeg",
+			],
+			name: "Корзина навесная на перфорацию и эконом панель",
+			description:
+				"Сетчатая корзина на перфорацию сделана из металлической проволоки. Подойдет для комплектации магазинов одежды, нижнего белья, товаров для дома.",
+			box_details: {
+				box_len: "460 мм",
+				box_depth: "130 мм",
+				box_height: "345 мм",
+				material: "",
+			},
+		},
+		{
+			id: 123,
+			category_id: 9,
+			purpose_id: 0,
+			brand: "Unknown",
+			preview_image: [
+				"https://www.unitrade-orel.ru/w/image/price/2921b53705fdc7595b4c9f6058bfe9ef.jpeg",
+			],
+			name: "Корзина стеллажная, устанавливается на кронштейн",
+			description:
+				"Металлические сетчатые карзины устанавливаются на штабелируемые крепления с перфорацией. Крепятся за счет ушек внизу корзины. Корзины для торгового оборудования могут быть реализованы в разных цветах из каталога RAL от 500 шт.",
+			box_details: {
+				box_len: "665 / 1000 / 1250 / 1330 мм",
+				box_depth: "370 / 470 мм",
+				box_height: "160 / 320 мм",
+				material: "",
+			},
+		},
+		{
+			id: 124,
+			category_id: 9,
+			purpose_id: 0,
+			brand: "Unknown",
+			preview_image: [
+				"https://www.unitrade-orel.ru/w/image/price/89be33e1f43a1d7c685028185a284329.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/7bc232367dc4319a3507f3ad5cc4bdbc.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/92ae4a23c77a74cca39a65a76dc58361.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/791a655628e751edb754505b90fa265c.jpeg",
+			],
+			name: "Стеллаж прикассовый СДЖ разборный, перфорированный",
+			description:
+				"Прикассовый стенд представляет собой- прилавок  или так называемую торговую витрину с сетчатыми навесными корзинами  и крючками.  Комплектация прикассовой стойки может быть различна, подробности уточняйте у менеджеров.",
+			box_details: {
+				box_len: "665 мм",
+				box_depth: "400 мм",
+				box_height: "1655 мм",
+				material: "",
+			},
+		},
+		{
+			id: 125,
+			category_id: 10,
+			purpose_id: 0,
+			brand: "Unknown",
+			preview_image: [
+				"https://www.unitrade-orel.ru/w/image/price/5dd1050cde901b32593c8144e5c18884.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/58523510d1e5bedbbf4677b5b3898d3d.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/c468b975f138d55097502690d72409a8.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/d3b4792cd902f4165e0a54a8e2350ff4.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/6d0982860c384007c963715ed1db97a1.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/4521f7244f51e6b4f323dcfee2e5489f.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/d7ebfcee2a19302f9bcb1a206987b4a3.jpeg",
+			],
+			name: "Прикассовая стойка",
+			description:
+				"Основным преимуществом торговых стоек прикассового типа является их удобство для покупателей. Они позволяют быстро и легко выбрать нужныий товар. Кроме того, такие стеллажи позволяют увеличить объем продаж, так как  привлекают внимание покупателей и увеличивают  спрос. \n Хотим представить вашему вниманию прикассовую стойку конструктор с навесными корзинами для выкладки товара. Данное торговое оборудование можно разместить  в прикассовой зоне или произвольно в торговом зале.  Стеллаж может  состоять из одной ,двух и более секций. Корзины могут располагаться с обеих сторон. \nДанная стойка  может быть использована в качестве суперструктуры  и устанавливается между морозильными ларями с одной или двух сторон в зависимости от проходимости и расположения касс. Данные секции доукомплектовываются , как правило,  3-мя верхними корзинами и крючками. По желанию заказчика  комплектация прикассовой стойки может быть изменена. \nКорзины имеют удобные кронштейны, которые позволяют регулировать угол наклона  в  60°,75°, 90° градусов.",
+			complects: [
+				"два  блока  двойных крючков крючков длинной 200мм (5 крючков в блоке)",
+				'Корзина  "малая" 10шт. (ШхГхВ  586,5х289,5х65 мм) угол наколона  регулируется от 60-90 градусов',
+				'Корзина "большая" 6 шт. (ШхГхВ 586,5х328,5х65 мм) угол наклона регулируется от 75-90 градусов',
+			],
+			box_details: {
+				box_len: "1216 мм",
+				box_depth: "400 мм",
+				box_height: "1679 мм",
+				material: "",
+			},
+		},
+		{
+			id: 126,
+			category_id: 10,
+			purpose_id: 0,
+			brand: "Unknown",
+			preview_image: [
+				"https://www.unitrade-orel.ru/w/image/price/0a0aa6bbbefe8c2e8c267b5e48c369cb.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/fe01e3d3f3fa90dfa08dbfc08908fbed.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/2cb3327f6630c50a4ed5363bfabbec34.jpeg",
+			],
+			name: "Стойка прикассовая торцевая с радиусными полками",
+			description:
+				'Предназначена для выкладки товара в прикассовой зоне, оборудована торцевыми радиусными полками с разделителями, а так же 6  прямыми полками. Возможна доукомплектация  (3мя полками) в виде "Острова" в  местах с большой  проходимостью  в центре торгового зала.',
+			complects: [
+				"два  блока  двойных крючков крючков длинной 200мм (5 крючков в блоке)",
+				'Корзина  "малая" 10шт. (ШхГхВ  586,5х289,5х65 мм) угол наколона  регулируется от 60-90 градусов',
+				'Корзина "большая" 6 шт. (ШхГхВ 586,5х328,5х65 мм) угол наклона регулируется от 75-90 градусов',
+			],
+			box_details: {
+				box_len: "1105 мм",
+				box_depth: "1000 мм",
+				box_height: "1600 мм",
+				material: "",
+			},
+		},
+		{
+			id: 140,
+			category_id: 10,
+			purpose_id: 0,
+			brand: "Unknown",
+			preview_image: [
+				"https://www.unitrade-orel.ru/w/image/price/803d1150c0fcbc70aaf69423ffa0cb30.jpeg",
+			],
+			name: "Стойка конусная пятиярусная радиальная",
+			description:
+				"Металлическая круглая пятиярусная  стойка - предназначена для островной выкладки товара в центре торгового зала , а за счет удобного регулирования полок по высоте и  возможности поворота  вокруг своей оси,  она  прекрасно  впишется  в любой угол магазина. Сетчатые вращающиеся полки имеют различные диаметры в зависимости от высоты, при этом стеллаж -стойка  имеет конусную форму, что очень удобно располагать на ней как крупные вещи так и мелочевку. Напольная стойка имеет  колесные опоры, что обеспечивает ее мобильность в торговом зале. Стенд-стойка пристенная, островная радиальная имеет пирамидальную форму и часто используется  для распродаж.",
+			box_details: {
+				box_len: "1650 мм",
+				box_height: "710 мм",
+				material: "",
+			},
+		},
+		{
+			id: 127,
+			category_id: 10,
+			purpose_id: 0,
+			brand: "Unknown",
+			preview_image: [
+				"https://www.unitrade-orel.ru/w/image/price/04200e32d0a97c7bb1b4483d230f0f3d.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/66c2ac0d0da93ef8025aa4a682c60b8c.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/f06c85d00c17f2cfb88d873389362534.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/e7c83a7313ea594ccb06270a75481956.jpeg",
+			],
+			name: "Стойка торговая с регулируемым дном и 3-мя корзинами",
+			description:
+				"Разборная конструкция, лёгкость сборки и транспортировки,многоярусность и как следствие- повышенная вместимость при относительно малой занимаемой площади торгового зала. В конструкции предусмотрены: стальной топер (фриз), возможна комплектация пластиковым полочным ценникодержателем красного цвета -4 штуки на стенд. Применим практически во всех сферах розничной торговли: продукты питания, бытовая химия, строительные и отделочные материалы, электробытовые товары и многое другое.",
+			complects: [
+				"каркас разборный 1800 мм",
+				'"большая" корзина 600*400*800 мм с регулируемым дном',
+				'3 "малые"  навесные корзины 570*240*70*150 мм',
+				"топер ( фриз ) из стального листа 600*200 мм",
+			],
+			box_details: {
+				box_len: "600 мм",
+				box_depth: "400 мм",
+				box_height: "1800 мм",
+				material: "",
+			},
+		},
+		{
+			id: 128,
+			category_id: 9,
+			purpose_id: 0,
+			brand: "Unknown",
+			preview_image: [
+				"https://www.unitrade-orel.ru/w/image/price/116911000507695b015aefb50570d571.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/48bc49574d8362718bc4ed7d190ea8a4.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/290327e89bc15ee4b3d5e3a5b1647a55.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/ebc197703546dbfdf96fd20106d7ed60.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/61d3af6ffa72911b37a07880a9d4644c.jpeg",
+			],
+			name: "Надстройка над бонетой (суперструктура)",
+			description:
+				"Надстройка над холодильным ларем может быть выполнена в разных размерах.",
+			box_details: {
+				box_len: "1230 мм",
+				box_depth: "590 мм",
+				box_height: "1350 мм",
+				material: "",
+			},
+		},
+		{
+			id: 129,
+			category_id: 10,
+			purpose_id: 0,
+			brand: "Unknown",
+			preview_image: [
+				"https://www.unitrade-orel.ru/w/image/price/7514749c167b9389a0da0d5b971b0783.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/d212eba386fbefe17159ebd744c00801.jpeg",
+			],
+			name: "Стойка под воду для 4 бутылей 19 литров",
+			description:
+				"Удобная и компактная металлическая подставка для воды предназначена для  хранения 4-х бутылей емкостью бака 19 литров  на минимальной площади для быстрой заправки кулера",
+			advantages: [
+				"Легкая цельносварная конструкция  пруток толщиной D=8мм",
+				"Максимальная нагрузка на стойку до 100 кг",
+			],
+			box_details: {
+				box_len: "418 мм",
+				box_depth: "302 мм",
+				box_height: "1170 мм",
+				material: "",
+			},
+		},
+		{
+			id: 130,
+			category_id: 5,
+			purpose_id: 0,
+			brand: "Unknown",
+			preview_image: [
+				"https://www.unitrade-orel.ru/w/image/price/4457203a3ae04a02f27aecdb9024b8fe.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/d2756b088503ec6efe4307029baee4ce.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/f960b17612b099fc2625ee91aa743098.jpeg",
+			],
+			name: "Овощной стеллаж М-1",
+			description:
+				"Овощной металлический стеллаж-развал предназначен для выкладки овощей и фруктов в торговом зале.",
+			box_details: {
+				box_len: "1220 мм",
+				box_depth: "700 мм",
+				box_height: "1550 мм",
+				material: "",
+			},
+		},
+		{
+			id: 131,
+			category_id: 5,
+			purpose_id: 0,
+			brand: "Unknown",
+			preview_image: [
+				"https://www.unitrade-orel.ru/w/image/price/88fc77207dcdb7c8949fc924a02660f7.jpeg",
+				"",
+			],
+			name: "Овощной стеллаж М-2",
+			description:
+				"Овощной металлический стеллаж-развал предназначен для выкладки овощей и фруктов в торговом зале.",
+			box_details: {
+				box_len: "1600 мм",
+				box_depth: "700 мм",
+				box_height: "1550 мм",
+				material: "",
+			},
+		},
+		{
+			id: 132,
+			category_id: 5,
+			purpose_id: 0,
+			brand: "Unknown",
+			preview_image: [
+				"https://www.unitrade-orel.ru/w/image/price/86df55a5ea2a17f45c818c65aec790c7.jpeg",
+			],
+			name: 'Стеллаж "РАЗВАЛ"',
+			description:
+				"Производство торгового оборудование под заказ от 5 шт. Овощьные стеллажи, прикассовые стойки манежи для распродаж.",
+			box_details: {
+				box_len: "1600 мм",
+				box_depth: "700 мм",
+				box_height: "1550 мм",
+				material: "",
+			},
+		},
+		{
+			id: 133,
+			category_id: 5,
+			purpose_id: 0,
+			brand: "Unknown",
+			preview_image: [
+				"https://www.unitrade-orel.ru/w/image/price/3691dce04adcfe2a457398e404e8e443.jpeg",
+			],
+			name: "Овощной стеллаж ГМ 3",
+			description:
+				"Предназначен для выкладки продуктов с удобным расположением лотков",
+			box_details: {
+				box_len: "1300 мм",
+				box_depth: "1200 мм",
+				box_height: "1400 мм",
+				material: "",
+			},
+		},
+		{
+			id: 134,
+			category_id: 10,
+			purpose_id: 0,
+			brand: "Unknown",
+			preview_image: [
+				"https://www.unitrade-orel.ru/w/image/price/03bd566dde613947d0a5e87b964b5c9a.jpeg",
+			],
+			name: 'Стойка  напольная для газет и журналов "HALO"',
+			description:
+				'Стойка  напольная металлическая для газет и журналов  "HALO"  пп-005 (HAL01) можно использовать, как презентационную стойку для газет и журналов и других POS материалов.',
+			box_details: {
+				box_len: "300 мм",
+				box_depth: "400 мм",
+				box_height: "1040 мм",
+				material: "",
+			},
+		},
+		{
+			id: 135,
+			category_id: 10,
+			purpose_id: 0,
+			brand: "Unknown",
+			preview_image: [
+				"https://www.unitrade-orel.ru/w/image/price/b299e02fad27330d87e345087c8e82b6.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/c054381330820cd36beae7445e157072.jpeg",
+			],
+			name: 'Стойка "ROKITA" формат А4+',
+			description:
+				"Расширенный диапазон форматов полиграфической продукции обеспечивается открытой конструкцией сетчатых карманов. Успешно подойдёт для печатной продукции нестандартного размера, в таком формате выходят многие современные журналы, рекламные проспекты. Компактна, широко применима от магазинов и выставок до гостиниц и салонов красоты. Подойдёт книжным магазинам для экспозиции книжных новинок и распродаж.",
+			box_details: {
+				box_len: "300 мм",
+				box_depth: "400 мм",
+				box_height: "1040 мм",
+				material: "",
+			},
+		},
+		{
+			id: 136,
+			category_id: 10,
+			purpose_id: 0,
+			brand: "Unknown",
+			preview_image: [
+				"https://www.unitrade-orel.ru/w/image/price/06412360789ef24119b93c8d870aa116.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/b3103f1bf72b8cbfad1105067c6f6d87.jpeg",
+			],
+			name: 'Стойка для печатной продукции "ПИХТА"',
+			description:
+				'Стойка металлическая  для печатной продукции "ПИХТА" применяется, как презентационная стойка для газет и журналов  конвертов и других POS материалов.',
+			box_details: {
+				box_len: "250 мм",
+				box_depth: "250 мм",
+				box_height: "1900 мм",
+				material: "",
+			},
+		},
+		{
+			id: 137,
+			category_id: 11,
+			purpose_id: 0,
+			brand: "Unknown",
+			preview_image: [
+				"https://www.unitrade-orel.ru/w/image/price/17f70336de4995c6a50859c8fa030be0.jpeg",
+			],
+			name: "Подставка для обуви наклонная 10 см",
+			description: "",
+			box_details: {
+				material: "",
+			},
+		},
+		{
+			id: 138,
+			category_id: 11,
+			purpose_id: 0,
+			brand: "Unknown",
+			preview_image: [
+				"https://www.unitrade-orel.ru/w/image/price/efa0ef41fb754b94337687cdc4ba0c95.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/a866d9fa979f44dbb983772a89781629.jpeg",
+			],
+			name: "Подставка для детской обуви подошвой вверх",
+			description: "",
+			box_details: {
+				material: "",
+			},
+		},
+		{
+			id: 139,
+			category_id: 11,
+			purpose_id: 0,
+			brand: "Unknown",
+			preview_image: [
+				"https://www.unitrade-orel.ru/w/image/price/8c12939f08d00d1a48ce272b8756ffb3.jpeg",
+				"https://www.unitrade-orel.ru/w/image/price/e8e5cbdd6bf297b3c58b7baf1adb207c.jpeg",
+			],
+			name: "Подставка для обуви подошвой вверх",
+			description: "",
 			box_details: {
 				material: "",
 			},

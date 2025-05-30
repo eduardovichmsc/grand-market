@@ -22,7 +22,7 @@ const services = [
 	{ title: "Монтаж и доставка", image: "/services/truck.svg" },
 ];
 
-const SwiperComponent = dynamic(() => import("@/components/SwiperComponent"), {
+const Carousel = dynamic(() => import("@/components/sections/carousel"), {
 	ssr: true,
 });
 
@@ -33,23 +33,29 @@ export default function Home() {
 
 			<section className="section-container">
 				{/* Сервисы - services */}
-				<div className="relative container mt-0 md:-mt-36 xl:-mt-60">
-					<span className="absolute -top-60" id="services"></span>
-
-					<div className="grid grid-cols-2 sm:grid-cols-5 gap-5">
+				<div className="relative container mt-0 md:-mt-24 lg:-mt-36 xl:-mt-48">
+					{" "}
+					{/* Adjusted negative margin for better overlap */}
+					<span
+						className="absolute -top-24 md:-top-32"
+						id="services"></span>{" "}
+					{/* Adjusted anchor scroll position */}
+					<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 md:gap-6">
 						{services.map((service, index) => (
 							<div
 								key={index}
-								className="bg-white aspect-square rounded-2xl shadow-xl flex flex-col justify-center items-center gap-4">
-								<div className="w-20 xl:w-28 aspect-square relative">
+								className="bg-white aspect-[3/4] sm:aspect-square rounded-xl md:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 flex flex-col justify-center items-center gap-3 md:gap-4 p-4 text-center">
+								<div className="w-16 h-16 md:w-20 md:h-20 xl:w-24 xl:h-24 relative">
 									<Image
 										src={service.image}
 										fill
-										objectFit="contain"
+										style={{ objectFit: "contain" }}
 										alt={service.title}
 									/>
 								</div>
-								<p className="uppercase font-medium text-lg xl:text-xl text-center text-res-green line-clamp-2 w-[95%]">
+								<p className="font-semibold text-sm md:text-base xl:text-lg text-res-green line-clamp-2 leading-tight">
+									{" "}
+									{/* Removed uppercase, adjusted font size/weight */}
 									{service.title}
 								</p>
 							</div>
@@ -59,78 +65,91 @@ export default function Home() {
 
 				{/* Преимущества - advantages */}
 				<div className="relative container">
-					<span className="absolute -top-60" id="advantages"></span>
-
-					<p className="section-title text-res-green">Наши преимущества:</p>
-					<div className="inner grid *:row-span-1 grid-cols-1 lg:grid-cols-2 grid-rows-2 lg:grid-rows-1 gap-6 md:gap-8 lg:gap-10 xl:gap-14 2xl:gap-10 h-[70rem] md:h-[50rem]">
-						<div className="lg:row-span-2 col-span-1 bg-black rounded-2xl shadow-md relative overflow-hidden flex flex-col justify-center items-center group">
+					<span className="absolute -top-24 md:-top-32" id="advantages"></span>
+					<h2 className="section-title text-res-green mb-10 md:mb-12 lg:mb-16">
+						Наши преимущества:
+					</h2>{" "}
+					{/* Added margin-bottom */}
+					{/* Consider a more flexible height or min-height instead of fixed height if content varies */}
+					<div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+						{/* Card 1: Высокое качество */}
+						<div className="lg:row-span-2 bg-gray-900 rounded-2xl shadow-lg relative overflow-hidden group p-8 md:p-10 flex flex-col justify-end min-h-[300px] md:min-h-[400px] lg:min-h-[auto]">
 							<Image
 								src={"/advantages/high-q.png"}
 								fill
-								objectFit="cover"
-								className="absolute transition group-hover:opacity-100 opacity-90"
-								alt=""
+								style={{ objectFit: "cover" }}
+								className="absolute inset-0 transition-all duration-500 ease-in-out opacity-80 group-hover:opacity-100 group-hover:scale-105"
+								alt="Высокое качество оборудования"
 							/>
-							<div className="relative text-center text-white px-[5%] space-y-2">
-								<p className="font-medium text-3xl md:text-4xl">
+							<div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/25 to-transparent group-hover:from-black/50"></div>{" "}
+							{/* Gradient overlay for text readability */}
+							<div className="relative text-white space-y-2 md:space-y-3">
+								<h3 className="font-semibold text-2xl md:text-3xl lg:text-4xl">
 									Высокое качество
-								</p>
-								<p className="font-thin text-2xl md:text-2xl">
+								</h3>
+								<p className="text-gray-200 text-base md:text-lg lg:text-xl leading-relaxed">
 									Надежные материалы и передовые технологии для долговечной
 									работы.
 								</p>
 							</div>
 						</div>
 
-						<div className="bg-black rounded-2xl shadow-md relative overflow-hidden flex flex-col justify-center items-center group">
+						{/* Card 2: Квалифицированные специалисты */}
+						<div className="bg-gray-900 rounded-2xl shadow-lg relative overflow-hidden group p-8 md:p-10 flex flex-col justify-end min-h-[300px] md:min-h-[250px]">
 							<Image
 								src={"/advantages/qual.png"}
 								fill
-								objectFit="cover"
-								className="absolute transition group-hover:opacity-100 opacity-90"
-								alt=""
+								style={{ objectFit: "cover" }}
+								className="absolute inset-0 transition-all duration-500 ease-in-out opacity-80 group-hover:opacity-100 group-hover:scale-105"
+								alt="Квалифицированные специалисты"
 							/>
-							<div className="relative text-center text-white px-[5%] space-y-2">
-								<p className="font-medium text-3xl md:text-4xl">
+							<div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/25 to-transparent group-hover:from-black/50"></div>
+							<div className="relative text-white space-y-2 md:space-y-3">
+								<h3 className="font-semibold text-2xl md:text-3xl">
 									Квалифицированные специалисты
-								</p>
-								<p className="font-thin text-2xl md:text-2xl">
+								</h3>
+								<p className="text-gray-200 text-base md:text-lg leading-relaxed">
 									Профессионалы с опытом для точных и эффективных решений.
 								</p>
 							</div>
 						</div>
 
-						<div className="contents md:grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-							<div className="bg-black group rounded-2xl shadow-md relative overflow-hidden flex flex-col justify-center items-center h-48 lg:h-64 xl:h-72">
+						{/* Nested Grid for bottom two advantages */}
+						<div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
+							{/* Card 3: Доставка и установка */}
+							<div className="bg-gray-900 rounded-2xl shadow-lg relative overflow-hidden group p-6 md:p-8 flex flex-col justify-end min-h-[200px] md:min-h-[250px]">
 								<Image
 									src={"/advantages/installment.png"}
 									fill
-									objectFit="cover"
-									className="absolute transition group-hover:opacity-100 opacity-90"
-									alt=""
+									style={{ objectFit: "cover" }}
+									className="absolute inset-0 transition-all duration-500 ease-in-out opacity-80 group-hover:opacity-100 group-hover:scale-105"
+									alt="Доставка и установка"
 								/>
-								<div className="relative text-center text-white px-[5%] space-y-2">
-									<p className="font-medium sm:text-3xl text-2xl">
+								<div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/25 to-transparent group-hover:from-black/50"></div>
+								<div className="relative text-white space-y-1 md:space-y-2">
+									<h3 className="font-semibold text-xl md:text-2xl">
 										Доставка и установка
-									</p>
-									<p className="font-thin text-2xl md:text-xl xl:text-base">
+									</h3>
+									<p className="text-gray-200 text-sm md:text-base leading-relaxed">
 										Быстрая и безопасная доставка с профессиональной установкой.
 									</p>
 								</div>
 							</div>
-							<div className="bg-black group rounded-2xl shadow-md relative overflow-hidden flex flex-col justify-center items-center h-48 lg:h-64 xl:h-72">
+							{/* Card 4: 3D дизайн проект */}
+							<div className="bg-gray-900 rounded-2xl shadow-lg relative overflow-hidden group p-6 md:p-8 flex flex-col justify-end min-h-[200px] md:min-h-[250px]">
 								<Image
 									src={"/advantages/3d.png"}
 									fill
-									objectFit="cover"
-									className="absolute transition group-hover:opacity-100 opacity-90"
-									alt=""
+									style={{ objectFit: "cover" }}
+									className="absolute inset-0 transition-all duration-500 ease-in-out opacity-80 group-hover:opacity-100 group-hover:scale-105"
+									alt="3D дизайн проект"
 								/>
-								<div className="relative text-center text-white px-[5%] space-y-2">
-									<p className="font-medium sm:text-3xl text-2xl">
+								<div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/25 to-transparent group-hover:from-black/50"></div>
+								<div className="relative text-white space-y-1 md:space-y-2">
+									<h3 className="font-semibold text-xl md:text-2xl">
 										3D дизайн проект
-									</p>
-									<p className="font-thin text-2xl md:text-xl xl:text-base">
+									</h3>
+									<p className="text-gray-200 text-sm md:text-base leading-relaxed">
 										Визуализация будущего оборудования для точного планирования.
 									</p>
 								</div>
@@ -152,7 +171,7 @@ export default function Home() {
 							<ChevronRight className="text-res-green mt-1" />
 						</Link>
 					</div>
-					<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 text-white gap-10 xl:gap-5">
+					<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 text-white gap-10 xl:gap-4">
 						{/* map */}
 						<RecentProducts />
 					</div>
@@ -234,8 +253,10 @@ export default function Home() {
 
 				<Map />
 
-				<SwiperComponent sectionTitle="Наши клиенты" array={clients} />
-				<SwiperComponent sectionTitle="Наши партнеры" array={partners} />
+				<div className="">
+					<Carousel sectionTitle="Наши клиенты" array={clients} />
+					<Carousel sectionTitle="Наши партнеры" array={partners} />
+				</div>
 			</section>
 		</main>
 	);

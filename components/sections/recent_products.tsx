@@ -3,56 +3,60 @@
 
 import { catalog } from "@/entities/catalog";
 import { priceFormatter } from "@/model/functions";
-import axios from "axios";
-import { Plus } from "lucide-react";
+import { Plus, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-
-// const newProducts = [
-// 	{ title: "Brenta SG", price: "150 000" },
-// 	{ title: "Artica", price: "200 000" },
-// 	{ title: "Nordica", price: "350 000" },
-// 	{ title: "Berg", price: "150 000" },
-// ];
 
 export const RecentProducts = () => {
 	const router = useRouter();
 
-	const newProducts = catalog.list.slice(-4);
+	const recentProducts =
+		catalog.list.length >= 8
+			? catalog.list.slice(4, 8)
+			: catalog.list.slice(0, 4);
+
 	const handleClick = (id: number) => {
-		router.push("/products/" + id);
+		router.push(`/products?productId=${id}`);
 	};
 
 	return (
 		<>
-			{newProducts.map((product, index) => (
+			{recentProducts.map((product) => (
 				<div
-					key={index}
-					className="ease-in-out duration-300 transition-all hover:p-4 hover:bg-white/10 space-y-4 rounded-2xl group cursor-pointer"
-					onClick={() => handleClick(product.id)}>
-					<div className="relative w-full aspect-square xl:aspect-[6/7] rounded-xl bg-white">
+					key={product.id}
+					className="group/card bg-white/5 hover:bg-white/10 rounded-2xl p-4 sm:p-5 transition-all duration-300 ease-in-out cursor-pointer flex flex-col shadow-sm hover:shadow-lg"
+					onClick={() => handleClick(product.id)}
+					tabIndex={0}>
+					{/* Image Container */}
+					<div className="relative w-full aspect-square xl:aspect-[6/7] rounded-xl bg-white overflow-hidden mb-4">
 						<Image
-							src={product.preview_image[0]}
-							objectFit="contain"
-							alt={product.name}
+							src={product.preview_image?.[0] || "/placeholder.svg"}
+							alt={product.name || "Product Image"}
 							fill
-							className="p-4"
+							style={{ objectFit: "contain" }}
+							className="p-3 sm:p-4 transition-transform duration-300 ease-in-out group-hover/card:scale-105"
 						/>
 					</div>
-					<div className="flex justify-between">
-						<div className="space-y-1">
-							<p className="uppercase font-medium text-4xl xl:text-3xl 2xl:text-2xl line-clamp-1">
-								{product.name}
-							</p>
-							<p className="duration-300 transition-all uppercase text-2xl 2xl:text-xl text-res-grey group-hover:text-white">
+
+					{/* Текст и контент */}
+					<div className="flex flex-col flex-grow justify-between">
+						<div className="mb-3">
+							<h3 className="font-semibold text-white text-lg sm:text-xl xl:text-2xl line-clamp-2 leading-tight mb-1">
+								{product.name || "Unnamed Product"}
+							</h3>
+							<p className="text-res-grey group-hover/card:text-gray-200 text-base sm:text-lg transition-colors duration-300">
 								{product.price?.start
-									? `${priceFormatter(product.price?.start)} ₸`
-									: "Не указано"}
+									? `${priceFormatter(product.price.start)} ₸`
+									: "Цена по запросу"}
 							</p>
 						</div>
-						<button className="aspect-square h-full relative rounded-2xl bg-res-light-green">
-							<Plus className="text-res-green size-14 p-2" />
+
+						{/* Кнопка */}
+						<button
+							aria-label={`View details for ${product.name}`}
+							className="w-full mt-auto flex items-center justify-center gap-2 bg-res-light-green text-res-green font-medium py-2.5 sm:py-3 px-4 rounded-lg transition-all duration-300 ease-in-out hover:bg-res-green hover:text-white focus:outline-none focus:ring-2 focus:ring-res-green focus:ring-offset-2 focus:ring-offset-white/10">
+							<span>Подробнее</span>
+							<ArrowRight className="size-4 sm:size-5" />
 						</button>
 					</div>
 				</div>

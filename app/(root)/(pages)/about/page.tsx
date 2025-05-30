@@ -1,4 +1,4 @@
-import { Banner } from "@/components/banner/Banner";
+import { BannerDefault } from "@/components/banner/default";
 import { AboutCompanyComponent } from "@/components/sections/about_company";
 import { clients, partners } from "@/config/static";
 import Image from "next/image";
@@ -6,61 +6,89 @@ import { Metadata } from "next";
 import dynamic from "next/dynamic";
 
 export const metadata: Metadata = {
-	title: "О бизнесе - Grand Market",
+	title: "О компании - Grand Market",
 	description:
-		"Торговое оборудование для магазинов по лучшим ценам в Атырау, Актау и Актобе",
+		"Узнайте больше о Grand Market: вашем эксперте в мире торгового оборудования в Атырау, Актау и Актобе.",
 };
 
-const SwiperComponent = dynamic(() => import("@/components/SwiperComponent"), {
-	ssr: true,
-});
+const CarouselComponent = dynamic(
+	() => import("@/components/sections/carousel"),
+	{
+		ssr: true,
+	}
+);
 
 export default function AboutPage() {
 	return (
-		<main>
-			{/* Banner Section */}
-			<Banner
+		<main className="bg-gray-50/50">
+			<BannerDefault
 				image="/about/banner.png"
 				bigText="О компании"
 				smallText="Ваш эксперт в мире торгового оборудования"
 			/>
-
-			<section className="section-container">
-				<div className="mx-auto container max-w-[480px] sm:max-w-[640px] md:max-w-[1270px] space-y-36">
-					{/* About Company Section */}
+			<section className="section-container space-y-16 md:space-y-24 lg:space-y-32">
+				<div className="container space-y-16 md:space-y-24 lg:space-y-32">
 					<AboutCompanyComponent />
 
-					{/* Map Section */}
-					<div className="text-res-green w-full flex flex-col lg:flex-row-reverse gap-8">
-						<div className="h-[20rem] md:h-[27.5rem] xl:h-[30rem] aspect-[4/3] lg:ml-6 lg:mb-6 relative w-full md:w-fit">
-							<Image
-								src={"/map.png"}
-								fill
-								objectFit="contain"
-								alt="Карта Grand-Market"
-							/>
+					{/* Map & Expansion Plans Section */}
+					<div className="flex flex-col lg:flex-row-reverse items-center gap-8 md:gap-12 lg:gap-16">
+						{/* Map Image */}
+						<div className="w-full lg:w-1/2 xl:w-2/5 flex-shrink-0">
+							<div className="relative aspect-[4/3] sm:aspect-[16/10] rounded-xl shadow-lg overflow-hidden bg-gray-100">
+								<Image
+									src={"/map.png"}
+									fill
+									style={{ objectFit: "contain" }}
+									alt="Карта филиалов Grand-Market в Казахстане"
+									className="p-2 sm:p-4"
+								/>
+							</div>
 						</div>
-						<p className="font-medium text-2xl lg:text-3xl xl:text-2xl text-justify lg:justify-normal">
-							<span>
-								GRAND MARKET - имеет 3 Филиала в городах Атырау, Актау и Актобе.
-								В 2023 году наша команда планирует открыть филиал в городе
-								Уральск. К 2025 году планируется открытие филиалов в мегаполисах
-								Алматы, Шымкент и Астана.
-							</span>
-							<br />
-							<span>
-								К 2028 году мы планируем иметь партнеров во всех больших городах
-								Казахстана и открыть собственное производство Торгового
-								оборудования. В дальнейшем, мы также намерены не стоять на месте
-								и выходить на рынок соседних стран.
-							</span>
-						</p>
+
+						{/* Text Content for Expansion */}
+						<div className="w-full lg:w-1/2 xl:w-3/5 space-y-6">
+							<h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-res-green leading-tight">
+								Наши планы по расширению
+							</h2>
+							<div className="space-y-4 text-gray-700 text-base md:text-lg leading-relaxed">
+								<p>
+									<strong className="text-gray-800">GRAND MARKET</strong>{" "}
+									активно развивается, имея 3 филиала в городах Атырау, Актау и
+									Актобе. В 2023 году наша команда планирует открыть филиал в
+									городе Уральск.
+								</p>
+								<p>
+									К 2025 году мы стремимся расширить наше присутствие в
+									мегаполисах Алматы, Шымкент и Астана, делая качественное
+									торговое оборудование доступнее по всей стране.
+								</p>
+								<p>
+									Наша долгосрочная цель к 2028 году — наладить партнерские
+									отношения во всех крупных городах Казахстана и запустить{" "}
+									<strong className="text-gray-800">
+										собственное производство
+									</strong>{" "}
+									торгового оборудования. В дальнейшем мы также намерены не
+									останавливаться на достигнутом и осваивать рынки соседних
+									стран.
+								</p>
+							</div>
+						</div>
 					</div>
 				</div>
 
-				{/* Clients and Partners Slider Sections */}
-				<SwiperComponent sectionTitle="Наши клиенты" array={clients} />
-				<SwiperComponent sectionTitle="Наши партнеры" array={partners} />
+				<div className="space-y-16 md:space-y-24 lg:space-y-32">
+					<CarouselComponent
+						sectionTitle="Наши клиенты"
+						array={clients}
+						perView={5}
+					/>
+					<CarouselComponent
+						sectionTitle="Наши партнеры"
+						array={partners}
+						perView={5}
+					/>
+				</div>
 			</section>
 		</main>
 	);

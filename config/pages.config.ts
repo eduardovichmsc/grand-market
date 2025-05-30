@@ -1,8 +1,8 @@
 export const NavbarLinks = [
 	{ title: "О нас", href: "/about" },
-	{ title: "Услуги", href: "/#services" },
-	{ title: "Наши преимущества", href: "/#advantages" },
-	{ title: "Виды оборудование для бизнеса", href: "/products" },
+	{ title: "Услуги", href: "/#services", scroll: true },
+	{ title: "Наши преимущества", href: "/#advantages", scroll: true },
+	{ title: "Виды оборудования для бизнеса", href: "/products" },
 	{ title: "Наши работы", href: "/our-projects" },
 ];
 

@@ -120,3 +120,18 @@ body {
 		@apply bg-background text-foreground;
 	}
 }
+
+/* custom */
+.custom-scrollbar-thin::-webkit-scrollbar {
+	width: 6px;
+}
+.custom-scrollbar-thin::-webkit-scrollbar-track {
+	background: transparent;
+}
+.custom-scrollbar-thin::-webkit-scrollbar-thumb {
+	background: rgba(255, 255, 255, 0.3);
+	border-radius: 3px;
+}
+.custom-scrollbar-thin::-webkit-scrollbar-thumb:hover {
+	background: rgba(255, 255, 255, 0.5);
+}

@@ -1,4 +1,9 @@
-export const purposes: { id: number; name: string; code: string }[] = [
+export const purposes: {
+	id: number;
+	name: string;
+	code: string;
+	image?: string;
+}[] = [
 	{
 		id: 0,
 		name: "Разное",

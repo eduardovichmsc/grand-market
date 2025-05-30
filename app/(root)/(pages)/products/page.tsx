@@ -1,29 +1,31 @@
 "use client";
 import { useState, useMemo, useEffect, useRef } from "react";
-import { Banner } from "@/components/banner/Banner";
+import { BannerDefault } from "@/components/banner/default";
 import { catalog } from "@/entities/catalog";
 import { useSearch } from "@/hooks/useSearch";
-import { Search, ChevronLeft, ChevronRight } from "lucide-react";
+import { Search } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import clsx from "clsx";
 
 import type { CatalogItemType } from "@/entities/entities.types";
 import { CatalogItem } from "@/components/product/item";
 import { CatalogFilter } from "@/components/product/filter";
 import { isGlobalLoading } from "@/model/atoms";
 import { useAtom } from "jotai";
+import { PaginationControls } from "@/components/pagination/controls";
+import { ProductModal } from "@/components/modal/product";
 
 const itemVariants = {
-	hidden: { opacity: 0 },
+	hidden: { opacity: 0, y: 20 },
 	visible: {
 		opacity: 1,
+		y: 0,
 		transition: {
 			duration: 0.3,
 		},
 	},
 	exit: {
 		opacity: 0,
-
+		y: -20,
 		transition: {
 			duration: 0.2,
 		},
@@ -41,57 +43,13 @@ const containerVariants = {
 };
 
 const ITEMS_PER_PAGE = 24;
-const DOTS = "...";
-
-const range = (start: number, end: number) => {
-	let length = end - start + 1;
-	return Array.from({ length }, (_, idx) => idx + start);
-};
-
-const generatePageNumbers = (
-	totalPages: number,
-	currentPage: number,
-	siblingsCount: number = 1
-): (number | string)[] => {
-	if (totalPages <= 1) return [];
-
-	const totalPageNumbersToShow = siblingsCount + 5;
-
-	if (totalPages <= totalPageNumbersToShow) {
-		return range(1, totalPages);
-	}
-
-	const leftSiblingIndex = Math.max(currentPage - siblingsCount, 1);
-	const rightSiblingIndex = Math.min(currentPage + siblingsCount, totalPages);
-
-	const shouldShowLeftDots = leftSiblingIndex > 2;
-	const shouldShowRightDots = rightSiblingIndex < totalPages - 1;
-
-	const firstPageIndex = 1;
-	const lastPageIndex = totalPages;
-
-	if (!shouldShowLeftDots && shouldShowRightDots) {
-		let leftItemCount = 3 + 2 * siblingsCount;
-		let leftRange = range(1, leftItemCount);
-		return [...leftRange, DOTS, lastPageIndex];
-	}
-
-	if (shouldShowLeftDots && !shouldShowRightDots) {
-		let rightItemCount = 3 + 2 * siblingsCount;
-		let rightRange = range(totalPages - rightItemCount + 1, totalPages);
-		return [firstPageIndex, DOTS, ...rightRange];
-	}
-
-	if (shouldShowLeftDots && shouldShowRightDots) {
-		let middleRange = range(leftSiblingIndex, rightSiblingIndex);
-		return [firstPageIndex, DOTS, ...middleRange, DOTS, lastPageIndex];
-	}
-
-	return range(1, totalPages);
-};
 
 export default function ProductsPage() {
 	const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
+	const [selectedSubcategory, setSelectedSubcategory] = useState<number | null>(
+		null
+	);
+
 	const {
 		isLoading,
 		searchValue,
@@ -103,14 +61,38 @@ export default function ProductsPage() {
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const productListSectionRef = useRef<HTMLDivElement>(null);
 
+	const contentRef = useRef<HTMLDivElement>(null);
+
+	const [modalProductId, setModalProductId] = useState<number | null>(null);
+
+	const handleOpenProductModal = (id: number) => {
+		setModalProductId(id);
+		document.body.style.overflow = "hidden";
+	};
+
+	const handleCloseProductModal = () => {
+		setModalProductId(null);
+		document.body.style.overflow = "";
+	};
+
 	const visibleData = useMemo(() => {
-		if (selectedCategory === null) return filteredData;
-		return filteredData.filter((item) => item.category_id === selectedCategory);
-	}, [filteredData, selectedCategory]);
+		let dataToFilter = [...filteredData];
+		if (selectedCategory !== null) {
+			dataToFilter = dataToFilter.filter(
+				(item) => item.category_id === selectedCategory
+			);
+			if (selectedSubcategory !== null) {
+				dataToFilter = dataToFilter.filter(
+					(item) => item.subcategory_id === selectedSubcategory
+				);
+			}
+		}
+		return dataToFilter;
+	}, [filteredData, selectedCategory, selectedSubcategory]);
 
 	useEffect(() => {
 		setCurrentPage(1);
-	}, [searchValue, selectedCategory]);
+	}, [searchValue, selectedCategory, selectedSubcategory]);
 
 	const totalPages = useMemo(() => {
 		if (!visibleData.length) return 0;
@@ -126,19 +108,10 @@ export default function ProductsPage() {
 	const handlePageChange = (newPage: number) => {
 		if (newPage >= 1 && newPage <= totalPages && newPage !== currentPage) {
 			setCurrentPage(newPage);
-			if (productListSectionRef.current) {
-				const filterHeight =
-					document.querySelector(".catalog-filter-section")?.clientHeight || 0;
-				const topOffset =
-					productListSectionRef.current.offsetTop - filterHeight - 20;
-
-				window.scrollTo({
-					top: topOffset > 0 ? topOffset : 0,
-					behavior: "smooth",
-				});
-			} else {
-				window.scrollTo({ top: 0, behavior: "smooth" });
-			}
+			contentRef.current?.scrollIntoView({
+				block: "start",
+				behavior: "smooth",
+			});
 		}
 	};
 
@@ -149,150 +122,154 @@ export default function ProductsPage() {
 		setShowLoading(isLoading);
 	}, [isLoading, setShowLoading]);
 
-	useEffect(() => {
-		if (!showLoading) {
-			inputRef.current?.focus();
-		}
-	}, [showLoading]);
-
 	const listAnimationKey = useMemo(() => {
-		return `${selectedCategory}-${searchValue}`;
-	}, [selectedCategory, searchValue]);
+		return `${selectedCategory}-${selectedSubcategory}-${searchValue}-${currentPage}`;
+	}, [selectedCategory, selectedSubcategory, searchValue, currentPage]);
 
-	const pageNumbers = useMemo(() => {
-		return generatePageNumbers(totalPages, currentPage);
-	}, [totalPages, currentPage]);
+	useEffect(() => {
+		const handleEsc = (event: KeyboardEvent) => {
+			if (event.key === "Escape") {
+				handleCloseProductModal();
+			}
+		};
+
+		if (modalProductId !== null) {
+			document.body.style.overflow = "hidden";
+			window.addEventListener("keydown", handleEsc);
+		} else {
+			document.body.style.overflow = "";
+		}
+
+		return () => {
+			window.removeEventListener("keydown", handleEsc);
+			document.body.style.overflow = "";
+		};
+	}, [modalProductId]);
 
 	return (
 		<main>
-			<Banner
+			<BannerDefault
 				image="/for-business/banner.png"
 				bigText="Виды Оборудование Для Бизнеса"
 				smallText="Ваш эксперт в мире торгового оборудования"
 				isBordered
 			/>
-			<div className="flex justify-center -mt-8 relative z-10">
+			<div
+				className="flex justify-center -mt-8 relative z-10 px-4"
+				ref={contentRef}>
 				<form
 					onSubmit={handleSubmit}
-					className="relative flex flex-col justify-center">
+					className="relative flex flex-col justify-center w-full max-w-2xl sm:max-w-3xl">
 					<input
 						value={searchValue}
 						onChange={handleValueChange}
 						disabled={showLoading === true}
 						ref={inputRef}
 						type="text"
-						placeholder="Поиск по каталогу"
-						className="relative text-lg border-res-green border-2 w-[90vw] sm:w-[50rem] py-4 px-4 rounded-md shadow-sm"
+						placeholder="Поиск по каталогу..."
+						className="relative text-base sm:text-lg border-res-green border-2 w-full py-3 sm:py-4 px-4 pr-12 rounded-md shadow-sm focus:ring-2 focus:ring-res-green/50 focus:border-res-green outline-none"
 					/>
 					<button
 						type="submit"
+						title="Найти"
 						disabled={showLoading === true}
-						className="bg-white absolute right-1 top-1/2 -translate-y-1/2 p-2 group rounded-md hover:bg-gray-100 transition-colors">
-						<Search className="transition text-res-green cursor-pointer group-hover:text-res-green/80" />
+						className="absolute right-3 top-1/2 -translate-y-1/2 p-1 group rounded-md hover:bg-gray-100 transition-colors disabled:opacity-50">
+						<Search className="transition text-res-green group-hover:text-res-green/80 size-7 sm:size-8" />
 					</button>
 				</form>
 			</div>
 
 			<section
 				ref={productListSectionRef}
-				className="relative container pt-16 pb-28 space-y-16 sm:space-y-24">
-				<div className="w-full min-h-[50vh] space-y-6">
-					<div className="catalog-filter-section">
-						<CatalogFilter
-							selectedCategory={selectedCategory}
-							onSelect={setSelectedCategory}
-							className=""
-						/>
-					</div>
+				className="relative container mt-16 sm:mt-24 mb-20 sm:mb-28 space-y-12 sm:space-y-16">
+				<div className="w-full min-h-[50vh] flex flex-col md:flex-row md:space-x-8 space-y-8 md:space-y-0">
+					<CatalogFilter
+						selectedCategory={selectedCategory}
+						onSelect={(catId) => {
+							contentRef.current?.scrollIntoView({
+								block: "start",
+								behavior: "smooth",
+							});
+							setSelectedCategory(catId);
+							setSelectedSubcategory(null);
+							setCurrentPage(1);
+						}}
+						selectedSubcategory={selectedSubcategory}
+						onSubcategorySelect={(subCatId) => {
+							contentRef.current?.scrollIntoView({
+								block: "start",
+								behavior: "smooth",
+							});
+							setSelectedSubcategory(subCatId);
+							setCurrentPage(1);
+						}}
+						className="md:basis-1/4 md:sticky md:top-24 md:max-h-[calc(100vh-12rem)] md:overflow-y-auto pt-0 md:pt-16"
+					/>
 
-					<div className="basis-full space-y-8">
-						<p className="font-medium text-lg">
+					<div className="md:basis-3/4 space-y-6 sm:space-y-8">
+						<p className="font-medium text-base sm:text-lg text-gray-700">
 							{visibleData.length > 0
-								? `Найдено ${visibleData.length} результатов:`
-								: "Нету результатов"}
+								? `Найдено ${visibleData.length} товаров`
+								: "По вашему запросу ничего не найдено."}
 						</p>
 
-						<motion.div
-							key={listAnimationKey}
-							className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
-							variants={containerVariants}
-							initial="hidden"
-							animate="visible">
-							<AnimatePresence mode="sync">
+						{paginatedData.length > 0 ? (
+							<motion.div
+								key={listAnimationKey}
+								className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6"
+								variants={containerVariants}
+								initial="hidden"
+								animate="visible">
 								{paginatedData.map((item) => (
-									<motion.div
-										key={item.id}
-										variants={itemVariants}
-										initial="hidden"
-										animate="visible"
-										exit="exit"
-										layout>
+									<motion.div key={item.id} variants={itemVariants} layout>
 										<CatalogItem
 											id={item.id}
 											name={item.name}
 											description={item.description}
-											image={item.preview_image[0]}
+											image={item.preview_image?.[0]}
+											onItemClick={handleOpenProductModal}
 										/>
 									</motion.div>
 								))}
-							</AnimatePresence>
-						</motion.div>
-
-						{/* Pagination Controls */}
-						{totalPages > 1 && (
-							<div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-2 mt-12 pt-8 border-t border-gray-200">
-								<button
-									onClick={() => handlePageChange(currentPage - 1)}
-									disabled={currentPage === 1}
-									className="flex items-center px-4 py-2 border rounded-md text-sm sm:text-base bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-sm"
-									aria-label="Previous Page">
-									<ChevronLeft size={18} className="mr-1" />
-									Назад
-								</button>
-
-								<div className="flex items-center space-x-1">
-									{pageNumbers.map((page, index) =>
-										typeof page === "number" ? (
-											<button
-												key={`page-${page}`}
-												onClick={() => handlePageChange(page)}
-												disabled={currentPage === page}
-												className={clsx(
-													"px-3 py-2 min-w-[40px] text-center border rounded-md text-sm sm:text-base transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-res-green/50",
-													{
-														"bg-res-green text-white border-res-green hover:bg-res-green/90":
-															currentPage === page,
-														"bg-white hover:bg-gray-100 text-gray-700 border-gray-300":
-															currentPage !== page,
-													}
-												)}
-												aria-current={currentPage === page ? "page" : undefined}
-												aria-label={`Go to page ${page}`}>
-												{page}
-											</button>
-										) : (
-											<span
-												key={`ellipsis-${index}`}
-												className="px-2 py-2 text-gray-500 select-none">
-												{DOTS}
-											</span>
-										)
-									)}
-								</div>
-
-								<button
-									onClick={() => handlePageChange(currentPage + 1)}
-									disabled={currentPage === totalPages}
-									className="flex items-center px-4 py-2 border rounded-md text-sm sm:text-base bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-sm"
-									aria-label="Next Page">
-									Вперед
-									<ChevronRight size={18} className="ml-1" />
-								</button>
+							</motion.div>
+						) : (
+							<div className="flex flex-col items-center justify-center min-h-[30vh] text-center">
+								<Search className="size-16 text-gray-300 mb-4" />
+								<p className="text-xl text-gray-500">Товары не найдены</p>
+								<p className="text-gray-400">
+									Попробуйте изменить фильтры или поисковый запрос.
+								</p>
 							</div>
+						)}
+
+						{totalPages > 1 && (
+							<PaginationControls
+								currentPage={currentPage}
+								totalPages={totalPages}
+								onPageChange={handlePageChange}
+							/>
 						)}
 					</div>
 				</div>
 			</section>
+
+			{/* Рендер модального окна продукта */}
+			<AnimatePresence>
+				{modalProductId !== null && (
+					<motion.div
+						className="fixed overflow-hidden inset-0 w-full h-screen bg-black/40 backdrop-blur-lg flex justify-center items-center"
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+						transition={{ duration: 0.3 }}
+						style={{ zIndex: 50 }}>
+						<ProductModal
+							productId={modalProductId}
+							onClose={handleCloseProductModal}
+						/>
+					</motion.div>
+				)}
+			</AnimatePresence>
 		</main>
 	);
 }

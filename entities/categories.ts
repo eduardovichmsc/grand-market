@@ -1,9 +1,6 @@
-export const categories: { id: number; name: string; code: string }[] = [
-	{
-		id: 0,
-		name: "Холодильные горки",
-		code: "holodilnye_gorki",
-	},
+import { CategoryItemType } from "./entities.types";
+
+export const categories: CategoryItemType[] = [
 	{
 		id: 1,
 		name: "Витрины",
@@ -11,13 +8,8 @@ export const categories: { id: number; name: string; code: string }[] = [
 	},
 	{
 		id: 2,
-		name: "Морозильные бонеты",
-		code: "morozilnye_bonety",
-	},
-	{
-		id: 3,
-		name: "Встроенный холод",
-		code: "vstroennyi_holod",
+		name: "Холодильное оборудование",
+		code: "holodilnoe_oborudovanie",
 	},
 	{
 		id: 4,
@@ -43,5 +35,20 @@ export const categories: { id: number; name: string; code: string }[] = [
 		id: 8,
 		name: "Корзины",
 		code: "korziny",
+	},
+	{
+		id: 9,
+		name: "Контейнеры",
+		code: "konteinery",
+	},
+	{
+		id: 10,
+		name: "Стойки",
+		code: "stoiki",
+	},
+	{
+		id: 11,
+		name: "Подставки",
+		code: "podstavki",
 	},
 ];

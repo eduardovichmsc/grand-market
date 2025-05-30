@@ -20,12 +20,12 @@ export const Navbar = () => {
 
 	return (
 		<div className="flex items-center container py-3 justify-between gap-2 xl:gap-0">
-			<div className="relative aspect-[16/7] h-[6rem]">
+			<div className="relative aspect-[16/7] h-[4rem]">
 				<Link href={"/"} className="">
 					<Image src={"/logo.png"} fill objectFit="contain" alt="logo" />
 				</Link>
 			</div>
-			<nav className="hidden lg:flex justify-end items-center xl:basis-3/4 font-normal text-xl gap-3 xl:gap-6">
+			<nav className="hidden lg:flex justify-end items-center xl:basis-3/4 font-normal text-lg gap-3 xl:gap-6">
 				{NavbarLinks.map((link, index) => (
 					<Link
 						key={index}

@@ -1,54 +1,199 @@
-import { Banner } from "@/components/banner/Banner";
-import { Metadata } from "next";
-import Image from "next/image";
-// import Image from "next/image";
+"use client";
 
-export const metadata: Metadata = {
-	title: "Наши проекты - Grand Market",
-	description:
-		"Торговое оборудование для магазинов по лучшим ценам в Атырау, Актау и Актобе",
-};
+import { BannerDefault } from "@/components/banner/default";
+import Image from "next/image";
+import { useState, useEffect } from "react";
+import { XIcon } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const projectImages = [
-	"/projects/1.png",
-	"/projects/2.png",
-	"/projects/3.png",
-	"/projects/4.png",
-	"/projects/5.png",
-	"/projects/6.png",
-	"/projects/7.png",
-	"/projects/8.png",
-	"/projects/9.png",
-	"/projects/10.png",
-	"/projects/11.png",
-	"/projects/12.png",
+	{
+		src: "/projects/1.png",
+		title: "",
+
+		description: "",
+	},
+	{
+		src: "/projects/2.png",
+		title: "",
+
+		description: "",
+	},
+	{
+		src: "/projects/3.png",
+		title: "",
+
+		description: "",
+	},
+	{
+		src: "/projects/4.png",
+		title: "",
+
+		description: "",
+	},
+	{
+		src: "/projects/5.png",
+		title: "",
+
+		description: "",
+	},
+	{
+		src: "/projects/6.png",
+		title: "",
+
+		description: "",
+	},
+	{
+		src: "/projects/7.png",
+		title: "",
+
+		description: "",
+	},
+	{
+		src: "/projects/8.png",
+		title: "",
+
+		description: "",
+	},
+	{
+		src: "/projects/9.png",
+		title: "",
+
+		description: "",
+	},
+	{
+		src: "/projects/10.png",
+		title: "",
+
+		description: "",
+	},
+	{
+		src: "/projects/11.png",
+		title: "",
+
+		description: "",
+	},
+	{
+		src: "/projects/12.png",
+		title: "",
+
+		description: "",
+	},
 ];
 
-export default function ForBusinessPage() {
+export default function OurProjectsPage() {
+	const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+	const openLightbox = (imageSrc: string) => {
+		setSelectedImage(imageSrc);
+		document.body.style.overflow = "hidden";
+	};
+
+	const closeLightbox = () => {
+		setSelectedImage(null);
+		document.body.style.overflow = "";
+	};
+
+	useEffect(() => {
+		const handleEsc = (event: KeyboardEvent) => {
+			if (event.key === "Escape") {
+				closeLightbox();
+			}
+		};
+		if (selectedImage) {
+			window.addEventListener("keydown", handleEsc);
+		}
+		return () => {
+			window.removeEventListener("keydown", handleEsc);
+		};
+	}, [selectedImage]);
+
 	return (
-		<main className="">
-			<Banner
+		<main className="bg-gray-50/50 min-h-screen">
+			<BannerDefault
 				image="/projects/banner.png"
 				bigText="Наши реализованные проекты"
+				smallText="Вдохновитесь нашими успешными решениями для бизнеса"
+				overlayOpacity={0.4}
 			/>
 
-			<section className="container py-28 space-y-36">
-				<div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 *:rounded-2xl">
-					{projectImages.map((item) => (
+			<section className="container py-12 sm:py-16 md:py-20 lg:py-24">
+				<p className="text-center text-lg text-gray-600 mb-12 md:mb-16 max-w-3xl mx-auto">
+					Мы гордимся каждым завершенным проектом, предоставляя лучшие решения
+					для наших клиентов. Ниже представлены некоторые из наших работ.
+				</p>
+
+				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+					{projectImages.map((project, index) => (
 						<div
-							key={item}
-							className="relative aspect-[6/7] bg-black overflow-hidden group">
+							key={project.src || index}
+							className="relative aspect-[4/5] sm:aspect-[3/4] bg-gray-200 rounded-lg md:rounded-xl overflow-hidden group shadow-md hover:shadow-xl transition-all duration-300 ease-in-out cursor-pointer"
+							onClick={() => openLightbox(project.src)}
+							tabIndex={0}
+							onKeyPress={(e) =>
+								(e.key === "Enter" || e.key === " ") &&
+								openLightbox(project.src)
+							}>
 							<Image
-								src={item}
+								src={project.src}
 								fill
-								objectFit="cover"
-								className="transition group-hover:opacity-90"
-								alt={item}
+								style={{ objectFit: "cover" }}
+								alt={project.title || `Проект ${index + 1}`}
+								className="transition-transform duration-300 ease-in-out group-hover:scale-105"
+								sizes="(max-width: 640px) 90vw, (max-width: 768px) 45vw, (max-width: 1024px) 30vw, 23vw"
+								quality={80}
 							/>
+							<div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out flex flex-col justify-end p-3 md:p-4">
+								<h3 className="text-white font-semibold text-sm md:text-base leading-tight transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-in-out">
+									{project.title || `Проект ${index + 1}`}
+								</h3>
+								{/* Short description */}
+								<p className="text-gray-300 text-xs md:text-sm mt-1 opacity-0 group-hover:opacity-100 transition-opacity delay-100 duration-300 ease-in-out">
+									{project.description}
+								</p>
+							</div>
 						</div>
 					))}
 				</div>
 			</section>
+
+			<AnimatePresence>
+				{selectedImage && (
+					<motion.div
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+						transition={{ duration: 0.3 }}
+						className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+						onClick={closeLightbox}>
+						<motion.div
+							initial={{ scale: 0.8, opacity: 0 }}
+							animate={{ scale: 1, opacity: 1 }}
+							exit={{ scale: 0.8, opacity: 0 }}
+							transition={{
+								type: "spring",
+								stiffness: 300,
+								damping: 25,
+								duration: 0.3,
+							}}
+							className="relative max-w-[90vw] max-h-[90vh] bg-white rounded-3xl shadow-2xl overflow-hidden"
+							onClick={(e) => e.stopPropagation()}>
+							<Image
+								src={selectedImage}
+								alt="Просмотр проекта"
+								width={1200}
+								height={800}
+								style={{
+									objectFit: "contain",
+									maxWidth: "100%",
+									maxHeight: "100%",
+								}}
+								className="block w-auto h-auto max-w-full max-h-full"
+							/>
+						</motion.div>
+					</motion.div>
+				)}
+			</AnimatePresence>
 		</main>
 	);
 }
