@@ -2,7 +2,7 @@ export interface LocationType {
 	id: string;
 	name: string;
 	address: string;
-	phone: string;
+	phone: string[];
 	date: string;
 	hours: string;
 	social: {

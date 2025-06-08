@@ -16,7 +16,7 @@ interface LocationItem {
 	id: string | number;
 	name: string;
 	address: string;
-	phone?: string;
+	phone?: string[];
 	email?: string;
 	social: {
 		instagram: SocialInfo;
@@ -154,7 +154,7 @@ export const ContactsModal = () => {
 								<div
 									key={city.id}
 									className="bg-slate-50 p-4 rounded-lg border border-slate-200">
-									<div className="flex justify-between items-start mb-2">
+									<div className="flex justify-between items-start">
 										<h3 className="font-bold text-lg md:text-xl text-res-green">
 											{city.name}
 										</h3>
@@ -171,17 +171,23 @@ export const ContactsModal = () => {
 									<p className="text-sm md:text-base text-slate-700 mb-1">
 										{city.address}
 									</p>
-									{city.phone && (
-										<a
-											href={`tel:${city.phone.replace(/\s|-/g, "")}`}
-											className="inline-flex items-center text-sm text-slate-600 hover:text-res-green transition-colors group">
-											<PhoneIcon
-												size={14}
-												className="mr-1.5 text-slate-500 group-hover:text-res-green"
-											/>
-											{city.phone}
-										</a>
-									)}
+									<div className="flex">
+										{city.phone &&
+											city.phone.map((item, index) => (
+												<a
+													key={index}
+													href={`tel:${item.replace(/\s|-/g, "")}`}
+													className="inline-flex items-center text-sm text-slate-600 hover:text-res-green transition-colors group mr-4 last:mr-0">
+													{index != (city.phone && city.phone?.length - 1) && (
+														<PhoneIcon
+															size={14}
+															className="mr-1.5 text-slate-500 group-hover:text-res-green"
+														/>
+													)}
+													{item}
+												</a>
+											))}
+									</div>
 								</div>
 							))}
 						</div>

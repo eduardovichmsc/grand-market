@@ -1,15 +1,15 @@
 import Link from "next/link";
 
-import { MiniBanner } from "@/components/banner/mini";
 import { Sidebar } from "@/components/sections/sidebar";
 import { Navbar } from "@/components/sections/navbar";
+import { BannerMini } from "@/components/banner/mini";
 
 export default function NotFoundPage() {
 	return (
 		<div className="min-w-screen min-h-screen bg-slate-50 flex flex-col justify-between">
 			<Sidebar />
 			<div className="shadow-lg">
-				<MiniBanner />
+				<BannerMini />
 				<Navbar />
 			</div>
 

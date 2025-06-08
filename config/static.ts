@@ -22,75 +22,153 @@ export const partners: SwiperObjectType[] = [
 
 export const projectImages = [
 	{
-		src: "/projects/1.png",
+		src: "/projects/1.jpg",
 		title: "",
-
 		description: "",
 	},
 	{
-		src: "/projects/2.png",
+		src: "/projects/2.jpg",
 		title: "",
-
 		description: "",
 	},
 	{
-		src: "/projects/3.png",
+		src: "/projects/3.jpg",
 		title: "",
-
 		description: "",
 	},
 	{
-		src: "/projects/4.png",
+		src: "/projects/4.jpg",
 		title: "",
-
 		description: "",
 	},
 	{
-		src: "/projects/5.png",
+		src: "/projects/5.jpg",
 		title: "",
-
 		description: "",
 	},
 	{
-		src: "/projects/6.png",
+		src: "/projects/6.jpg",
 		title: "",
-
 		description: "",
 	},
 	{
-		src: "/projects/7.png",
+		src: "/projects/7.jpg",
 		title: "",
-
 		description: "",
 	},
 	{
-		src: "/projects/8.png",
+		src: "/projects/8.jpg",
 		title: "",
-
 		description: "",
 	},
 	{
-		src: "/projects/9.png",
+		src: "/projects/9.jpg",
 		title: "",
-
 		description: "",
 	},
 	{
-		src: "/projects/10.png",
+		src: "/projects/10.jpg",
 		title: "",
-
 		description: "",
 	},
 	{
-		src: "/projects/11.png",
+		src: "/projects/11.jpg",
 		title: "",
-
 		description: "",
 	},
 	{
-		src: "/projects/12.png",
+		src: "/projects/12.jpg",
 		title: "",
-
+		description: "",
+	},
+	{
+		src: "/projects/13.jpg",
+		title: "",
+		description: "",
+	},
+	{
+		src: "/projects/14.jpg",
+		title: "",
+		description: "",
+	},
+	{
+		src: "/projects/15.jpg",
+		title: "",
+		description: "",
+	},
+	{
+		src: "/projects/16.jpg",
+		title: "",
+		description: "",
+	},
+	{
+		src: "/projects/17.jpg",
+		title: "",
+		description: "",
+	},
+	{
+		src: "/projects/18.jpg",
+		title: "",
+		description: "",
+	},
+	{
+		src: "/projects/19.jpg",
+		title: "",
+		description: "",
+	},
+	{
+		src: "/projects/20.jpg",
+		title: "",
+		description: "",
+	},
+	{
+		src: "/projects/21.jpg",
+		title: "",
+		description: "",
+	},
+	{
+		src: "/projects/22.jpg",
+		title: "",
+		description: "",
+	},
+	{
+		src: "/projects/23.jpg",
+		title: "",
+		description: "",
+	},
+	{
+		src: "/projects/24.jpg",
+		title: "",
+		description: "",
+	},
+	{
+		src: "/projects/25.jpg",
+		title: "",
+		description: "",
+	},
+	{
+		src: "/projects/26.jpg",
+		title: "",
+		description: "",
+	},
+	{
+		src: "/projects/27.jpg",
+		title: "",
+		description: "",
+	},
+	{
+		src: "/projects/28.jpg",
+		title: "",
+		description: "",
+	},
+	{
+		src: "/projects/29.jpg",
+		title: "",
+		description: "",
+	},
+	{
+		src: "/projects/30.jpg",
+		title: "",
 		description: "",
 	},
 ];

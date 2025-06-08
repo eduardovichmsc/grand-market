@@ -22,7 +22,14 @@ export const Navbar = () => {
 		<div className="flex items-center container py-3 justify-between gap-2 xl:gap-0">
 			<div className="relative aspect-[16/7] h-[4rem]">
 				<Link href={"/"} className="">
-					<Image src={"/logo.png"} fill objectFit="contain" alt="logo" />
+					<Image
+						src={"/logo/animation_transparent.gif"}
+						placeholder={"blur"}
+						blurDataURL={"/logo/transparent.png"}
+						fill
+						objectFit="contain"
+						alt="logo"
+					/>
 				</Link>
 			</div>
 			<nav className="hidden lg:flex justify-end items-center xl:basis-3/4 font-normal text-lg gap-3 xl:gap-6">
@@ -31,7 +38,7 @@ export const Navbar = () => {
 						key={index}
 						href={link.href}
 						className={clsx("transition text-res-green xl:pt-1 px-0 2xl:px-2", {
-							"text-res-grey": hovered.length > 0 && hovered != link.href,
+							"text-res-green/25": hovered.length > 0 && hovered != link.href,
 						})}
 						onMouseEnter={() => setHovered(link.href)}
 						onMouseLeave={() => setHovered("")}

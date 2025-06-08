@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-	typescript: { ignoreBuildErrors: true },
+	// typescript: { ignoreBuildErrors: true },
 	async rewrites() {
 		// nest.js -- backend
 		return [

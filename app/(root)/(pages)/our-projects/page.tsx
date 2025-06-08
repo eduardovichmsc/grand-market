@@ -1,10 +1,11 @@
 "use client";
 
 import { BannerDefault } from "@/components/banner/default";
+import { projectImages } from "@/config/static";
+
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { projectImages } from "@/config/static";
 
 export default function OurProjectsPage() {
 	const [selectedImage, setSelectedImage] = useState<string | null>(null);

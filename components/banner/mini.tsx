@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export const MiniBanner = () => {
+export const BannerMini = () => {
 	return (
 		<div className="bg-res-green text-white flex items-center min-h-11 py-4 sm:py-0 lg:min-h-16 2xl:min-h-12">
 			<div className="container flex flex-col sm:flex-row sm:justify-between">

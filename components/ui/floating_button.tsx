@@ -4,13 +4,18 @@ import clsx from "clsx";
 import { useAtom } from "jotai";
 import { PhoneCall } from "lucide-react";
 
-export const FloatingButton = () => {
+interface Props {
+	className: string;
+}
+
+export const FloatingButton = ({ className }: Props) => {
 	const [isOpen, setIsOpen] = useAtom(isContactsModalOpen);
 
 	return (
 		<button
 			className={clsx(
-				"transition fixed z-40 bottom-10 right-10 md:bottom-8 md:right-8 border-2 border-full border-res-green/10 bg-white/50 backdrop-blur-xl rounded-full overflow-hidden flex justify-center items-center hover:border-res-green size-28 md:size-16 group",
+				"transition fixed bottom-10 right-10 md:bottom-8 md:right-8 border-2 border-full border-res-green/10 bg-white/50 backdrop-blur-xl rounded-full overflow-hidden flex justify-center items-center hover:border-res-green size-28 md:size-16 group",
+				className,
 				{
 					"border-res-green/75 bg-res-green": isOpen,
 				}

@@ -31,7 +31,7 @@ export const Footer = () => {
 	];
 
 	return (
-		<footer className="bg-slate-50 border-t border-slate-200 mt-16 md:mt-24 print:hidden">
+		<footer className="bg-zinc-100 border-t border-slate-200 mt-16 md:mt-24 print:hidden">
 			<div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-14">
 				{/* Контейнер */}
 				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-x-6 md:gap-x-8 gap-y-10 mb-10 md:mb-12">
@@ -41,7 +41,7 @@ export const Footer = () => {
 							className="inline-block mb-4 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-res-green focus-visible:ring-offset-2 rounded-sm"
 							aria-label="На главную">
 							<Image
-								src="/logo.png"
+								src="/logo/text_transparent.png"
 								width={160}
 								height={65}
 								alt="Логотип компании"
