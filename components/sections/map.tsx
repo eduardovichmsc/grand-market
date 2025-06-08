@@ -146,7 +146,7 @@ export const Map = () => {
 								<div className="">
 									<p className="text-white/75">Мобильный телефон :</p>
 									<p className="text-white">
-										{city.phone ? city.phone : "Не указано"}
+										{city.phone ? city.phone[0] : "Не указано"}
 									</p>
 								</div>
 							</div>

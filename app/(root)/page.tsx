@@ -191,22 +191,27 @@ export default function Home() {
 					<div className="flex flex-col md:flex-row h-full gap-10 md:gap-6 md:mt-10">
 						<div className="basis-full md:basis-1/2 flex flex-col gap-6">
 							<div className="transition-all opacity-90 hover:opacity-100 w-full aspect-[4/2] bg-res-green/20 rounded-2xl shadow-md relative overflow-hidden">
-								<Image src={"/projects/1.png"} fill objectFit="cover" alt="" />
+								<Image
+									src={"/projects/1.jpg"}
+									fill
+									className="object-cover"
+									alt=""
+								/>
 							</div>
 							<div className="w-full aspect-[4/2] flex gap-6">
 								<div className="transition-all opacity-90 hover:opacity-100 w-1/2 h-full bg-res-green/20 rounded-2xl shadow-md relative overflow-hidden">
 									<Image
-										src={"/projects/2.png"}
+										src={"/projects/2.jpg"}
 										fill
-										objectFit="cover"
+										className="object-cover"
 										alt=""
 									/>
 								</div>
 								<div className="transition-all opacity-90 hover:opacity-100 w-1/2 h-full bg-res-green/20 rounded-2xl shadow-md relative overflow-hidden">
 									<Image
-										src={"/projects/3.png"}
+										src={"/projects/3.jpg"}
 										fill
-										objectFit="cover"
+										className="object-cover"
 										alt=""
 									/>
 								</div>
@@ -215,22 +220,27 @@ export default function Home() {
 
 						<div className="basis-full md:basis-1/2 flex flex-col md:flex-row gap-6">
 							<div className="transition-all opacity-90 hover:opacity-100 w-full md:w-1/2 h-full bg-res-green/20 rounded-2xl shadow-md relative overflow-hidden">
-								<Image src={"/projects/4.png"} fill objectFit="cover" alt="" />
+								<Image
+									src={"/projects/4.jpg"}
+									fill
+									className="object-cover"
+									alt=""
+								/>
 							</div>
 							<div className="w-full md:w-1/2 h-full flex flex-col gap-6">
 								<div className="transition-all opacity-90 hover:opacity-100 w-full h-1/2 bg-res-green/20 rounded-2xl shadow-md relative overflow-hidden">
 									<Image
-										src={"/projects/5.png"}
+										src={"/projects/5.jpg"}
 										fill
-										objectFit="cover"
+										className="object-cover"
 										alt=""
 									/>
 								</div>
 								<div className="transition-all opacity-90 hover:opacity-100 w-full h-1/2 bg-res-green/20 rounded-2xl shadow-md relative overflow-hidden">
 									<Image
-										src={"/projects/6.png"}
+										src={"/projects/6.jpg"}
 										fill
-										objectFit="cover"
+										className="object-cover"
 										alt=""
 									/>
 								</div>

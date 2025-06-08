@@ -54,12 +54,15 @@ export default function ProductPageById() {
 
 	const handleOrder = (name: string, category: string) => {
 		const text = `
-			Здравствуйте,\n\n
+			Здравствуйте,\n
 			 Я хочу заказать у вас ${category} - ${name}.
 		`;
-		const phone = "+77019265005";
-		// const whatsappUrl = `https://wa.me/${phone.replace(/\+/g, "")}?text=${encodeURIComponent(text)}`;
-		// window.open(whatsappUrl, "_blank");
+		const phone = "+77788869052";
+		const whatsappUrl = `https://wa.me/${phone.replace(
+			/\+/g,
+			""
+		)}?text=${encodeURIComponent(text)}`;
+		window.open(whatsappUrl, "_blank");
 		console.log("Order text:", text, "Phone:", phone);
 	};
 
