@@ -15,7 +15,7 @@ export const Hero = () => {
 			<div className="bg-gradient-to-bl via-35% from-zinc-50 via-res-green/95 to-res-green flex min-h-[50rem] xl:min-h-[55rem]">
 				<div className="container flex flex-col md:flex-row">
 					<div className="flex flex-col items-center md:items-stretch justify-center w-full md:w-1/2 h-full gap-12 md:gap-8 xl:gap-10 px-10 md:px-0">
-						<h1 className="font-extrabold text-white">
+						<h1 className="font-extrabold text-white uppercase">
 							<span className={`block ${headlineSize} leading-tight`}>
 								Эффективное
 							</span>

@@ -69,7 +69,7 @@ export default function OurProjectsPage() {
 								quality={80}
 							/>
 							<div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out flex flex-col justify-end p-3 md:p-4">
-								<h3 className="text-white font-semibold text-sm md:text-base leading-tight transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-in-out">
+								<h3 className="hidden text-white font-semibold text-sm md:text-base leading-tight transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-in-out">
 									{project.title || `Проект ${index + 1}`}
 								</h3>
 								{/* Short description */}

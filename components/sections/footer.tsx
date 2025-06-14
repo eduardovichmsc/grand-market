@@ -48,7 +48,7 @@ export const Footer = () => {
 								className="h-auto transition-opacity group-hover:opacity-80"
 							/>
 						</Link>
-						<p className="text-slate-600 text-sm leading-relaxed">
+						<p className="text-slate-600 text-base leading-relaxed">
 							Ваш надежный партнер в мире инновационных решений и качественных
 							продуктов.
 						</p>
@@ -64,7 +64,7 @@ export const Footer = () => {
 								<li key={item.title}>
 									<Link
 										href={item.href}
-										className="text-slate-600 hover:text-res-green transition-colors duration-200 text-sm w-fit block">
+										className="text-slate-600 hover:text-res-green transition-colors duration-200 text-base w-fit block">
 										{item.title}
 									</Link>
 								</li>
@@ -83,7 +83,7 @@ export const Footer = () => {
 									<li key={category.id}>
 										<Link
 											href={`/products?category=${category.id}`}
-											className="text-slate-600 hover:text-res-green transition-colors duration-200 text-sm w-fit block">
+											className="text-slate-600 hover:text-res-green transition-colors duration-200 text-base w-fit block">
 											{category.name}
 										</Link>
 									</li>
@@ -92,7 +92,7 @@ export const Footer = () => {
 									<li>
 										<Link
 											href="/products"
-											className="text-res-green hover:underline transition-colors duration-200 text-sm font-medium w-fit block mt-1">
+											className="text-res-green hover:underline transition-colors duration-200 text-base font-medium w-fit block mt-1">
 											Все категории
 										</Link>
 									</li>
@@ -106,7 +106,7 @@ export const Footer = () => {
 						<h3 className="text-base font-semibold text-slate-800 mb-3.5">
 							Контакты
 						</h3>
-						<ul className="space-y-3 text-sm text-slate-600">
+						<ul className="space-y-3 text-base text-slate-600">
 							{contactPoints.map((contact) => (
 								<li key={contact.city}>
 									<MapPinIcon className="w-4 h-4 mr-2 inline-block text-slate-400" />
@@ -153,11 +153,11 @@ export const Footer = () => {
 					<p>
 						Разработано{" "}
 						<a
-							href="https://joinway.kz"
+							href="https://join-way.com"
 							target="_blank"
 							rel="noopener noreferrer"
 							className="text-res-green hover:underline font-medium">
-							joinway.24
+							@joinway.24
 						</a>
 					</p>
 				</div>
